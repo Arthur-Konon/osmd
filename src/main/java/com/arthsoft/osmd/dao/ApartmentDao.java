@@ -1,6 +1,6 @@
-package osmd.dao;
+package com.arthsoft.osmd.dao;
 
-import osmd.entity.Apartment;
+import com.arthsoft.osmd.entity.Apartment;
 
 
 import java.sql.Connection;

@@ -1,6 +1,6 @@
-package osmd.dao;
+package com.arthsoft.osmd.dao;
 
-import osmd.entity.User;
+import com.arthsoft.osmd.entity.User;
 
 import java.sql.*;
 import java.time.LocalDate;

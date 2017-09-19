@@ -1,7 +1,6 @@
-package osmd;
+package com.arthsoft.osmd;
 
-import osmd.dao.ApartmentDao;
-import osmd.dao.UserDao;
+import com.arthsoft.osmd.dao.ApartmentDao;
 
 
 /**

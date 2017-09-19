@@ -1,4 +1,4 @@
-package osmd.dao;
+package com.arthsoft.osmd.dao;
 
 import java.sql.*;
 

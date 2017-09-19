@@ -1,6 +1,6 @@
-package osmd.dao;
+package com.arthsoft.osmd.dao;
 
-import osmd.entity.House;
+import com.arthsoft.osmd.entity.House;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

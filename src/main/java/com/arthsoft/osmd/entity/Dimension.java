@@ -1,4 +1,4 @@
-package osmd.entity;
+package com.arthsoft.osmd.entity;
 import java.util.Date;
 
 /**

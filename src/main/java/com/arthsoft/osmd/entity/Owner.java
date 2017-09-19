@@ -1,4 +1,4 @@
-package osmd.entity;
+package com.arthsoft.osmd.entity;
 
 /**
  * Created by arthk on 31.08.2017.
