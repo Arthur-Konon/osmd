@@ -2,7 +2,9 @@ package com.arthsoft.osmd;
 
 import com.arthsoft.osmd.dao.ApartmentDao;
 import com.arthsoft.osmd.dao.BenefitDao;
+import com.arthsoft.osmd.dao.BenefitsTypeDao;
 import com.arthsoft.osmd.dao.ServiceDao;
+import com.arthsoft.osmd.entity.BenefitsType;
 import com.sun.org.apache.xpath.internal.SourceTree;
 
 
@@ -41,6 +43,12 @@ public class Main {
         //System.out.println(ServiceDao.save(ServiceDao.getById(2)));
         //System.out.println(ServiceDao.deleteById(3));
         //System.out.println(ServiceDao.update(ServiceDao.getById(2)));
+
+        //BenefitsTypeDao.printBenefitsTypes(BenefitsTypeDao.getAll());
+        //System.out.println(BenefitsTypeDao.getById(1));
+        //System.out.println(BenefitsTypeDao.save(BenefitsTypeDao.getById(1)));
+        //System.out.println(BenefitsTypeDao.update(BenefitsTypeDao.getById(1)));
+        //System.out.println(BenefitsTypeDao.deleteById(3));
 
     }
 }
