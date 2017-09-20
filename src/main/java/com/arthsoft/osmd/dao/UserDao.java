@@ -17,7 +17,7 @@ public class UserDao {
     }
 
     public static List<User> getAll(){
-        List <User> result = new ArrayList();
+        List <User> result = new ArrayList<>();
         String selectSQL = "SELECT * FROM users";
 
         try (Connection dbConnection = DbUtils.getDBConnection();
@@ -26,10 +26,10 @@ public class UserDao {
 
             while (rs.next()) {
                 User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setActive(rs.getBoolean("active"));
-                user.setLogin(rs.getString("login"));
-                user.setPeopleId(rs.getInt("peopleId"));
+                user.setId(rs.getInt("Id"));
+                user.setActive(rs.getBoolean("Active"));
+                user.setLogin(rs.getString("Login"));
+                user.setPeopleId(rs.getInt("PeopleId"));
                 user.setRemark(rs.getString("Remark"));
                 user.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
                 result.add(user);
@@ -104,7 +104,6 @@ public class UserDao {
             e.printStackTrace();
         }
         return success;
-
     }
 
     public static boolean update (User user){

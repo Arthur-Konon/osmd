@@ -1,6 +1,7 @@
 package com.arthsoft.osmd.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 /**
  * Created by arthk on 08.09.2017.
@@ -12,16 +13,21 @@ public class Service {      //table `services`
     private float price;        //  `Price` decimal(5,2) NOT NULL,
     private int dimensionId;    // `DimensionID` int(11) NOT NULL,REFERENCES `dimensions` (`ID`)
     private String remark;      //  `Remark` longtext,
-    private java.util.Date lastUpdate;      // `LastUpdate` date NOT NULL
+    private LocalDate lastUpdate;      // `LastUpdate` date NOT NULL
 
-    public Service(int id, boolean active, String name, float price, int demensionId, String remark, Date lastUpdate) {
-        this.id = id;
-        this.active = active;
-        this.name = name;
-        this.price = price;
-        this.dimensionId = demensionId;
-        this.remark = remark;
-        this.lastUpdate = lastUpdate;
+    public Service() {    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", active=" + active +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", dimensionId=" + dimensionId +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     public int getId() {
@@ -72,11 +78,11 @@ public class Service {      //table `services`
         this.remark = remark;
     }
 
-    public Date getLastUpdate() {
+    public LocalDate getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 }

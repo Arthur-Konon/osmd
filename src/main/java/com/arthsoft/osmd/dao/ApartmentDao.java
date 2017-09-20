@@ -21,7 +21,7 @@ public class ApartmentDao {
     }
 
     public static List <Apartment> getAll() {
-        List <Apartment> result = new ArrayList();
+        List <Apartment> result = new ArrayList<>();
         String selectSQL = "SELECT * FROM apartments";
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL);

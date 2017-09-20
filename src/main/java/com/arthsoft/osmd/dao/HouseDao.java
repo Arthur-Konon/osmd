@@ -20,7 +20,7 @@ public class HouseDao {
     }
 
     public static List <House> getAll() {
-        List <House> result = new ArrayList();
+        List <House> result = new ArrayList<>();
         String selectSQL = "SELECT * FROM houses";
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL);

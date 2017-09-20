@@ -1,6 +1,9 @@
 package com.arthsoft.osmd;
 
 import com.arthsoft.osmd.dao.ApartmentDao;
+import com.arthsoft.osmd.dao.BenefitDao;
+import com.arthsoft.osmd.dao.ServiceDao;
+import com.sun.org.apache.xpath.internal.SourceTree;
 
 
 /**
@@ -15,7 +18,7 @@ public class Main {
         //System.out.println(HouseDao.update(HouseDao.getById(6)));
 
 
-       ApartmentDao.printApartments(ApartmentDao.getAll());
+       //ApartmentDao.printApartments(ApartmentDao.getAll());
         //System.out.println(ApartmentDao.getById(1));
         //System.out.println(ApartmentDao.save(ApartmentDao.getById(1)));
         //System.out.println(ApartmentDao.deleteById(10));
@@ -26,5 +29,18 @@ public class Main {
         //System.out.println(UserDao.save(UserDao.getById(1)));
         //System.out.println(UserDao.deleteById(4));
         //System.out.println(UserDao.update(UserDao.getById(1)));
+
+        //BenefitDao.printBenefits(BenefitDao.getAll());
+        //System.out.println(BenefitDao.deleteById(1));
+        //System.out.println(BenefitDao.getById(3));
+        //System.out.println(BenefitDao.save(BenefitDao.getById(3)));
+        //System.out.println(BenefitDao.deleteById(5));
+
+        //ServiceDao.printServices(ServiceDao.getAll());
+        //System.out.println(ServiceDao.getById(2));
+        //System.out.println(ServiceDao.save(ServiceDao.getById(2)));
+        //System.out.println(ServiceDao.deleteById(3));
+        //System.out.println(ServiceDao.update(ServiceDao.getById(2)));
+
     }
 }

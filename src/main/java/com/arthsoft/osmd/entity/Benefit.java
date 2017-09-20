@@ -1,5 +1,6 @@
 package com.arthsoft.osmd.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,20 +16,15 @@ public class Benefit {      //table  `benefits`
     private int serviceId;  //  `ServiceID` int(11) DEFAULT NULL,REFERENCES `services` (`ID`)
     private String name;    //  `Name` char(50) DEFAULT NULL,
     private String remark;  //  `Remark` longtext,
-    private java.util.Date lastUpdate;      //     `LastUpdate` date NOT NULL
+    private LocalDate lastUpdate;      //     `LastUpdate` date NOT NULL
 
-
-    public Benefit(int id, boolean active, int typeId, int peopleId, float benefitPercent, int serviceId, String name, String remark, Date lastUpdate) {
-        this.id = id;
-        this.active = active;
-        this.typeId = typeId;
-        this.peopleId = peopleId;
-        this.benefitPercent = benefitPercent;
-        this.serviceId = serviceId;
-        this.name = name;
-        this.remark = remark;
-        this.lastUpdate = lastUpdate;
+    @Override
+    public String toString() {
+        return id + " " + active + " " + typeId + " " + peopleId + " " +
+                benefitPercent + " " + serviceId + " " + name +" " + remark + " " + lastUpdate;
     }
+
+    public Benefit() {    }
 
     public int getId() {
         return id;
@@ -94,11 +90,11 @@ public class Benefit {      //table  `benefits`
         this.remark = remark;
     }
 
-    public Date getLastUpdate() {
+    public LocalDate getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 }
