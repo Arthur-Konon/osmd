@@ -13,12 +13,15 @@ private int id;     //     `ID` int(11) NOT NULL AUTO_INCREMENT,  PRIMARY KEY
     private java.util.Date  lastUpdate;     // `LastUpdate` date NOT NULL
 
 
-    public Dimension(int id, boolean active, String name, String remark, Date lastUpdate) {
-        this.id = id;
-        this.active = active;
-        this.name = name;
-        this.remark = remark;
-        this.lastUpdate = lastUpdate;
+    @Override
+    public String toString() {
+        return "Dimension{" +
+                "id=" + id +
+                ", active=" + active +
+                ", name='" + name + '\'' +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     public int getId() {

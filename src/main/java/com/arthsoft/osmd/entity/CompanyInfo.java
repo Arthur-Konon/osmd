@@ -21,21 +21,24 @@ public class CompanyInfo {  //table `companyinfo`
   private String remark;  //  `Remark` longtext,
   private java.util.Date  lastUpdate;  // `LastUpdate` date NOT NULL
 
-  public CompanyInfo(int id, boolean active, String name, String address, String phone, String email, int managerId, String taxIdNum, String taxNum, String bankCode, String bankName, String accountNum, String remark, Date lastUpdate) {
-    this.id = id;
-    this.active = active;
-    this.name = name;
-    this.address = address;
-    this.phone = phone;
-    this.email = email;
-    this.managerId = managerId;
-    this.taxIdNum = taxIdNum;
-    this.taxNum = taxNum;
-    this.bankCode = bankCode;
-    this.bankName = bankName;
-    this.accountNum = accountNum;
-    this.remark = remark;
-    this.lastUpdate = lastUpdate;
+  @Override
+  public String toString() {
+    return "CompanyInfo{" +
+            "id=" + id +
+            ", active=" + active +
+            ", name='" + name + '\'' +
+            ", address='" + address + '\'' +
+            ", phone='" + phone + '\'' +
+            ", email='" + email + '\'' +
+            ", managerId=" + managerId +
+            ", taxIdNum='" + taxIdNum + '\'' +
+            ", taxNum='" + taxNum + '\'' +
+            ", bankCode='" + bankCode + '\'' +
+            ", bankName='" + bankName + '\'' +
+            ", accountNum='" + accountNum + '\'' +
+            ", remark='" + remark + '\'' +
+            ", lastUpdate=" + lastUpdate +
+            '}';
   }
 
   public int getId() {

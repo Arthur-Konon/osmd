@@ -14,19 +14,19 @@ public class Owner {    // owners
     private String  remark;    // `Remark` longtext,
     private java.util.Date lastUpdate;  // `LastUpdate` date NOT NULL
 
-
-        public Owner(int id, boolean active, int peopleId,
-                 int ownApartId, int ownPart, int ownDocId,
-                 boolean senior, String remark, java.util.Date date) {
-        this.id = id;
-        this.active = active;
-        this.peopleId = peopleId;
-        this.ownApartId = ownApartId;
-        this.ownPart = ownPart;
-        this.ownDocId = ownDocId;
-        this.senior = senior;
-        this.remark = remark;
-        this.lastUpdate = date;
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", active=" + active +
+                ", peopleId=" + peopleId +
+                ", ownApartId=" + ownApartId +
+                ", ownPart=" + ownPart +
+                ", ownDocId=" + ownDocId +
+                ", senior=" + senior +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     public int getId() {

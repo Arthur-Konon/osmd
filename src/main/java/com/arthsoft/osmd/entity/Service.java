@@ -15,7 +15,6 @@ public class Service {      //table `services`
     private String remark;      //  `Remark` longtext,
     private LocalDate lastUpdate;      // `LastUpdate` date NOT NULL
 
-    public Service() {    }
 
     @Override
     public String toString() {

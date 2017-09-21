@@ -23,15 +23,30 @@ public class Apartment {         //table       `apartments`
     private String remark;             // `Remark` longtext,
     private LocalDate lastUpdate;  // `LastUpdate` date NOT NULL,
 
-    public Apartment() {    }
-
     @Override
     public String toString() {
-        return id + " " + active + " " + houseId + " " + apartNum + " " + supervisorId + " "
-                + totalArea + " " + heatedArea + " " + usefulArea +" " + privacy + " "
-                + cellPhone + " " + regTenantQty + " " + actTenantsQty + " "
-                + residentialFund + " " + remark + " " + lastUpdate;
+        return "Apartment{" +
+                "id=" + id +
+                ", active=" + active +
+                ", houseId=" + houseId +
+                ", apartNum=" + apartNum +
+                ", supervisorId=" + supervisorId +
+                ", totalArea=" + totalArea +
+                ", heatedArea=" + heatedArea +
+                ", usefulArea=" + usefulArea +
+                ", privacy=" + privacy +
+                ", cellPhone='" + cellPhone + '\'' +
+                ", regTenantQty=" + regTenantQty +
+                ", actTenantsQty=" + actTenantsQty +
+                ", residentialFund=" + residentialFund +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
+
+    public Apartment() {    }
+
+
 
     public int getId() {
         return id;

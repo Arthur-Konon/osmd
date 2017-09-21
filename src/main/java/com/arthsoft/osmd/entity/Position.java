@@ -13,13 +13,16 @@ public class Position {    //    table `positions`
     private String Remark;      //  `Remark` longtext,
     private java.util.Date lastUpdate;   //     `LastUpdate` date NOT NULL,
 
-    public Position(int id, String name, boolean ispaid, boolean isStated, String remark, Date lastUpdate) {
-        this.id = id;
-        this.name = name;
-        this.ispaid = ispaid;
-        this.isStated = isStated;
-        Remark = remark;
-        this.lastUpdate = lastUpdate;
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ispaid=" + ispaid +
+                ", isStated=" + isStated +
+                ", Remark='" + Remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     public int getId() {

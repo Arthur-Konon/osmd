@@ -24,24 +24,26 @@ public class Person {       //table 'people'
     private String remark;              //  `Remarks` longtext,
     private java.util.Date lastUpdate;       //  `LastUpdate` date NOT NULL
 
-
-    public Person(int id, boolean active, String firstName, String lastName, String patronymic, int residApartId, int regApartId, Date birthDate, String phone, String taxNum, String passportSeries, String passportNum, String issuedBy, Date issuedDate, String remark, Date lastUpdate) {
-        this.id = id;
-        this.active = active;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.patronymic = patronymic;
-        this.residApartId = residApartId;
-        this.regApartId = regApartId;
-        this.birthDate = birthDate;
-        this.phone = phone;
-        this.taxNum = taxNum;
-        this.passportSeries = passportSeries;
-        this.passportNum = passportNum;
-        this.issuedBy = issuedBy;
-        this.issuedDate = issuedDate;
-        this.remark = remark;
-        this.lastUpdate = lastUpdate;
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", active=" + active +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", residApartId=" + residApartId +
+                ", regApartId=" + regApartId +
+                ", birthDate=" + birthDate +
+                ", phone='" + phone + '\'' +
+                ", taxNum='" + taxNum + '\'' +
+                ", passportSeries='" + passportSeries + '\'' +
+                ", passportNum='" + passportNum + '\'' +
+                ", issuedBy='" + issuedBy + '\'' +
+                ", issuedDate=" + issuedDate +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     public int getId() {

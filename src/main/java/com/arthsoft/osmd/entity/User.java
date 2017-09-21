@@ -1,41 +1,26 @@
 package com.arthsoft.osmd.entity;
 
-import java.time.LocalDate;
-
 /**
  * Created by arthk on 08.09.2017.
  */
-public class User {     //table  `users`
-    private int id;     //  `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
-    private boolean active;     //  `Active` tinyint(1) NOT NULL,
+public class User extends BaseMasterData {     //table  `users`
+
+    public final String TABLE_NAME = "users";
     private String login;       //  `Login` char(50) NOT NULL,
     private String password;       //  `Password` char(50) NOT NULL,
     private int peopleId;       //  `PeopleID` int(11) DEFAULT NULL,REFERENCES `people` (`ID`)
-    private String remark;      //  `Remark` longtext,
-    private LocalDate lastUpdate;      // `LastUpdate` date NOT NULL
+
 
     @Override
     public String toString() {
-        return  id + " " + active + " " + login + " " + password + " " + peopleId + " " +  remark + " " + lastUpdate;
-    }
-
-    public User(){
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+        return "User{" +
+                "id=" + getId() +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", peopleId=" + peopleId +
+                ", remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
+                '}';
     }
 
     public String getLogin() {
@@ -60,21 +45,5 @@ public class User {     //table  `users`
 
     public void setPeopleId(int peopleId) {
         this.peopleId = peopleId;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public LocalDate getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDate lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 }

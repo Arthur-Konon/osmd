@@ -19,13 +19,19 @@ public class House {        //table `houses`
 
     @Override
     public String toString() {
-        return " " + id + " " + active + " " + address + " " + year + " " +
-                qtyOfStoreys + " " + qtyOfAllApart + " " + totalArea + " " +
-                areaOfAllApart + " "  + remark + " " + lastUpdate;
+        return "House{" +
+                "id=" + id +
+                ", active=" + active +
+                ", address='" + address + '\'' +
+                ", year=" + year +
+                ", qtyOfStoreys=" + qtyOfStoreys +
+                ", qtyOfAllApart=" + qtyOfAllApart +
+                ", totalArea=" + totalArea +
+                ", areaOfAllApart=" + areaOfAllApart +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
-
-    public House( ) {
-       }
 
     public int getId() {
         return id;

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by arthk on 11.09.2017.
  */
-public class UserDao {
+public class UserDao  {
 
     public static void printUsers (List<User> user){
         for (User cell:user ) System.out.println(cell);
@@ -49,16 +49,17 @@ public class UserDao {
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )        {
             ps.setInt(1,id);
 
-            ResultSet rs = ps.executeQuery();
+            try (ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
-                user.setId(rs.getInt("Id"));
-                user.setActive(rs.getBoolean("Active"));
-                user.setLogin(rs.getString("Login"));
-                user.setPassword(rs.getString("Password"));
-                user.setPeopleId(rs.getInt("PeopleId"));
-                user.setRemark(rs.getString("Remark"));
-                user.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
+                while (rs.next()) {
+                    user.setId(rs.getInt("Id"));
+                    user.setActive(rs.getBoolean("Active"));
+                    user.setLogin(rs.getString("Login"));
+                    user.setPassword(rs.getString("Password"));
+                    user.setPeopleId(rs.getInt("PeopleId"));
+                    user.setRemark(rs.getString("Remark"));
+                    user.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
+                }
             }
 
         } catch (Exception e) {
@@ -66,6 +67,7 @@ public class UserDao {
         }
         return user;
     }
+
     public static boolean save (User user){
         boolean success = false;
         String insertSQL = "INSERT INTO `users` (`Active`,`Login`,`Password`,`PeopleID`," +
@@ -92,7 +94,7 @@ public class UserDao {
 
     public static boolean deleteById (int id){
         boolean success = false;
-        String deleteSQL = "DELETE FROM users WHERE id=?";
+        String deleteSQL = "DELETE FROM benefits WHERE id=?";
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(deleteSQL))
         {
@@ -104,7 +106,9 @@ public class UserDao {
             e.printStackTrace();
         }
         return success;
+
     }
+
 
     public static boolean update (User user){
         boolean success = false;

@@ -15,17 +15,18 @@ public class OwnDocument {      //table `owndocuments`
     private String remark;  //        `Remark` longtext,
     private java.util.Date lastUpdate;      //     `LastUpdate` char(10) NOT NULL
 
-
-    public OwnDocument(int id, boolean active, String name, String number, Date startDate, String remark, Date lastUpdate) {
-        this.id = id;
-        this.active = active;
-        this.name = name;
-        this.number = number;
-        this.startDate = startDate;
-        this.remark = remark;
-        this.lastUpdate = lastUpdate;
+    @Override
+    public String toString() {
+        return "OwnDocument{" +
+                "id=" + id +
+                ", active=" + active +
+                ", name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                ", startDate=" + startDate +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
-
 
     public int getId() {
         return id;

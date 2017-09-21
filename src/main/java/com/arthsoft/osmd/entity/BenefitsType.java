@@ -14,7 +14,7 @@ public class BenefitsType {     //table `benefitstypes`
     private LocalDate lastUpdate;  //     `LastUpdate` date NOT NULL,
 
 
-    public BenefitsType() {     }
+
 
     @Override
     public String toString() {

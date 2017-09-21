@@ -16,16 +16,19 @@ public class Employee {     //table     `employees`
     private String remark;  //  `Remark` longtext,
     private java.util.Date lastUpdate; //     `LastUpdate` date NOT NULL
 
-    public Employee(int id, boolean active, int peopleId, int positionId, Date hiredate, Date fireDate, float salary, String remark, Date lastUpdate) {
-        this.id = id;
-        this.active = active;
-        this.peopleId = peopleId;
-        this.positionId = positionId;
-        this.hireDate = hiredate;
-        this.fireDate = fireDate;
-        this.salary = salary;
-        this.remark = remark;
-        this.lastUpdate = lastUpdate;
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", active=" + active +
+                ", peopleId=" + peopleId +
+                ", positionId=" + positionId +
+                ", hireDate=" + hireDate +
+                ", fireDate=" + fireDate +
+                ", salary=" + salary +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     public int getId() {

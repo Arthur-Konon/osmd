@@ -20,11 +20,18 @@ public class Benefit {      //table  `benefits`
 
     @Override
     public String toString() {
-        return id + " " + active + " " + typeId + " " + peopleId + " " +
-                benefitPercent + " " + serviceId + " " + name +" " + remark + " " + lastUpdate;
+        return "Benefit{" +
+                "id=" + id +
+                ", active=" + active +
+                ", typeId=" + typeId +
+                ", peopleId=" + peopleId +
+                ", benefitPercent=" + benefitPercent +
+                ", serviceId=" + serviceId +
+                ", name='" + name + '\'' +
+                ", remark='" + remark + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
-
-    public Benefit() {    }
 
     public int getId() {
         return id;
