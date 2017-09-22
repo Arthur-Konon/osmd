@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public abstract class Entity {
 
 
-    public  final String TABLE_NAME = "Default";
+
     private int id;     //  `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
     private boolean active; //  `Active` tinyint(1) NOT NULL,
     private String remark;      //  `Remark` longtext,

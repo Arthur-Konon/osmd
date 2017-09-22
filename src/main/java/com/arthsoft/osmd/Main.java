@@ -1,6 +1,7 @@
 package com.arthsoft.osmd;
 
 import com.arthsoft.osmd.dao.*;
+import com.arthsoft.osmd.entity.User;
 
 
 import java.util.ArrayList;
@@ -25,10 +26,13 @@ public class Main {
         //System.out.println(ApartmentDao.deleteById(10));
         //System.out.println(ApartmentDao.update(ApartmentDao.getById(1)));
 
-        //UserDao.printUsers(UserDao.getAll());
-        //System.out.println(UserDao.getById(1));
+        new UserDao().update((User)new UserDao().getById(9));
+        new UserDao().save((User)new UserDao().getById(9));
+        UserDao.printUsers(new UserDao().getAll());
+            //System.out.println(new UserDao().getById(8));
         //System.out.println(UserDao.save(UserDao.getById(1)));
-        //System.out.println(UserDao.deleteById(4));
+        //UserDao userdao = new UserDao();
+             //System.out.println(new UserDao().deleteById(8));
         //System.out.println(UserDao.update(UserDao.getById(1)));
 
         //BenefitDao.printBenefits(BenefitDao.getAll());

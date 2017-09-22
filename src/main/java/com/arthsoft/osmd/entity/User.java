@@ -5,7 +5,7 @@ package com.arthsoft.osmd.entity;
  */
 public class User extends Entity {     //table  `users`
 
-    public final String TABLE_NAME = "users";
+
     private String login;       //  `Login` char(50) NOT NULL,
     private String password;       //  `Password` char(50) NOT NULL,
     private int peopleId;       //  `PeopleID` int(11) DEFAULT NULL,REFERENCES `people` (`ID`)
@@ -15,6 +15,7 @@ public class User extends Entity {     //table  `users`
     public String toString() {
         return "User{" +
                 "id=" + getId() +
+                ", active=" + isActive() +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", peopleId=" + peopleId +
