@@ -94,7 +94,7 @@ public class UserDao  {
 
     public static boolean deleteById (int id){
         boolean success = false;
-        String deleteSQL = "DELETE FROM benefits WHERE id=?";
+        String deleteSQL = "DELETE FROM users WHERE id=?";
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(deleteSQL))
         {

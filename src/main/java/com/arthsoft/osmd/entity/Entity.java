@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Created by arthk on 20.09.2017.
  */
-public abstract class BaseMasterData {
+public abstract class Entity {
 
 
     public  final String TABLE_NAME = "Default";

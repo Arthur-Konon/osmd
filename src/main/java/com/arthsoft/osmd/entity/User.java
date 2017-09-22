@@ -3,7 +3,7 @@ package com.arthsoft.osmd.entity;
 /**
  * Created by arthk on 08.09.2017.
  */
-public class User extends BaseMasterData {     //table  `users`
+public class User extends Entity {     //table  `users`
 
     public final String TABLE_NAME = "users";
     private String login;       //  `Login` char(50) NOT NULL,

@@ -1,6 +1,6 @@
 package com.arthsoft.osmd.dao;
 
-import com.arthsoft.osmd.entity.BaseMasterData;
+import com.arthsoft.osmd.entity.Entity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 /**
  * Created by arthk on 21.09.2017.
  */
-public abstract class BaseMasterDataDao {
+public abstract class AbstractDao {
 
-    public static boolean  deleteById (BaseMasterData md){
+    public static boolean  deleteById (Entity md){
         boolean success = false;
         String deleteSQL = "DELETE FROM ? WHERE id=?";
         try (Connection dbConnection = DbUtils.getDBConnection();
