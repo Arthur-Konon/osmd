@@ -10,8 +10,9 @@ import java.util.List;
  */
 public class UserDao extends AbstractDao<User> {
 
-    public static void printUsers (List<User> user){
-        for (User cell:user ) System.out.println(cell);
+    @Override
+    public void printEntity(List <User> entityList) {
+        for (User cell:entityList ) System.out.println(cell);
     }
 
 

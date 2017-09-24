@@ -12,7 +12,7 @@ import java.util.List;
  */
 public abstract class AbstractDao<T extends Entity> {
 
-
+    public abstract void printEntity(List <T> entityList);
     protected abstract T getEntity();
     protected abstract  String getTableName ();
     protected abstract  int getColumnsQty ();

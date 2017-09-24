@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Created by arthk on 07.09.2017.
  */
-public class House {        //table `houses`
+public class House extends Entity {        //table `houses`
     private int id;  //  `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
     private boolean active; //  `Active` tinyint(1) NOT NULL,
     private String address; //  `Address` nvarchar(50) NOT NULL,

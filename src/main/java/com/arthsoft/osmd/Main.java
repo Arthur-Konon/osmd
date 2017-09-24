@@ -1,10 +1,8 @@
 package com.arthsoft.osmd;
 
 import com.arthsoft.osmd.dao.*;
-import com.arthsoft.osmd.entity.User;
+import com.arthsoft.osmd.entity.*;
 
-
-import java.util.ArrayList;
 
 
 
@@ -13,45 +11,16 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        //HouseDao.printHouses(HouseDao.getAll());
-        //System.out.println(HouseDao.getById(7));
-        // System.out.println(HouseDao.save(HouseDao.getById(4)) );
-        //System.out.println(HouseDao.deleteById(16));
-        //System.out.println(HouseDao.update(HouseDao.getById(6)));
 
+        //new UserDao().update((User)new UserDao().getById(9));
+       // new UserDao().save((User)new UserDao().getById(9));
+        //new UserDao().printEntity(new UserDao().getAll());
 
-        //ApartmentDao.printApartments(ApartmentDao.getAll());
-        //System.out.println(ApartmentDao.getById(1));
-        //System.out.println(ApartmentDao.save(ApartmentDao.getById(1)));
-        //System.out.println(ApartmentDao.deleteById(10));
-        //System.out.println(ApartmentDao.update(ApartmentDao.getById(1)));
+        new HouseDao().deleteById(21);
+        new HouseDao().save((House)new HouseDao().getById(15));
+       new HouseDao().update((House)new HouseDao().getById(14));
+       new HouseDao().printEntity(new HouseDao().getAll());
 
-        new UserDao().update((User)new UserDao().getById(9));
-        new UserDao().save((User)new UserDao().getById(9));
-        UserDao.printUsers(new UserDao().getAll());
-            //System.out.println(new UserDao().getById(8));
-        //System.out.println(UserDao.save(UserDao.getById(1)));
-        //UserDao userdao = new UserDao();
-             //System.out.println(new UserDao().deleteById(8));
-        //System.out.println(UserDao.update(UserDao.getById(1)));
-
-        //BenefitDao.printBenefits(BenefitDao.getAll());
-        //System.out.println(BenefitDao.deleteById(1));
-        //System.out.println(BenefitDao.getById(3));
-        //System.out.println(BenefitDao.save(BenefitDao.getById(3)));
-        //System.out.println(BenefitDao.deleteById(5));
-
-        //ServiceDao.printServices(ServiceDao.getAll());
-        //System.out.println(ServiceDao.getById(2));
-        //System.out.println(ServiceDao.save(ServiceDao.getById(2)));
-        //System.out.println(ServiceDao.deleteById(3));
-        //System.out.println(ServiceDao.update(ServiceDao.getById(2)));
-
-        //BenefitsTypeDao.printBenefitsTypes(BenefitsTypeDao.getAll());
-        //System.out.println(BenefitsTypeDao.getById(1));
-        //System.out.println(BenefitsTypeDao.save(BenefitsTypeDao.getById(1)));
-        //System.out.println(BenefitsTypeDao.update(BenefitsTypeDao.getById(1)));
-        //System.out.println(BenefitsTypeDao.deleteById(3));
 
 
 
