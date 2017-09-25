@@ -3,6 +3,7 @@ package com.arthsoft.osmd.dao;
 import com.arthsoft.osmd.entity.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -26,12 +27,6 @@ public class UserDao extends AbstractDao<User> {
         return "users";
     }
 
-
-    @Override
-    protected int getColumnsQty() {
-        return 8;
-    }
-
     @Override
     protected String getInsertScript() {
         return "INSERT INTO `users` (`Active`,`Login`,`Password`,`PeopleID`," +
@@ -48,7 +43,7 @@ public class UserDao extends AbstractDao<User> {
                 " `AccessLevel`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=?" ;
+                "WHERE  `Id`=" ;
     }
 
     @Override
@@ -66,6 +61,8 @@ public class UserDao extends AbstractDao<User> {
         ps.setString(3, entity.getPassword());
         ps.setInt(4,entity.getPeopleId());
         ps.setBoolean(5,entity.isAccessLevel());
+        ps.setString(6,entity.getRemark());
+        ps.setDate(7,java.sql.Date.valueOf(LocalDate.now()));
     }
 }
 

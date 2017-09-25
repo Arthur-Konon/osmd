@@ -15,7 +15,6 @@ public abstract class AbstractDao<T extends Entity> {
     public abstract void printEntity(List <T> entityList);
     protected abstract T getEntity();
     protected abstract  String getTableName ();
-    protected abstract  int getColumnsQty ();//FIXME bad approach
     protected abstract  String getInsertScript ();
     protected abstract  String getUpdateScript ();
     protected abstract void fillEntityFromResultSet(T entity,ResultSet rs) throws SQLException;
@@ -32,12 +31,7 @@ public abstract class AbstractDao<T extends Entity> {
 
             while (rs.next()) {
                 T entity = getEntity();
-                //TODO use separate method instead of copy paste
-                entity.setId(rs.getInt("Id"));
-                entity.setActive(rs.getBoolean("Active"));
-                entity.setRemark(rs.getString("Remark"));
-                entity.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
-                fillEntityFromResultSet(entity,rs);
+                fillEntityCommon(rs, entity);
                 result.add(entity);
             }
         } catch (SQLException e) {
@@ -46,9 +40,17 @@ public abstract class AbstractDao<T extends Entity> {
         return result;
     }
 
+    private void fillEntityCommon(ResultSet rs, T entity) throws SQLException {
+        entity.setId(rs.getInt("Id"));
+        entity.setActive(rs.getBoolean("Active"));
+        entity.setRemark(rs.getString("Remark"));
+        entity.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
+        fillEntityFromResultSet(entity,rs);
+    }
 
-    //TODO use generic instead of Entity
-    public  Entity getById(int id) {
+
+
+    public  T getById(int id) {
         T entity = getEntity();
         String selectSQL = "SELECT * FROM " + getTableName()+ " WHERE id=?" ;
 
@@ -60,11 +62,7 @@ public abstract class AbstractDao<T extends Entity> {
             try (ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
-                    entity.setId(rs.getInt("Id"));
-                    entity.setActive(rs.getBoolean("Active"));
-                    entity.setRemark(rs.getString("Remark"));
-                    entity.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
-                    fillEntityFromResultSet(entity,rs);
+                    fillEntityCommon(rs, entity);
                 }
             }
 
@@ -83,8 +81,6 @@ public abstract class AbstractDao<T extends Entity> {
              PreparedStatement ps = dbConnection.prepareStatement(getInsertScript()))
         {
             ps.setBoolean(1,true);
-            ps.setString(getColumnsQty()-2,entity.getRemark());
-            ps.setDate(getColumnsQty()-1, Date.valueOf(LocalDate.now()));
             fillPreparedStatementFromEntity(entity,ps);
             ps.execute();
             success = true;
@@ -100,15 +96,12 @@ public abstract class AbstractDao<T extends Entity> {
     public  boolean update (T entity){
         boolean success = false;
 
-
         try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(getUpdateScript()))
+             PreparedStatement ps = dbConnection.prepareStatement(getUpdateScript() + entity.getId()))
         {
             ps.setBoolean(1,entity.isActive());
-            ps.setString(getColumnsQty()-2,entity.getRemark());
-            ps.setDate(getColumnsQty()-1,java.sql.Date.valueOf(LocalDate.now()));
-            ps.setInt(getColumnsQty(),entity.getId());
             fillPreparedStatementFromEntity(entity,ps);
+
             ps.execute();
             success = true;
 

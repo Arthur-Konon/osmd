@@ -6,7 +6,7 @@ import java.time.LocalDate;
 /**
  * Created by arthk on 08.09.2017.
  */
-public class Service {      //table `services`
+public class Service extends Entity{      //table `services`
     private int id;             //  `ID` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY
     private boolean active;     //  `Active` tinyint(1) NOT NULL,
     private String name;        //  `Name` char(50) NOT NULL,

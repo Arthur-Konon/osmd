@@ -21,9 +21,6 @@ public class HouseDao extends AbstractDao<House> {
         for (House cell : houseList) System.out.println(cell);
     }
 
-
-
-
     @Override
     protected House getEntity() {
         return new House();
@@ -34,10 +31,6 @@ public class HouseDao extends AbstractDao<House> {
         return "houses";
     }
 
-    @Override
-    protected int getColumnsQty() {
-        return 10;
-    }
 
     @Override
     protected String getInsertScript() {
@@ -57,7 +50,7 @@ public class HouseDao extends AbstractDao<House> {
                 " `AreaOfAllApart` = ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=?" ;
+                "WHERE  `Id`=" ;
     }
 
     @Override
@@ -79,6 +72,8 @@ public class HouseDao extends AbstractDao<House> {
         ps.setInt(5,entity.getQtyOfAllApart());
         ps.setFloat(6,entity.getTotalArea());
         ps.setFloat(7,entity.getAreaOfAllApart());
+        ps.setString(8,entity.getRemark());
+        ps.setDate(9,java.sql.Date.valueOf(LocalDate.now()));
     }
 
 
