@@ -15,7 +15,7 @@ public abstract class AbstractDao<T extends Entity> {
     public abstract void printEntity(List <T> entityList);
     protected abstract T getEntity();
     protected abstract  String getTableName ();
-    protected abstract  int getColumnsQty ();
+    protected abstract  int getColumnsQty ();//FIXME bad approach
     protected abstract  String getInsertScript ();
     protected abstract  String getUpdateScript ();
     protected abstract void fillEntityFromResultSet(T entity,ResultSet rs) throws SQLException;
@@ -32,6 +32,7 @@ public abstract class AbstractDao<T extends Entity> {
 
             while (rs.next()) {
                 T entity = getEntity();
+                //TODO use separate method instead of copy paste
                 entity.setId(rs.getInt("Id"));
                 entity.setActive(rs.getBoolean("Active"));
                 entity.setRemark(rs.getString("Remark"));
@@ -46,7 +47,7 @@ public abstract class AbstractDao<T extends Entity> {
     }
 
 
-
+    //TODO use generic instead of Entity
     public  Entity getById(int id) {
         T entity = getEntity();
         String selectSQL = "SELECT * FROM " + getTableName()+ " WHERE id=?" ;
