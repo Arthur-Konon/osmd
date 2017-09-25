@@ -9,6 +9,7 @@ public class User extends Entity {     //table  `users`
     private String login;       //  `Login` char(50) NOT NULL,
     private String password;       //  `Password` char(50) NOT NULL,
     private int peopleId;       //  `PeopleID` int(11) DEFAULT NULL,REFERENCES `people` (`ID`)
+    private boolean accessLevel; // tinyint(1) NOT NULL,
 
 
     @Override
@@ -47,4 +48,8 @@ public class User extends Entity {     //table  `users`
     public void setPeopleId(int peopleId) {
         this.peopleId = peopleId;
     }
+
+    public boolean isAccessLevel() { return accessLevel; }
+
+    public void setAccessLevel(boolean accessLevel) { this.accessLevel = accessLevel;  }
 }

@@ -29,13 +29,13 @@ public class UserDao extends AbstractDao<User> {
 
     @Override
     protected int getColumnsQty() {
-        return 7;
+        return 8;
     }
 
     @Override
     protected String getInsertScript() {
         return "INSERT INTO `users` (`Active`,`Login`,`Password`,`PeopleID`," +
-                "`Remark`,`LastUpdate`) VALUES (?,?,?,?,?,?)";
+                "`AccessLevel`,`Remark`,`LastUpdate`) VALUES (?,?,?,?,?,?,?)";
     }
 
     @Override
@@ -45,6 +45,7 @@ public class UserDao extends AbstractDao<User> {
                 " `Login`= ? ,\n" +
                 " `Password`= ? ,\n" +
                 " `PeopleID`= ? ,\n" +
+                " `AccessLevel`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
                 "WHERE  `Id`=?" ;
@@ -55,6 +56,7 @@ public class UserDao extends AbstractDao<User> {
         entity.setLogin(rs.getString("Login"));
         entity.setPassword(rs.getString("Password"));
         entity.setPeopleId(rs.getInt("PeopleId"));
+        entity.setAccessLevel(rs.getBoolean("AccessLevel"));
     }
 
 
@@ -63,6 +65,7 @@ public class UserDao extends AbstractDao<User> {
         ps.setString(2, entity.getLogin());
         ps.setString(3, entity.getPassword());
         ps.setInt(4,entity.getPeopleId());
+        ps.setBoolean(5,entity.isAccessLevel());
     }
 }
 
