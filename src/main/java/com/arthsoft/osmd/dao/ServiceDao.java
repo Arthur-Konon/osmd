@@ -13,9 +13,8 @@ import java.util.List;
 public class ServiceDao extends AbstractDao<Service> {
 
     @Override
-    public void printEntity(List <Service> entityList) {
-        for (Service cell: entityList)
-            System.out.println(cell);
+    public void printEntityList(List <Service> entityList) {
+        for (Service cell: entityList) System.out.println(cell);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class ServiceDao extends AbstractDao<Service> {
     protected void fillEntityFromResultSet(Service entity, ResultSet rs) throws SQLException {
         entity.setName(rs.getString("Name"));
         entity.setPrice(rs.getFloat("Price"));
-
+        entity.setDimensionId(rs.getInt("DimensionID"));
     }
 
     @Override

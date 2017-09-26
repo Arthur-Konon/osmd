@@ -1,9 +1,8 @@
 package com.arthsoft.osmd;
 
 import com.arthsoft.osmd.dao.*;
-import com.arthsoft.osmd.entity.*;
-
-
+import com.arthsoft.osmd.entity.BenefitsType;
+import com.arthsoft.osmd.entity.CompanyInfo;
 
 
 /**
@@ -12,22 +11,10 @@ import com.arthsoft.osmd.entity.*;
 public class Main {
     public static void main(String[] args) {
 
-        //new UserDao().update((User)new UserDao().getById(9));
-        //new UserDao().save((User)new UserDao().getById(9));
-        //new UserDao().deleteById(13);
-       // new UserDao().printEntity(new UserDao().getAll());
-
-       // new HouseDao().deleteById(21);
-        //new HouseDao().save((House)new HouseDao().getById(15));
-      //new HouseDao().update((House)new HouseDao().getById(14));
-       //new HouseDao().printEntity(new HouseDao().getAll());
-
-
-       // new ServiceDao().save(new ServiceDao().getById(2));
-        //new ServiceDao().update(new ServiceDao().getById(2));
-        //System.out.println(new ServiceDao().getById(2));
-       // new ServiceDao().printEntity(new ServiceDao().getAll());
-
+        //new BenefitDao().update(new BenefitDao().getById(7));
+        //new BenefitDao().deleteById(4);
+        //new BenefitDao().save(new BenefitDao().getById(3));
+        //new BenefitDao().printEntityList(new BenefitDao().getAll());
 
 
 

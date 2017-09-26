@@ -6,28 +6,26 @@ import java.time.LocalDate;
 /**
  * Created by arthk on 04.09.2017.
  */
-public class Apartment {         //table       `apartments`
-    private int id;                  //`ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
-    private boolean active;         // `Active` tinyint(1) NOT NULL,
+public class Apartment extends Entity {         //table       `apartments`
+
     private int houseId;            //  `HouseID` int(11) NOT NULL,REFERENCES `houses` (`ID`)
     private int apartNum;         //  `ApartNum` smallint(6) NOT NULL,
     private int supervisorId;         //  int(11) DEFAULT NULL,REFERENCES `people` (`ID`)
-    private float totalArea;         //  TotalArea decimal(5, 2) NULL,
-    private float heatedArea;        // `HeatedArea` decimal(5,2) DEFAULT NULL,
-    private float usefulArea;       //   `UsefulArea` decimal(5,2) DEFAULT NULL,
+    private float totalArea;         //  TotalArea decimal(7, 2) NULL,
+    private float heatedArea;        // `HeatedArea` decimal(7,2) DEFAULT NULL,
+    private float usefulArea;       //   `UsefulArea` decimal(7,2) DEFAULT NULL,
     private boolean privacy;       //  `Privacy` tinyint(1) DEFAULT NULL,
     private String cellPhone;        // `CellPhone` char(10) DEFAULT NULL,
     private byte regTenantQty;      //  `RegTenantsQty` tinyint(3) unsigned DEFAULT NULL,
     private byte actTenantsQty;     //    `ActTenantsQty` tinyint(3) unsigned DEFAULT NULL,
     private boolean residentialFund;   //  `ResidentialFund` tinyint(1) DEFAULT NULL,
-    private String remark;             // `Remark` longtext,
-    private LocalDate lastUpdate;  // `LastUpdate` date NOT NULL,
+
 
     @Override
     public String toString() {
         return "Apartment{" +
-                "id=" + id +
-                ", active=" + active +
+                "id=" + getId() +
+                ", active=" + isActive() +
                 ", houseId=" + houseId +
                 ", apartNum=" + apartNum +
                 ", supervisorId=" + supervisorId +
@@ -39,30 +37,11 @@ public class Apartment {         //table       `apartments`
                 ", regTenantQty=" + regTenantQty +
                 ", actTenantsQty=" + actTenantsQty +
                 ", residentialFund=" + residentialFund +
-                ", remark='" + remark + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
                 '}';
     }
 
-    public Apartment() {    }
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 
     public int getHouseId() {
         return houseId;
@@ -152,21 +131,6 @@ public class Apartment {         //table       `apartments`
         this.residentialFund = residentialFund;
     }
 
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public LocalDate getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDate lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
 }
 
 

@@ -1,48 +1,32 @@
 package com.arthsoft.osmd.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
  * Created by arthk on 08.09.2017.
  */
-public class OwnDocument {      //table `owndocuments`
+public class OwnDocument extends Entity{      //table `owndocuments`
 
-    private int id; //     `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
-    private boolean active; //  `Active` tinyint(1) NOT NULL,
+
     private String name;    //  `Name` char(100) NOT NULL,
     private String number;  //  `Number` char(10) NOT NULL,
-    private java.util.Date startDate;   //  `StartDate` date NOT NULL,
-    private String remark;  //        `Remark` longtext,
-    private java.util.Date lastUpdate;      //     `LastUpdate` char(10) NOT NULL
+    private LocalDate startDate;   //  `StartDate` date NOT NULL,
+
 
     @Override
     public String toString() {
         return "OwnDocument{" +
-                "id=" + id +
-                ", active=" + active +
+                "id=" + getId() +
+                ", active=" + isActive() +
                 ", name='" + name + '\'' +
                 ", number='" + number + '\'' +
                 ", startDate=" + startDate +
-                ", remark='" + remark + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
                 '}';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 
     public String getName() {
         return name;
@@ -60,27 +44,11 @@ public class OwnDocument {      //table `owndocuments`
         this.number = number;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 }

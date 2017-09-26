@@ -5,9 +5,8 @@ import java.util.Date;
 /**
  * Created by arthk on 07.09.2017.
  */
-public class CompanyInfo {  //table `companyinfo`
-  private int id; //ID` int(11) NOT NULL,PRIMARY KEY AUTO_INCREMENT,
-  private boolean active;   //  `Active` tinyint(1) NOT NULL,
+public class CompanyInfo extends Entity {  //table `companyinfo`
+
   private String name;  // `Name` varchar(50) NOT NULL,
   private String address;  //  `Address` longtext,
   private String  phone;  //  `Phone` varchar(10) DEFAULT NULL,
@@ -18,14 +17,13 @@ public class CompanyInfo {  //table `companyinfo`
   private String  bankCode; //  `BankCode` varchar(10) DEFAULT NULL,
   private String bankName;  //  `BankName` varchar(50) DEFAULT NULL,
   private String accountNum;  //  `AccountNum` varchar(50) DEFAULT NULL,
-  private String remark;  //  `Remark` longtext,
-  private java.util.Date  lastUpdate;  // `LastUpdate` date NOT NULL
+
 
   @Override
   public String toString() {
     return "CompanyInfo{" +
-            "id=" + id +
-            ", active=" + active +
+            "id=" + getId() +
+            ", active=" + isActive() +
             ", name='" + name + '\'' +
             ", address='" + address + '\'' +
             ", phone='" + phone + '\'' +
@@ -36,26 +34,12 @@ public class CompanyInfo {  //table `companyinfo`
             ", bankCode='" + bankCode + '\'' +
             ", bankName='" + bankName + '\'' +
             ", accountNum='" + accountNum + '\'' +
-            ", remark='" + remark + '\'' +
-            ", lastUpdate=" + lastUpdate +
+            ", remark='" + getRemark() + '\'' +
+            ", lastUpdate=" + getLastUpdate() +
             '}';
   }
 
-  public int getId() {
-    return id;
-  }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public boolean isActive() {
-    return active;
-  }
-
-  public void setActive(boolean active) {
-    this.active = active;
-  }
 
   public String getName() {
     return name;
@@ -137,19 +121,5 @@ public class CompanyInfo {  //table `companyinfo`
     this.accountNum = accountNum;
   }
 
-  public String getRemark() {
-    return remark;
-  }
 
-  public void setRemark(String remark) {
-    this.remark = remark;
-  }
-
-  public Date getLastUpdate() {
-    return lastUpdate;
-  }
-
-  public void setLastUpdate(Date lastUpdate) {
-    this.lastUpdate = lastUpdate;
-  }
 }

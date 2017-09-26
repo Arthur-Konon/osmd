@@ -4,63 +4,27 @@ import java.util.Date;
 /**
  * Created by arthk on 07.09.2017.
  */
-public class Dimension {       //table  `dimensions`
+public class Dimension extends Entity {       //table  `dimensions`
 
-private int id;     //     `ID` int(11) NOT NULL AUTO_INCREMENT,  PRIMARY KEY
-    private boolean  active;    //  `Active` tinyint(1) NOT NULL,
+
     private String name;    //  `Name` char(10) NOT NULL,
-    private String remark;  // `Remark` longtext,
-    private java.util.Date  lastUpdate;     // `LastUpdate` date NOT NULL
-
 
     @Override
     public String toString() {
         return "Dimension{" +
-                "id=" + id +
-                ", active=" + active +
+                "id=" + getId() +
+                ", active=" + isActive() +
                 ", name='" + name + '\'' +
-                ", remark='" + remark + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
 }

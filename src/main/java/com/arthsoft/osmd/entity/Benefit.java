@@ -6,47 +6,29 @@ import java.util.Date;
 /**
  * Created by arthk on 07.09.2017.
  */
-public class Benefit {      //table  `benefits`
+public class Benefit extends Entity {      //table  `benefits`
 
-    private int id; //            `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
-    private boolean active; //  `Active` tinyint(1) NOT NULL,
+
     private int typeId;     //  `TypeID` int(11) NOT NULL,REFERENCES `benefitstypes`
     private int peopleId;   //  `PeopleID` int(11) NOT NULL,REFERENCES `people` (`ID`)
     private float benefitPercent;    //  `BenefitPercent` decimal(5,2) DEFAULT NULL,
     private int serviceId;  //  `ServiceID` int(11) DEFAULT NULL,REFERENCES `services` (`ID`)
     private String name;    //  `Name` char(50) DEFAULT NULL,
-    private String remark;  //  `Remark` longtext,
-    private LocalDate lastUpdate;      //     `LastUpdate` date NOT NULL
+
 
     @Override
     public String toString() {
         return "Benefit{" +
-                "id=" + id +
-                ", active=" + active +
+                "id=" + getId() +
+                ", active=" + isActive() +
                 ", typeId=" + typeId +
                 ", peopleId=" + peopleId +
                 ", benefitPercent=" + benefitPercent +
                 ", serviceId=" + serviceId +
                 ", name='" + name + '\'' +
-                ", remark='" + remark + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public int getTypeId() {
@@ -87,21 +69,5 @@ public class Benefit {      //table  `benefits`
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public LocalDate getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDate lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 }
