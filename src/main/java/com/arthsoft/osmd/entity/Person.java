@@ -1,34 +1,33 @@
 package com.arthsoft.osmd.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
  * Created by arthk on 08.09.2017.
  */
-public class Person {       //table 'people'
+public class Person extends Entity{       //table 'people'
 
-    private int id;                 //  `ID` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY
-    private boolean active;        //  `Active` tinyint(1) NOT NULL,
+
     private String firstName;       //  `FirstName` varchar(50) DEFAULT NULL,
     private String lastName;        //  `LastName` varchar(50) NOT NULL,
     private String patronymic;    //  `Patronymic` varchar(50) DEFAULT NULL,
     private int residApartId;    //  `ResidApartID` int(11) DEFAULT NULL,REFERENCES `apartments` (`ID`)
     private int regApartId;         //  `RegApartID` int(11) DEFAULT NULL,REFERENCES `apartments` (`ID`)
-    private java.util.Date birthDate;   //`BithDate` date DEFAULT NULL,
+    private LocalDate birthDate;   //`BirthDate` date DEFAULT NULL,
     private String  phone;          //     `Phone` varchar(50) DEFAULT NULL,
     private String taxNum;          //  `TaxNum` char(10) DEFAULT NULL,
     private String passportSeries;       // `PassportSeries` char(10) DEFAULT NULL,
     private String passportNum;         //  `PassportNum` char(50) DEFAULT NULL,
     private String issuedBy;             //  `IssuedBy` char(100) DEFAULT NULL,
-    private java.util.Date issuedDate;      //  `IssuedDate` date DEFAULT NULL,
-    private String remark;              //  `Remarks` longtext,
-    private java.util.Date lastUpdate;       //  `LastUpdate` date NOT NULL
+    private LocalDate issuedDate;      //  `IssuedDate` date DEFAULT NULL,
+
 
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
-                ", active=" + active +
+                "id=" + getId() +
+                ", active=" + isActive() +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
@@ -41,25 +40,9 @@ public class Person {       //table 'people'
                 ", passportNum='" + passportNum + '\'' +
                 ", issuedBy='" + issuedBy + '\'' +
                 ", issuedDate=" + issuedDate +
-                ", remark='" + remark + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public String getFirstName() {
@@ -102,11 +85,11 @@ public class Person {       //table 'people'
         this.regApartId = regApartId;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -150,27 +133,11 @@ public class Person {       //table 'people'
         this.issuedBy = issuedBy;
     }
 
-    public Date getIssuedDate() {
+    public LocalDate getIssuedDate() {
         return issuedDate;
     }
 
-    public void setIssuedDate(Date issuedDate) {
+    public void setIssuedDate(LocalDate issuedDate) {
         this.issuedDate = issuedDate;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 }

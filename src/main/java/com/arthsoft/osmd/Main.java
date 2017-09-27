@@ -3,6 +3,7 @@ package com.arthsoft.osmd;
 import com.arthsoft.osmd.dao.*;
 import com.arthsoft.osmd.entity.BenefitsType;
 import com.arthsoft.osmd.entity.CompanyInfo;
+import com.arthsoft.osmd.entity.Position;
 
 
 /**
@@ -16,6 +17,8 @@ public class Main {
         //new BenefitDao().save(new BenefitDao().getById(3));
         //new BenefitDao().printEntityList(new BenefitDao().getAll());
 
+       new PersonDao().update(new PersonDao().getById(1));
+        new PersonDao().printEntityList(new PersonDao().getAll());
 
 
     }

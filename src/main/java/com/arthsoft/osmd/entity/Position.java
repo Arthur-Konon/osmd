@@ -4,33 +4,25 @@ import java.util.Date;
 /**
  * Created by arthk on 08.09.2017.
  */
-public class Position {    //    table `positions`
+public class Position extends Entity{    //    table `positions`
 
-    private int id;             //       `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
-    private String name;        //  `Position` varchar(50) NOT NULL,
-    private boolean ispaid;     //  `IsPaid` tinyint(1) DEFAULT NULL,
-    private boolean isStated;   //  `IsStated` tinyint(1) DEFAULT NULL,
-    private String Remark;      //  `Remark` longtext,
-    private java.util.Date lastUpdate;   //     `LastUpdate` date NOT NULL,
+
+    private String name;        //  `Name` varchar(50)
+    private boolean paid;     //  `Paid` tinyint(1) DEFAULT NULL,
+    private boolean stated;   //  `Stated` tinyint(1) DEFAULT NULL,
+
 
     @Override
     public String toString() {
         return "Position{" +
-                "id=" + id +
+                "id=" + getId() +
+                ", active=" + isActive() +
                 ", name='" + name + '\'' +
-                ", ispaid=" + ispaid +
-                ", isStated=" + isStated +
-                ", Remark='" + Remark + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", isPaid=" + isPaid() +
+                ", isStated=" + isStated() +
+                ", Remark='" + getRemark() + '\'' +
+                ", lastUpdate=" + getLastUpdate() +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,35 +33,19 @@ public class Position {    //    table `positions`
         this.name = name;
     }
 
-    public boolean isIspaid() {
-        return ispaid;
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setIspaid(boolean ispaid) {
-        this.ispaid = ispaid;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     public boolean isStated() {
-        return isStated;
+        return stated;
     }
 
     public void setStated(boolean stated) {
-        isStated = stated;
-    }
-
-    public String getRemark() {
-        return Remark;
-    }
-
-    public void setRemark(String remark) {
-        Remark = remark;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+        this.stated = stated;
     }
 }
