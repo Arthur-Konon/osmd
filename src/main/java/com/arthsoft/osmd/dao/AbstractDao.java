@@ -11,8 +11,11 @@ import java.util.List;
  */
 public abstract class AbstractDao<T extends Entity> {
 
-    //TODO: you can use regular method in this case (not abstract)
-    public abstract void printEntityList(List <T> entityList);
+
+    public  void printEntityList(List <T> entityList){
+        for (Entity cell: entityList) System.out.println(cell);
+    }
+
     protected abstract T getEntity();
     protected abstract  String getTableName ();
     protected abstract  String getInsertScript ();
@@ -80,7 +83,7 @@ public abstract class AbstractDao<T extends Entity> {
              PreparedStatement ps = dbConnection.prepareStatement(getInsertScript()))
         {
             ps.setBoolean(1, true);
-            fillPreparedStatementFromEntity(entity,ps);
+            fillPreparedStatementFromEntity(entity, ps);
             ps.execute();
             success = true;
 

@@ -62,7 +62,7 @@ public class OwnDocumentDao extends AbstractDao<OwnDocument>{
         ps.setString(3,entity.getNumber());
 
         if(entity.getStartDate() == null) ps.setDate(4,null);
-        else ps.setDate(4,java.sql.Date.valueOf(entity.getStartDate()));
+        else ps.setDate(4,Date.valueOf(entity.getStartDate()));
 
         ps.setString(5,entity.getRemark());
         ps.setDate(6, Date.valueOf(LocalDate.now()));

@@ -17,8 +17,8 @@ public class Main {
         //new BenefitDao().save(new BenefitDao().getById(3));
         //new BenefitDao().printEntityList(new BenefitDao().getAll());
 
-       new PersonDao().update(new PersonDao().getById(1));
-        new PersonDao().printEntityList(new PersonDao().getAll());
+     new  HouseDao().update((new HouseDao().getById(3)));
+      new HouseDao().printEntityList(new HouseDao().getAll());
 
 
     }

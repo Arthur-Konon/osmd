@@ -1,14 +1,14 @@
 package com.arthsoft.osmd.dao;
 
-import com.arthsoft.osmd.entity.Entity;
+
 import com.arthsoft.osmd.entity.House;
 
-import java.sql.Connection;
+
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,7 +73,7 @@ public class HouseDao extends AbstractDao<House> {
         ps.setFloat(6,entity.getTotalArea());
         ps.setFloat(7,entity.getAreaOfAllApart());
         ps.setString(8,entity.getRemark());
-        ps.setDate(9,java.sql.Date.valueOf(LocalDate.now()));
+        ps.setDate(9, Date.valueOf(LocalDate.now()));
     }
 
 

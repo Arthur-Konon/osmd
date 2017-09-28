@@ -86,7 +86,7 @@ public class PersonDao extends AbstractDao<Person>{
         ps.setInt(6,entity.getRegApartId());
 
         if(entity.getBirthDate() == null) ps.setDate(7,null);
-        else ps.setDate(7,java.sql.Date.valueOf(entity.getBirthDate()));
+        else ps.setDate(7,Date.valueOf(entity.getBirthDate()));
 
         ps.setString(8,entity.getPhone());
         ps.setString(9,entity.getTaxNum());
@@ -95,7 +95,7 @@ public class PersonDao extends AbstractDao<Person>{
         ps.setString(12,entity.getIssuedBy());
 
         if(entity.getIssuedDate() == null) ps.setDate(13,null);
-        else ps.setDate(13,java.sql.Date.valueOf(entity.getIssuedDate()));
+        else ps.setDate(13,Date.valueOf(entity.getIssuedDate()));
 
         ps.setString(14,entity.getRemark());
         ps.setDate(15, Date.valueOf(LocalDate.now()));

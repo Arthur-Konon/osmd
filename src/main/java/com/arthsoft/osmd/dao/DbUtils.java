@@ -20,10 +20,4 @@ public class DbUtils {
             return DriverManager.getConnection( DB_CONNECTION, DB_USER, DB_PASSWORD);
         }
 
-
-  /*  public static ResultSet  sqlQuery (String query) throws Exception{
-        Connection dbConnection = DbUtils.getDBConnection();
-        PreparedStatement ps = dbConnection.prepareStatement(query);
-        return ps.executeQuery();
-    }*/
 }

@@ -32,9 +32,9 @@ CREATE TABLE `apartments` (
   `HouseID` int(11) NOT NULL,
   `ApartNum` smallint(6) NOT NULL,
   `SupervisorId` int(11) DEFAULT NULL,
-  `TotalArea` decimal(5,2) DEFAULT NULL,
-  `HeatedArea` decimal(5,2) DEFAULT NULL,
-  `UsefulArea` decimal(5,2) DEFAULT NULL,
+  `TotalArea` decimal(7,2) DEFAULT NULL,
+  `HeatedArea` decimal(7,2) DEFAULT NULL,
+  `UsefulArea` decimal(7,2) DEFAULT NULL,
   `Privacy` tinyint(1) DEFAULT NULL,
   `CellPhone` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `RegTenantsQty` tinyint(3) unsigned DEFAULT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `apartments` (
   KEY `FK_apartments_People` (`SupervisorId`),
   CONSTRAINT `FK_apartments_People` FOREIGN KEY (`SupervisorId`) REFERENCES `people` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Apartments_Houses` FOREIGN KEY (`HouseID`) REFERENCES `houses` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `apartments`
@@ -55,10 +55,12 @@ CREATE TABLE `apartments` (
 
 /*!40000 ALTER TABLE `apartments` DISABLE KEYS */;
 INSERT INTO `apartments` (`ID`,`Active`,`HouseID`,`ApartNum`,`SupervisorId`,`TotalArea`,`HeatedArea`,`UsefulArea`,`Privacy`,`CellPhone`,`RegTenantsQty`,`ActTenantsQty`,`ResidentialFund`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-17'),
  (1,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-18'),
- (8,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-18'),
+ (8,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-26'),
  (9,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-18'),
- (11,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-18');
+ (11,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-18'),
+ (12,1,3,43,0,'125.54','115.24','97.57',1,'0487662454',3,2,1,'Каммент','2017-09-26');
 /*!40000 ALTER TABLE `apartments` ENABLE KEYS */;
 
 
@@ -84,7 +86,7 @@ CREATE TABLE `benefits` (
   CONSTRAINT `FK_Benefits_BenefitsTypes` FOREIGN KEY (`TypeID`) REFERENCES `benefitstypes` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Benefits_People` FOREIGN KEY (`PeopleID`) REFERENCES `people` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Benefits_Services` FOREIGN KEY (`ServiceID`) REFERENCES `services` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `benefits`
@@ -94,11 +96,13 @@ CREATE TABLE `benefits` (
 INSERT INTO `benefits` (`ID`,`Active`,`TypeID`,`PeopleID`,`BenefitPercent`,`ServiceID`,`Name`,`Remark`,`LastUpdate`) VALUES 
  (0,0,0,0,'0.00',0,'Default','Default','2017-09-17'),
  (3,1,0,0,'54.21',0,'name','Remark','2017-09-18'),
- (4,1,0,0,'54.21',0,'name','Remark','2017-09-19'),
  (6,1,0,0,'54.21',0,'name','Remark','2017-09-18'),
- (7,1,0,0,'54.21',0,'name','Remark','2017-09-19'),
+ (7,1,0,0,'54.21',0,'name','Remark','2017-09-26'),
  (8,1,0,0,'54.21',0,'name','Remark','2017-09-19'),
- (9,1,0,0,'54.21',0,'name','Remark','2017-09-19');
+ (9,1,0,0,'54.21',0,'name','Remark','2017-09-19'),
+ (10,1,0,0,'54.21',0,'name','Remark','2017-09-26'),
+ (11,1,0,0,'54.21',0,'name','Remark','2017-09-26'),
+ (12,1,0,0,'54.21',0,'name','Remark','2017-09-26');
 /*!40000 ALTER TABLE `benefits` ENABLE KEYS */;
 
 
@@ -114,7 +118,7 @@ CREATE TABLE `benefitstypes` (
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `benefitstypes`
@@ -124,8 +128,9 @@ CREATE TABLE `benefitstypes` (
 INSERT INTO `benefitstypes` (`ID`,`Active`,`Name`,`Remark`,`LastUpdate`) VALUES 
  (0,0,'Default',NULL,'2017-09-17'),
  (1,1,'Льгота','акт','2017-09-20'),
- (2,1,'Субсидия','акт','2017-09-18'),
- (4,1,'Льгота','акт','2017-09-20');
+ (2,1,'Субсидия','акт','2017-09-26'),
+ (4,1,'Льгота','акт','2017-09-20'),
+ (5,1,'Субсидия','акт','2017-09-26');
 /*!40000 ALTER TABLE `benefitstypes` ENABLE KEYS */;
 
 
@@ -152,13 +157,18 @@ CREATE TABLE `companyinfo` (
   PRIMARY KEY (`ID`),
   KEY `FK_CompanyInfo_People` (`ManagerID`),
   CONSTRAINT `FK_CompanyInfo_People` FOREIGN KEY (`ManagerID`) REFERENCES `people` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `companyinfo`
 --
 
 /*!40000 ALTER TABLE `companyinfo` DISABLE KEYS */;
+INSERT INTO `companyinfo` (`ID`,`Active`,`Name`,`Address`,`Phone`,`Email`,`ManagerID`,`TaxIdNum`,`TaxNum`,`BankCode`,`BankName`,`AccountNum`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,'Default',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,'','2017-09-17'),
+ (1,1,'Наше ОСМД','Враненская,5/3','0677004016','osmd@ukr.net',0,'1234567890','242342534','3545475','АТ Ощадбанк','26003453453534','Комментарий','2017-09-26'),
+ (3,1,'Наше ОСМД','Враненская,5/3','0677004016','osmd@ukr.net',0,'1234567890','242342534','3545475','АТ Ощадбанк','26003453453534','Комментарий','2017-09-26'),
+ (4,1,'Наше ОСМД','Враненская,5/3','0677004016','osmd@ukr.net',0,'1234567890','242342534','3545475','АТ Ощадбанк','26003453453534','Комментарий','2017-09-26');
 /*!40000 ALTER TABLE `companyinfo` ENABLE KEYS */;
 
 
@@ -174,7 +184,7 @@ CREATE TABLE `dimensions` (
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `dimensions`
@@ -182,7 +192,10 @@ CREATE TABLE `dimensions` (
 
 /*!40000 ALTER TABLE `dimensions` DISABLE KEYS */;
 INSERT INTO `dimensions` (`ID`,`Active`,`Name`,`Remark`,`LastUpdate`) VALUES 
- (0,0,'Default',NULL,'2017-09-17');
+ (0,0,'Default',NULL,'2017-09-17'),
+ (1,1,'Конь/м2','Каммент','2017-09-26'),
+ (2,1,'Конь/м2','Каммент','2017-09-26'),
+ (3,1,'Конь/м2','Каммент','2017-09-26');
 /*!40000 ALTER TABLE `dimensions` ENABLE KEYS */;
 
 
@@ -198,7 +211,7 @@ CREATE TABLE `employees` (
   `PositionID` int(11) NOT NULL,
   `HireDate` date DEFAULT NULL,
   `FireDate` date DEFAULT NULL,
-  `Salary` decimal(5,2) DEFAULT NULL,
+  `Salary` decimal(7,2) DEFAULT NULL,
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`),
@@ -206,13 +219,18 @@ CREATE TABLE `employees` (
   KEY `FK_Employees_People` (`PeopleID`),
   CONSTRAINT `FK_Employees_People` FOREIGN KEY (`PeopleID`) REFERENCES `people` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Employees_Positions` FOREIGN KEY (`PositionID`) REFERENCES `positions` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` (`ID`,`Active`,`PeopleID`,`PositionID`,`HireDate`,`FireDate`,`Salary`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,0,0,NULL,NULL,'0.00',NULL,'2017-09-26'),
+ (1,1,0,1,'2017-09-18',NULL,'1200.00','Каммент','2017-09-26'),
+ (3,1,0,1,NULL,NULL,'1200.00','Каммент','2017-09-26'),
+ (4,1,0,1,NULL,NULL,'1200.00','Каммент','2017-09-26');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 
 
@@ -233,7 +251,7 @@ CREATE TABLE `houses` (
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `houses`
@@ -241,14 +259,15 @@ CREATE TABLE `houses` (
 
 /*!40000 ALTER TABLE `houses` DISABLE KEYS */;
 INSERT INTO `houses` (`ID`,`Active`,`Address`,`Year`,`QtyOfStoreys`,`QtyOfAllApart`,`TotalArea`,`AreaOfAllApart`,`Remark`,`LastUpdate`) VALUES 
- (3,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-12'),
+ (0,0,'Default',NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-17'),
+ (3,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-28'),
  (4,0,'Терешковой,2/3',1969,5,70,'4454.23','3542.32','Каммент 2','2017-09-13'),
  (5,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-12'),
  (6,0,'Варненская,2/3',1969,5,70,'4454.23','3542.32','Каммент 2','2017-09-18'),
  (11,0,'Терешковой,2/3',1969,5,70,'4454.23','3542.32','Каммент 2','2017-09-13'),
  (12,1,'kOSOMOVATOV,23',1968,5,90,'6548.11','5821.54','REMAAAAAAAARK','2017-09-05'),
  (13,1,'Варненская,,5/3',1970,5,70,'4587.23','3495.65','Каммммммент 3','2017-09-14'),
- (14,1,'??????????,5/3',1970,5,70,'4587.23','3495.65','???????????','2017-09-24'),
+ (14,1,'??????????,5/3',1970,5,70,'4587.23','3495.65','???????????','2017-09-25'),
  (15,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-14'),
  (17,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-14'),
  (18,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-14'),
@@ -256,7 +275,9 @@ INSERT INTO `houses` (`ID`,`Active`,`Address`,`Year`,`QtyOfStoreys`,`QtyOfAllApa
  (22,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-24'),
  (23,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-24'),
  (24,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-24'),
- (25,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-24');
+ (25,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-24'),
+ (26,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-25'),
+ (28,1,'Варненская,5/3',1970,5,70,'4587.23','3495.65','Комментарий','2017-09-28');
 /*!40000 ALTER TABLE `houses` ENABLE KEYS */;
 
 
@@ -274,13 +295,18 @@ CREATE TABLE `owndocuments` (
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `owndocuments`
 --
 
 /*!40000 ALTER TABLE `owndocuments` DISABLE KEYS */;
+INSERT INTO `owndocuments` (`ID`,`Active`,`Name`,`Number`,`StartDate`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,'Default','0','2017-09-17',NULL,'2017-09-26'),
+ (1,1,'Свидетельство о браке','2342342','2017-09-18',NULL,'2017-09-26'),
+ (2,1,'Свидетельство о браке','2342342','2017-09-18',NULL,'2017-09-26'),
+ (3,1,'Свидетельство о браке','2342342','2017-09-18',NULL,'2017-09-26');
 /*!40000 ALTER TABLE `owndocuments` ENABLE KEYS */;
 
 
@@ -306,13 +332,20 @@ CREATE TABLE `owners` (
   CONSTRAINT `FK_Owners_Apartments` FOREIGN KEY (`OwnApartID`) REFERENCES `apartments` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Owners_OwnDocuments` FOREIGN KEY (`OwnDocID`) REFERENCES `owndocuments` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Owners_People` FOREIGN KEY (`PeopleID`) REFERENCES `people` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `owners`
 --
 
 /*!40000 ALTER TABLE `owners` DISABLE KEYS */;
+INSERT INTO `owners` (`ID`,`Active`,`PeopleID`,`OwnApartID`,`OwnPart`,`OwnDocID`,`Senior`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,0,0,1,0,0,NULL,'2017-09-17'),
+ (1,1,0,0,2,0,1,'Камент','2017-09-26'),
+ (3,0,0,0,1,0,0,NULL,'2017-09-17'),
+ (4,0,0,0,1,0,0,NULL,'2017-09-17'),
+ (5,1,0,0,2,0,1,'Камент','2017-09-26'),
+ (6,1,0,0,2,0,1,'Камент','2017-09-26');
 /*!40000 ALTER TABLE `owners` ENABLE KEYS */;
 
 
@@ -329,7 +362,7 @@ CREATE TABLE `people` (
   `Patronymic` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ResidApartID` int(11) DEFAULT NULL,
   `RegApartID` int(11) DEFAULT NULL,
-  `BithDate` date DEFAULT NULL,
+  `BirthDate` date DEFAULT NULL,
   `Phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `TaxNum` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PassportSeries` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -343,15 +376,17 @@ CREATE TABLE `people` (
   KEY `FK_People_Apartments1` (`ResidApartID`),
   CONSTRAINT `FK_People_Apartments` FOREIGN KEY (`RegApartID`) REFERENCES `apartments` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_People_Apartments1` FOREIGN KEY (`ResidApartID`) REFERENCES `apartments` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `people`
 --
 
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` (`ID`,`Active`,`FirstName`,`LastName`,`Patronymic`,`ResidApartID`,`RegApartID`,`BithDate`,`Phone`,`TaxNum`,`PassportSeries`,`PassportNum`,`IssuedBy`,`IssuedDate`,`Remark`,`LastUpdate`) VALUES 
- (0,0,'Defailt','Default',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-17');
+INSERT INTO `people` (`ID`,`Active`,`FirstName`,`LastName`,`Patronymic`,`ResidApartID`,`RegApartID`,`BirthDate`,`Phone`,`TaxNum`,`PassportSeries`,`PassportNum`,`IssuedBy`,`IssuedDate`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,'Defailt','Default',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-17'),
+ (1,1,'Евсеев','Юрий','Михайлович',1,1,'1949-08-05','0679894512','1234567890','ке','694887','Красноокнянским РОВД','1998-08-11','Каммент','2017-09-28'),
+ (2,1,'Евсеев','Юрий','Михайлович',1,1,'1949-08-05','0679894512','1234567890','ке','694887','Красноокнянским РОВД','1998-08-11','Каммент','2017-09-27');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 
@@ -362,19 +397,23 @@ INSERT INTO `people` (`ID`,`Active`,`FirstName`,`LastName`,`Patronymic`,`ResidAp
 DROP TABLE IF EXISTS `positions`;
 CREATE TABLE `positions` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Active` tinyint(1) NOT NULL,
   `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `IsPaid` tinyint(1) DEFAULT NULL,
-  `IsStated` tinyint(1) DEFAULT NULL,
+  `Paid` tinyint(1) DEFAULT NULL,
+  `Stated` tinyint(1) DEFAULT NULL,
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `positions`
 --
 
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` (`ID`,`Active`,`Name`,`Paid`,`Stated`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,'Default',NULL,NULL,NULL,'2017-09-17'),
+ (1,0,'Дворник',1,1,'Каммент','2017-09-18');
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 
 
@@ -394,7 +433,7 @@ CREATE TABLE `services` (
   PRIMARY KEY (`ID`),
   KEY `FK_Services_Dimensions` (`DimensionID`),
   CONSTRAINT `FK_Services_Dimensions` FOREIGN KEY (`DimensionID`) REFERENCES `dimensions` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `services`
@@ -404,7 +443,9 @@ CREATE TABLE `services` (
 INSERT INTO `services` (`ID`,`Active`,`Name`,`Price`,`DimensionID`,`Remark`,`LastUpdate`) VALUES 
  (0,0,'Default','0.00',0,NULL,'2017-09-17'),
  (1,1,'Воздух','54.87',0,'Каммент','2017-09-18'),
- (2,1,'Вода','158.87',0,'павпапкепрк','2017-09-20');
+ (2,1,'Вода','158.87',0,'павпапкепрк','2017-09-25'),
+ (4,1,'Вода','158.87',0,'павпапкепрк','2017-09-25'),
+ (5,1,'Вода','158.87',0,'павпапкепрк','2017-09-25');
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 
 
@@ -419,30 +460,35 @@ CREATE TABLE `users` (
   `Login` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `PeopleID` int(11) DEFAULT NULL,
+  `AccessLevel` tinyint(1) NOT NULL,
   `Remark` longtext COLLATE utf8_unicode_ci,
   `LastUpdate` date NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_Users_People` (`PeopleID`),
   CONSTRAINT `FK_Users_People` FOREIGN KEY (`PeopleID`) REFERENCES `people` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`ID`,`Active`,`Login`,`Password`,`PeopleID`,`Remark`,`LastUpdate`) VALUES 
- (0,0,'Default','Default',0,'','2017-09-17'),
- (1,1,'Arthur','1111',0,'dfregre','2017-09-19'),
- (9,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (10,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (11,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (12,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (13,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (14,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (15,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (16,1,'Arthur','1111',0,'dfregre','2017-09-22'),
- (17,1,'Arthur','1111',0,'dfregre','2017-09-22');
+INSERT INTO `users` (`ID`,`Active`,`Login`,`Password`,`PeopleID`,`AccessLevel`,`Remark`,`LastUpdate`) VALUES 
+ (0,0,'Default','Default',0,0,'','2017-09-17'),
+ (1,1,'Arthur','1111',0,0,'dfregre','2017-09-19'),
+ (9,1,'Arthur','1111',0,0,'dfregre','2017-09-25'),
+ (10,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (11,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (12,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (14,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (15,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (16,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (17,1,'Arthur','1111',0,0,'dfregre','2017-09-22'),
+ (18,1,'Arthur','1111',0,0,'dfregre','2017-09-25'),
+ (19,1,'Arthur','1111',0,0,'dfregre','2017-09-25'),
+ (20,1,'Arthur','1111',0,0,'dfregre','2017-09-25'),
+ (21,1,'Arthur','1111',0,0,'dfregre','2017-09-25'),
+ (22,1,'Arthur','1111',0,0,'dfregre','2017-09-25');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 

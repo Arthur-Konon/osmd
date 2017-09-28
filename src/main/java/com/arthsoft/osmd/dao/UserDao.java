@@ -62,7 +62,7 @@ public class UserDao extends AbstractDao<User> {
         ps.setInt(4,entity.getPeopleId());
         ps.setBoolean(5,entity.isAccessLevel());
         ps.setString(6,entity.getRemark());
-        ps.setDate(7,java.sql.Date.valueOf(LocalDate.now()));
+        ps.setDate(7,Date.valueOf(LocalDate.now()));
     }
 }
 

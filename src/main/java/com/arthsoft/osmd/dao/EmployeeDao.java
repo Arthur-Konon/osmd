@@ -71,10 +71,10 @@ public class EmployeeDao extends AbstractDao<Employee> {
         ps.setInt(3,entity.getPositionId());
 
         if(entity.getHireDate() == null) ps.setDate(4,null);
-        else ps.setDate(4,java.sql.Date.valueOf(entity.getHireDate()));
+        else ps.setDate(4,Date.valueOf(entity.getHireDate()));
 
         if(entity.getFireDate() == null) ps.setDate(5,null);
-        else ps.setDate(5,java.sql.Date.valueOf(entity.getFireDate()));
+        else ps.setDate(5,Date.valueOf(entity.getFireDate()));
 
         ps.setFloat(6,entity.getSalary());
         ps.setString(7,entity.getRemark());
