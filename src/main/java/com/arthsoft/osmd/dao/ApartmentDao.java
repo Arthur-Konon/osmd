@@ -56,7 +56,7 @@ public class ApartmentDao extends AbstractDao<Apartment> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(Apartment entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Apartment entity, ResultSet rs) throws SQLException {
         entity.setHouseId(rs.getInt("HouseId"));
         entity.setApartNum(rs.getInt("ApartNum"));
         entity.setSupervisorId(rs.getInt("SupervisorId"));

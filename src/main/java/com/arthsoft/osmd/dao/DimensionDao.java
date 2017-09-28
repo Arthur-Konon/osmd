@@ -46,7 +46,7 @@ public class DimensionDao extends AbstractDao<Dimension>{
     }
 
     @Override
-    protected void fillEntityFromResultSet(Dimension entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Dimension entity, ResultSet rs) throws SQLException {
         entity.setName(rs.getString("Name"));
     }
 

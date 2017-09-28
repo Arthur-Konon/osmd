@@ -54,7 +54,7 @@ public class HouseDao extends AbstractDao<House> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(House entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(House entity, ResultSet rs) throws SQLException {
         entity.setAddress(rs.getString("Address"));
         entity.setYear(rs.getInt("Year"));
         entity.setQtyOfStoreys(rs.getInt("QtyOfStoreys"));

@@ -49,7 +49,7 @@ public class PositionDao extends AbstractDao<Position> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(Position entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Position entity, ResultSet rs) throws SQLException {
         entity.setName(rs.getString("Name"));
         entity.setPaid(rs.getBoolean("Paid"));
         entity.setStated(rs.getBoolean("Stated"));

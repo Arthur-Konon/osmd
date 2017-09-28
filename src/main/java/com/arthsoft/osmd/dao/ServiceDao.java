@@ -46,7 +46,7 @@ public class ServiceDao extends AbstractDao<Service> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(Service entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Service entity, ResultSet rs) throws SQLException {
         entity.setName(rs.getString("Name"));
         entity.setPrice(rs.getFloat("Price"));
         entity.setDimensionId(rs.getInt("DimensionID"));

@@ -48,7 +48,7 @@ public class OwnDocumentDao extends AbstractDao<OwnDocument>{
     }
 
     @Override
-    protected void fillEntityFromResultSet(OwnDocument entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(OwnDocument entity, ResultSet rs) throws SQLException {
         entity.setName(rs.getString("Name"));
         entity.setNumber(rs.getString("Number"));
 

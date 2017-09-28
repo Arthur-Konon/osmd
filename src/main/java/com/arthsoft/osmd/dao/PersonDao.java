@@ -57,7 +57,7 @@ public class PersonDao extends AbstractDao<Person>{
     }
 
     @Override
-    protected void fillEntityFromResultSet(Person entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Person entity, ResultSet rs) throws SQLException {
         entity.setFirstName(rs.getString("FirstName"));
         entity.setLastName(rs.getString("LastName"));
         entity.setPatronymic(rs.getString("Patronymic"));

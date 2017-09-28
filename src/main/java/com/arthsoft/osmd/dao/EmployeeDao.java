@@ -52,7 +52,7 @@ public class EmployeeDao extends AbstractDao<Employee> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(Employee entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Employee entity, ResultSet rs) throws SQLException {
         entity.setPeopleId(rs.getInt("PeopleID"));
         entity.setPositionId(rs.getInt("PositionID"));
 

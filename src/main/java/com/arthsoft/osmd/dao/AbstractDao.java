@@ -3,7 +3,6 @@ package com.arthsoft.osmd.dao;
 import com.arthsoft.osmd.entity.Entity;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +11,13 @@ import java.util.List;
  */
 public abstract class AbstractDao<T extends Entity> {
 
+    //TODO: you can use regular method in this case (not abstract)
     public abstract void printEntityList(List <T> entityList);
     protected abstract T getEntity();
     protected abstract  String getTableName ();
     protected abstract  String getInsertScript ();
     protected abstract  String getUpdateScript ();
-    protected abstract void fillEntityFromResultSet(T entity,ResultSet rs) throws SQLException;
+    protected abstract void fillEntitySpecificFromResultSet(T entity, ResultSet rs) throws SQLException;
     protected abstract void fillPreparedStatementFromEntity(T entity,PreparedStatement ps) throws SQLException;
 
 
@@ -31,7 +31,7 @@ public abstract class AbstractDao<T extends Entity> {
 
             while (rs.next()) {
                 T entity = getEntity();
-                fillEntityCommon(rs, entity);
+                fillEntity(rs, entity);
                 result.add(entity);
             }
         } catch (SQLException e) {
@@ -40,12 +40,13 @@ public abstract class AbstractDao<T extends Entity> {
         return result;
     }
 
-    private void fillEntityCommon(ResultSet rs, T entity) throws SQLException {
+
+    private void fillEntity(ResultSet rs, T entity) throws SQLException {
         entity.setId(rs.getInt("Id"));
         entity.setActive(rs.getBoolean("Active"));
         entity.setRemark(rs.getString("Remark"));
         entity.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
-        fillEntityFromResultSet(entity,rs);
+        fillEntitySpecificFromResultSet(entity, rs);
     }
 
 
@@ -54,7 +55,6 @@ public abstract class AbstractDao<T extends Entity> {
         T entity = getEntity();
         String selectSQL = "SELECT * FROM " + getTableName()+ " WHERE id=?" ;
 
-
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )        {
             ps.setInt(1,id);
@@ -62,7 +62,7 @@ public abstract class AbstractDao<T extends Entity> {
             try (ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
-                    fillEntityCommon(rs, entity);
+                    fillEntity(rs, entity);
                 }
             }
 
@@ -76,11 +76,10 @@ public abstract class AbstractDao<T extends Entity> {
     public  boolean save (T entity){
         boolean success = false;
 
-
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(getInsertScript()))
         {
-            ps.setBoolean(1,true);
+            ps.setBoolean(1, true);
             fillPreparedStatementFromEntity(entity,ps);
             ps.execute();
             success = true;
@@ -118,7 +117,6 @@ public abstract class AbstractDao<T extends Entity> {
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(deleteSQL))
         {
-
             ps.setInt(1,id);
             ps.execute();
             success = true;

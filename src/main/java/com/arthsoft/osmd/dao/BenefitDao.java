@@ -48,7 +48,7 @@ public class BenefitDao extends AbstractDao<Benefit> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(Benefit entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Benefit entity, ResultSet rs) throws SQLException {
         entity.setActive(rs.getBoolean("Active"));
         entity.setTypeId(rs.getInt("TypeId"));
         entity.setPeopleId(rs.getInt("PeopleId"));

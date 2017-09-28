@@ -58,7 +58,7 @@ public class CompanyInfoDao extends AbstractDao<CompanyInfo> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(CompanyInfo entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(CompanyInfo entity, ResultSet rs) throws SQLException {
         entity.setName(rs.getString("Name"));
         entity.setAddress(rs.getString("Address"));
         entity.setPhone(rs.getString("Phone"));

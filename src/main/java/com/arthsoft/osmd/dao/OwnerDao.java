@@ -50,7 +50,7 @@ public class OwnerDao extends AbstractDao<Owner> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(Owner entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(Owner entity, ResultSet rs) throws SQLException {
         entity.setPeopleId(rs.getInt("PeopleID"));
         entity.setOwnApartId(rs.getInt("OwnApartID"));
         entity.setOwnPart(rs.getInt("OwnPart"));

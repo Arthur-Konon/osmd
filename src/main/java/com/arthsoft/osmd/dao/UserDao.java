@@ -47,7 +47,7 @@ public class UserDao extends AbstractDao<User> {
     }
 
     @Override
-    protected void fillEntityFromResultSet(User entity, ResultSet rs) throws SQLException {
+    protected void fillEntitySpecificFromResultSet(User entity, ResultSet rs) throws SQLException {
         entity.setLogin(rs.getString("Login"));
         entity.setPassword(rs.getString("Password"));
         entity.setPeopleId(rs.getInt("PeopleId"));
