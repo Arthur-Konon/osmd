@@ -4,6 +4,7 @@ import com.arthsoft.osmd.dao.*;
 import com.arthsoft.osmd.entity.BenefitsType;
 import com.arthsoft.osmd.entity.CompanyInfo;
 import com.arthsoft.osmd.entity.Position;
+import com.googlecode.flyway.core.Flyway;
 
 
 /**
@@ -17,9 +18,8 @@ public class Main {
         //new BenefitDao().save(new BenefitDao().getById(3));
         //new BenefitDao().printEntityList(new BenefitDao().getAll());
 
-     new  HouseDao().update((new HouseDao().getById(3)));
-      new HouseDao().printEntityList(new HouseDao().getAll());
-
+    // new  HouseDao().update((new HouseDao().getById(3)));
+      //new HouseDao().printEntityList(new HouseDao().getAll());
 
     }
 }
