@@ -11,8 +11,9 @@ import java.util.List;
  */
 public abstract class AbstractDao<T extends Entity> {
 
-
+    //TODO remove overriding in children
     public  void printEntityList(List <T> entityList){
+        //TODO use generic
         for (Entity cell: entityList) System.out.println(cell);
     }
 
