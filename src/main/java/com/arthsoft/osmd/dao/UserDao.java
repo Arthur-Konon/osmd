@@ -64,5 +64,24 @@ public class UserDao extends AbstractDao<User> {
         ps.setString(6,entity.getRemark());
         ps.setDate(7,Date.valueOf(LocalDate.now()));
     }
+
+    public String getUserPassword(String userName){
+      String password = null;
+      String selectSQL = "SELECT * FROM users WHERE Login=?" ;
+
+      try (Connection dbConnection = DbUtils.getDBConnection();
+           PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )    {
+            ps.setString(1,userName);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    password = rs.getString("Password");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return password;
+    }
 }
 
