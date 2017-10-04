@@ -1,6 +1,7 @@
 package com.arthsoft.osmd.GUI;
 
 import com.arthsoft.osmd.dao.UserDao;
+import com.sun.org.apache.bcel.internal.generic.ICONST;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -30,8 +31,10 @@ public class LogIn extends JDialog {
     public static void main(String[] args) {
         try {
             LogIn dialog = new LogIn();
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setLocationRelativeTo(null);
             dialog.setVisible(true);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,6 +43,10 @@ public class LogIn extends JDialog {
 
 
     private LogIn() {
+        super(null, ModalityType.TOOLKIT_MODAL);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+
 
         JPanel contentPanel = new JPanel();
         setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\rsz_password_icon.png"));
@@ -48,7 +55,6 @@ public class LogIn extends JDialog {
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
-
 
         JTextField userNameField = new JTextField();
         userNameField.setColumns(10);
@@ -59,6 +65,7 @@ public class LogIn extends JDialog {
         JLabel labelLoginToOSMD = new JLabel("Login to OSMD");
         labelLoginToOSMD.setForeground(SystemColor.textHighlight);
         labelLoginToOSMD.setFont(new Font("Georgia", Font.BOLD, 20));
+
 
         GroupLayout credentialFields = new GroupLayout(contentPanel);
         JPasswordField passwordField = new JPasswordField();
@@ -79,7 +86,7 @@ public class LogIn extends JDialog {
                         .addGroup(credentialFields.createSequentialGroup()
                                 .addContainerGap(71, Short.MAX_VALUE)
                                 .addComponent(labelLoginToOSMD)
-                                .addGap(44))
+                                .addGap(130))
         );
 
         credentialFields.setVerticalGroup(
