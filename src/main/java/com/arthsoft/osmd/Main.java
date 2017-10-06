@@ -3,7 +3,7 @@ package com.arthsoft.osmd;
 import com.arthsoft.osmd.dao.*;
 import com.arthsoft.osmd.entity.BenefitsType;
 import com.arthsoft.osmd.entity.CompanyInfo;
-import com.arthsoft.osmd.entity.Position;
+import com.arthsoft.osmd.entity.User;
 import org.flywaydb.core.Flyway;
 
 import java.io.IOException;
@@ -33,7 +33,11 @@ public class Main {
                 dbProps.getProperty(USER),
                 dbProps.getProperty(PWD));
         flyway.migrate();
+
+
+        new ApartmentDao().printEntityList(new ApartmentDao().getAll());
     }
+
 
 }
 

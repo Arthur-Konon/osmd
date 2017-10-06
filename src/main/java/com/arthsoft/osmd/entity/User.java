@@ -52,4 +52,6 @@ public class User extends Entity {     //table  `users`
     public boolean isAccessLevel() { return accessLevel; }
 
     public void setAccessLevel(boolean accessLevel) { this.accessLevel = accessLevel;  }
+
+
 }

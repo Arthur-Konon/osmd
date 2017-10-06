@@ -48,4 +48,7 @@ public abstract class Entity {
     public void setLastUpdate(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+
+
 }

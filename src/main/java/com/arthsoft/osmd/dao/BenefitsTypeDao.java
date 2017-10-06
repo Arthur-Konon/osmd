@@ -12,11 +12,6 @@ import java.util.List;
 public class BenefitsTypeDao extends AbstractDao<BenefitsType>{
 
     @Override
-    public void printEntityList(List <BenefitsType> entityList) {
-        for (BenefitsType cell: entityList) System.out.println(cell);
-    }
-
-    @Override
     protected BenefitsType getEntity() {
         return new BenefitsType();
     }

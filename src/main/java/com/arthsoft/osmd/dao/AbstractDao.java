@@ -11,10 +11,10 @@ import java.util.List;
  */
 public abstract class AbstractDao<T extends Entity> {
 
-    //TODO remove overriding in children
+
     public  void printEntityList(List <T> entityList){
-        //TODO use generic
-        for (Entity cell: entityList) System.out.println(cell);
+
+        for (T cell: entityList) System.out.println(cell);
     }
 
     protected abstract T getEntity();
@@ -23,6 +23,10 @@ public abstract class AbstractDao<T extends Entity> {
     protected abstract  String getUpdateScript ();
     protected abstract void fillEntitySpecificFromResultSet(T entity, ResultSet rs) throws SQLException;
     protected abstract void fillPreparedStatementFromEntity(T entity,PreparedStatement ps) throws SQLException;
+
+    protected String getNameColumn(){
+        return "";
+    }
 
 
     public  List<T> getAll(){
@@ -76,6 +80,26 @@ public abstract class AbstractDao<T extends Entity> {
         return entity;
     }
 
+    public  T getByName(String name) {
+        T entity = getEntity();
+        String selectSQL = "SELECT * FROM " + getTableName()+ " WHERE " + getNameColumn() + "=?" ;
+
+        try (Connection dbConnection = DbUtils.getDBConnection();
+             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )        {
+            ps.setString(1,name);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+                    fillEntity(rs, entity);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return entity;
+    }
 
     public  boolean save (T entity){
         boolean success = false;

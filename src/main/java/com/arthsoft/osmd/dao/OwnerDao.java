@@ -13,10 +13,6 @@ import java.util.List;
  * Created by arthk on 26.09.2017.
  */
 public class OwnerDao extends AbstractDao<Owner> {
-    @Override
-    public void printEntityList(List<Owner> entityList) {
-        for (Owner cell: entityList) System.out.println(cell);
-    }
 
     @Override
     protected Owner getEntity() {

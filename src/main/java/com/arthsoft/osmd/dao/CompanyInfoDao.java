@@ -14,12 +14,6 @@ import java.util.List;
  */
 public class CompanyInfoDao extends AbstractDao<CompanyInfo> {
 
-
-    @Override
-    public void printEntityList(List <CompanyInfo> entityList) {
-        for (CompanyInfo cell : entityList) System.out.println(cell);
-    }
-
     @Override
     protected CompanyInfo getEntity() {
         return new CompanyInfo();

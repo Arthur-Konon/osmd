@@ -13,10 +13,6 @@ import java.util.List;
  * Created by arthk on 26.09.2017.
  */
 public class DimensionDao extends AbstractDao<Dimension>{
-    @Override
-    public void printEntityList(List<Dimension> entityList) {
-        for (Dimension cell: entityList) System.out.println(cell);
-    }
 
     @Override
     protected Dimension getEntity() {

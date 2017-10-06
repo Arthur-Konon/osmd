@@ -11,10 +11,10 @@ import java.util.List;
  */
 public class UserDao extends AbstractDao<User> {
 
-    @Override
-    public void printEntityList(List <User> entityList) {
-        for (User cell:entityList ) System.out.println(cell);
-    }
+
+   // public void printEntityList(List <User> entityList) {
+       // for (User cell:entityList ) System.out.println(cell);
+   // }
 
 
     @Override
@@ -25,6 +25,11 @@ public class UserDao extends AbstractDao<User> {
     @Override
     protected String getTableName() {
         return "users";
+    }
+
+    @Override
+    protected String getNameColumn() {
+        return "Login";
     }
 
     @Override

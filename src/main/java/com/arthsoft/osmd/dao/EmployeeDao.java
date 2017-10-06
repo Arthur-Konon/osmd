@@ -14,10 +14,6 @@ import java.util.List;
  * Created by arthk on 26.09.2017.
  */
 public class EmployeeDao extends AbstractDao<Employee> {
-    @Override
-    public void printEntityList(List<Employee> entityList) {
-        for (Employee cell:entityList) System.out.println(cell);
-    }
 
     @Override
     protected Employee getEntity() {

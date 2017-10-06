@@ -12,10 +12,6 @@ import java.util.List;
  */
 public class ApartmentDao extends AbstractDao<Apartment> {
 
-    @Override
-    public void printEntityList(List <Apartment> entityList) {
-        for (Apartment cell: entityList) System.out.println(cell);
-    }
 
     @Override
     protected Apartment getEntity() {

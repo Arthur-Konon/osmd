@@ -13,10 +13,6 @@ import java.util.List;
  * Created by arthk on 27.09.2017.
  */
 public class PersonDao extends AbstractDao<Person>{
-    @Override
-    public void printEntityList(List<Person> entityList) {
-        for (Person cell: entityList) System.out.println(cell);
-    }
 
     @Override
     protected Person getEntity() {

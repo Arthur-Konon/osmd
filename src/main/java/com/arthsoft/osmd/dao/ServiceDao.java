@@ -12,11 +12,6 @@ import java.util.List;
 public class ServiceDao extends AbstractDao<Service> {
 
     @Override
-    public void printEntityList(List <Service> entityList) {
-        for (Service cell: entityList) System.out.println(cell);
-    }
-
-    @Override
     protected Service getEntity() {
         return new Service();
     }

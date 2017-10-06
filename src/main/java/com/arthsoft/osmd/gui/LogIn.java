@@ -1,7 +1,8 @@
-package com.arthsoft.osmd.GUI;
+package com.arthsoft.osmd.gui;
 
 import com.arthsoft.osmd.dao.UserDao;
-import com.sun.org.apache.bcel.internal.generic.ICONST;
+import com.arthsoft.osmd.entity.User;
+
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -17,13 +18,9 @@ public class LogIn extends JDialog {
 
 
 
-    private boolean succeeded;
-    public boolean isSucceeded() {
-        return succeeded;
-    }
 
-    private static boolean authenticate(String username, String password) {
-        String truePassword = new UserDao().getUserPassword(username);
+    private  boolean authenticate(String username, String password) {
+        String truePassword = new UserDao().getByName(username).getPassword();
         return password.equals(truePassword);
     }
 
@@ -31,8 +28,8 @@ public class LogIn extends JDialog {
     public static void main(String[] args) {
         try {
             LogIn dialog = new LogIn();
-            dialog.setLocationRelativeTo(null);
-            dialog.setVisible(true);
+            dialog.setLocationRelativeTo(null);// align to centre
+            dialog.setVisible(true); // is visible
 
 
         } catch (Exception e) {
@@ -43,13 +40,14 @@ public class LogIn extends JDialog {
 
 
     private LogIn() {
-        super(null, ModalityType.TOOLKIT_MODAL);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-
-
+        super(null, ModalityType.TOOLKIT_MODAL); //put icon on windows toolbars
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // shut down app by closing window
 
         JPanel contentPanel = new JPanel();
-        setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\rsz_password_icon.png"));
+       // setIconImage(Toolkit.getDefaultToolkit().getImage("resources/img/rsz_password_icon.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/img/rsz_password_icon.png")));
+
+
         setTitle("Login");
         setBounds(100, 100, 450, 256);
         getContentPane().setLayout(new BorderLayout());
@@ -118,15 +116,18 @@ public class LogIn extends JDialog {
         loginButton.setActionCommand("OK");
         buttonPanel.add(loginButton);
         getRootPane().setDefaultButton(loginButton);
+
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (LogIn.authenticate(userNameField.getText().trim(),new String (passwordField.getPassword()))) {
+                if (authenticate(userNameField.getText().trim(),new String (passwordField.getPassword()))) {
+                    /*
                     JOptionPane.showMessageDialog(LogIn.this,
                             "Hi " + userNameField.getText().trim() + "! You have successfully logged in.",
                             "Login",
                             JOptionPane.INFORMATION_MESSAGE);
-                    succeeded = true;
+                    */
                     dispose();
+                    new MainWindow();
                 } else {
                     JOptionPane.showMessageDialog(LogIn.this,
                             "Invalid username or password",
@@ -135,7 +136,6 @@ public class LogIn extends JDialog {
                     // reset username and password
                     userNameField.setText("");
                     passwordField.setText("");
-                    succeeded = false;
                 }
             }
         });
