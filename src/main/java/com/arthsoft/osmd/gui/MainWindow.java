@@ -1,61 +1,66 @@
 package com.arthsoft.osmd.gui;
 
+import java.awt.*;
 
-import com.arthsoft.osmd.entity.User;
+import javax.swing.*;
 
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import static java.awt.Color.GRAY;
+import static java.awt.Color.RED;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
-import static javax.swing.SwingUtilities.getWindowAncestor;
 
 /**
  * Created by arthk on 06.10.2017.
  */
 public class MainWindow extends JFrame{
-   // private static final long serialVersionUID = 2785294706787223082L;
-    //private int x = 0, y=0 , width = 800, height = 600;
 
+    private static String entityListWindowName = "";
 
+    public static void main(String[] args) {
+        new MainWindow();
+    }
 
-
+    private JDesktopPane entityListWindowsPane;
 
     public MainWindow() {
 
-        //getWindowAncestor(this);
         setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/img/House.png")));
         Toolkit.getDefaultToolkit();
-
-        /*
-        Dimension d = t.getScreenSize();
-        x = (int) ((d.getWidth() - width) / 2);
-        y = (int) ((d.getHeight() - height) / 2);
-        setBounds(x, y, widht, height);
-        */
-
         setTitle("OSMD");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        this.initComponents();
-
+        initComponents();
         setVisible(true);
+
+            }
+
+    //Create a new internal frame.
+    private void createEntityListWindow() {
+        EntitiesListWindow internalWindow = new EntitiesListWindow();
+        internalWindow.setVisible(true);
+        entityListWindowsPane.add(internalWindow);
+        try {
+            internalWindow.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+        internalWindow.setTitle(entityListWindowName);
     }
 
     private void initComponents() {
 
+        entityListWindowsPane = new JDesktopPane(); //a specialized layered pane
+
+        setContentPane(entityListWindowsPane);
+
+        entityListWindowsPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+
+
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        JMenu masterData_menu = new JMenu(" Master Data ");
-        JMenu documents_menu = new JMenu(" Documents ");
-        JMenu payments_menu = new JMenu(" Payments ");
-        JMenu settings_menu = new JMenu(" Settings ");
+
+        JMenu masterData_menu = new JMenu("\tMaster Data\t");
+        JMenu documents_menu = new JMenu("\tDocuments\t");
+        JMenu payments_menu = new JMenu("\tPayments\t");
+        JMenu settings_menu = new JMenu("\tSettings\t");
 
         menuBar.add(masterData_menu);
         menuBar.add(documents_menu);
@@ -85,13 +90,10 @@ public class MainWindow extends JFrame{
         payments_menu.add(incPayments_menu_item);
         payments_menu.add(outPayments_menu_item);
 
-        people_menu_item.addActionListener(e -> new EntitiesListWindow());
+        people_menu_item.addActionListener(e -> {
+            entityListWindowName = "People";
+            createEntityListWindow();
+        });
 
     }
-
-
-   // public static void main(String[] args) {
-   //     new MainWindow();
-   // }
-
 }
