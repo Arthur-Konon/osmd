@@ -1,11 +1,19 @@
 package com.arthsoft.osmd.gui;
 
+import com.arthsoft.osmd.dao.PersonDao;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.beans.PropertyVetoException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
+import java.util.Vector;
+
 import static javax.swing.SwingUtilities.invokeLater;
 
 /**
@@ -32,53 +40,65 @@ public class EntitiesListWindow extends JInternalFrame {
         });
         setBounds(100, 100, 800, 600);
 
-        createEntilyTable();
+        createEntityTable();
 
     }
 
-private JTable createEntilyTable() {
+    private  DefaultTableModel buildTableModel(ResultSet rs)
+            throws SQLException {
 
-    //super(new GridLayout(1,0));
+        ResultSetMetaData metaData = rs.getMetaData();
 
-    String[] columnNames = {"First Name",
-            "Last Name",
-            "Sport",
-            "# of Years",
-            "Vegetarian"};
+        // names of columns from Database
+        Vector<String> columnNames = new Vector<>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
 
-    Object[][] data = {
-            {"Kathy", "Smith",
-                    "Snowboarding", new Integer(5), new Boolean(false)},
-            {"John", "Doe",
-                    "Rowing", new Integer(3), new Boolean(true)},
-            {"Sue", "Black",
-                    "Knitting", new Integer(2), new Boolean(false)},
-            {"Jane", "White",
-                    "Speed reading", new Integer(20), new Boolean(true)},
-            {"Joe", "Brown",
-                    "Pool", new Integer(10), new Boolean(false)}
-    };
 
-    final JTable table = new JTable(data, columnNames);
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+                return new DefaultTableModel(data, columnNames);
+
+    }
+
+private void createEntityTable() {
+
+    JTable table = null;
+
+    try {
+        table = new JTable(buildTableModel(new PersonDao().getAllAsRusultSet()));
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+
+    assert table != null;
     table.setPreferredScrollableViewportSize(new Dimension(getWidth(), 70));
     table.setFillsViewportHeight(true);
 
-    TableModel model = new DefaultTableModel(data, columnNames) {
-        public Class <?> getColumnClass(int column) {
-            return getValueAt(0, column).getClass();
-        }
-    };
-    TableRowSorter <TableModel> sorter = new TableRowSorter <TableModel>(model);
+    TableRowSorter <TableModel> sorter = null;
+    try {
+        sorter = new TableRowSorter<>(buildTableModel(new PersonDao().getAllAsRusultSet()));
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
     table.setRowSorter(sorter);
-
-
     //Create the scroll pane and add the table to it.
     JScrollPane scrollPane = new JScrollPane(table);
 
     //Add the scroll pane to this panel.
     add(scrollPane);
-    return table;
-    }
+     }
 
 }
 

@@ -4,6 +4,7 @@ import com.arthsoft.osmd.dao.*;
 import com.arthsoft.osmd.entity.BenefitsType;
 import com.arthsoft.osmd.entity.CompanyInfo;
 import com.arthsoft.osmd.entity.User;
+import com.arthsoft.osmd.util.DbUtils;
 import org.flywaydb.core.Flyway;
 
 import java.io.IOException;
@@ -16,26 +17,14 @@ import java.util.Properties;
  */
 public class Main {
 
-    private static final String URL = "url";
-    private static final String USER = "user";
-    private static final String PWD = "password";
+
 
     public static void main(String[] args) throws IOException {
 
-        Properties dbProps = new Properties();
-            try (InputStream stream = Main.class.getClassLoader()
-                    .getResourceAsStream("db.properties")){
-                dbProps.load(stream);
-            }
-
-        Flyway flyway = new Flyway();
-        flyway.setDataSource(dbProps.getProperty(URL),
-                dbProps.getProperty(USER),
-                dbProps.getProperty(PWD));
-        flyway.migrate();
+       // DbUtils.runFlyway();
 
 
-        new ApartmentDao().printEntityList(new ApartmentDao().getAll());
+       new PersonDao().save(new PersonDao().getById(2));
     }
 
 

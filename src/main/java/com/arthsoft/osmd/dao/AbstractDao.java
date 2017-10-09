@@ -1,6 +1,7 @@
 package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.Entity;
+import com.arthsoft.osmd.util.DbUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,6 +49,13 @@ public abstract class AbstractDao<T extends Entity> {
         return result;
     }
 
+    public  ResultSet getAllAsRusultSet() throws SQLException {
+
+        String selectSQL = "SELECT * FROM " + getTableName();
+        Connection dbConnection = DbUtils.getDBConnection();
+        PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
+        return ps.executeQuery();
+    }
 
     private void fillEntity(ResultSet rs, T entity) throws SQLException {
         entity.setId(rs.getInt("Id"));
@@ -155,4 +163,22 @@ public abstract class AbstractDao<T extends Entity> {
         return success;
     }
 
+
+    public  List<String> getRussianColumnNames(){
+        List <String> result = new ArrayList<>();
+        String selectSQL = "SELECT RUSSIAN FROM u_column_names ";
+
+        try (Connection dbConnection = DbUtils.getDBConnection();
+             PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
+             ResultSet rs = ps.executeQuery()){
+
+            while (rs.next()) {
+                String columnName = rs.getString("Russian");
+                result.add(columnName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

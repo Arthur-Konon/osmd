@@ -25,24 +25,22 @@ public class Person extends Entity{       //table 'people'
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + getId() +
-                ", active=" + isActive() +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", residApartId=" + residApartId +
-                ", regApartId=" + regApartId +
-                ", birthDate=" + birthDate +
-                ", phone='" + phone + '\'' +
-                ", taxNum='" + taxNum + '\'' +
-                ", passportSeries='" + passportSeries + '\'' +
-                ", passportNum='" + passportNum + '\'' +
-                ", issuedBy='" + issuedBy + '\'' +
-                ", issuedDate=" + issuedDate +
-                ", remark='" + getRemark() + '\'' +
-                ", lastUpdate=" + getLastUpdate() +
-                '}';
+        return getId() +
+                " " + isActive() +
+                " " + firstName +
+                " " + lastName +
+                " " + patronymic +
+                " " + residApartId +
+                " " + regApartId +
+                " " + birthDate +
+                " " + phone +
+                " " + taxNum +
+                " " + passportSeries +
+                " " + passportNum +
+                " " + issuedBy +
+                " " + issuedDate +
+                " " + getRemark() +
+                " " + getLastUpdate();
     }
 
     public String getFirstName() {

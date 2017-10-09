@@ -1,10 +1,10 @@
 package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.User;
+import com.arthsoft.osmd.util.DbUtils;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 11.09.2017.
