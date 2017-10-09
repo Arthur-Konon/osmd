@@ -49,9 +49,13 @@ public class User extends Entity {     //table  `users`
         this.peopleId = peopleId;
     }
 
-    public boolean isAccessLevel() { return accessLevel; }
+    public boolean isAccessLevel() {
+        return accessLevel;
+    }
 
-    public void setAccessLevel(boolean accessLevel) { this.accessLevel = accessLevel;  }
+    public void setAccessLevel(boolean accessLevel) {
+        this.accessLevel = accessLevel;
+    }
 
 
 }

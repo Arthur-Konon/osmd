@@ -1,8 +1,6 @@
 package com.arthsoft.osmd.gui;
 
 import com.arthsoft.osmd.dao.UserDao;
-import com.arthsoft.osmd.entity.User;
-
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -17,9 +15,7 @@ import java.awt.event.ActionListener;
 public class LogIn extends JDialog {
 
 
-
-
-    private  boolean authenticate(String username, String password) {
+    private boolean authenticate(String username, String password) {
         String truePassword = new UserDao().getByName(username).getPassword();
         return password.equals(truePassword);
     }
@@ -38,13 +34,12 @@ public class LogIn extends JDialog {
     }
 
 
-
     private LogIn() {
         super(null, ModalityType.TOOLKIT_MODAL); //put icon on windows toolbars
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // shut down app by closing window
 
         JPanel contentPanel = new JPanel();
-       // setIconImage(Toolkit.getDefaultToolkit().getImage("resources/img/rsz_password_icon.png"));
+        // setIconImage(Toolkit.getDefaultToolkit().getImage("resources/img/rsz_password_icon.png"));
         setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/img/rsz_password_icon.png")));
 
 
@@ -111,7 +106,7 @@ public class LogIn extends JDialog {
         getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
 
-                // Login button
+        // Login button
         JButton loginButton = new JButton("Login");
         loginButton.setActionCommand("OK");
         buttonPanel.add(loginButton);
@@ -119,7 +114,7 @@ public class LogIn extends JDialog {
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (authenticate(userNameField.getText().trim(),new String (passwordField.getPassword()))) {
+                if (authenticate(userNameField.getText().trim(), new String(passwordField.getPassword()))) {
                     /*
                     JOptionPane.showMessageDialog(LogIn.this,
                             "Hi " + userNameField.getText().trim() + "! You have successfully logged in.",
@@ -141,7 +136,7 @@ public class LogIn extends JDialog {
         });
 
 
-                // Cancel button
+        // Cancel button
         JButton cancelButton = new JButton("Cancel");
         cancelButton.setActionCommand("Cancel");
         buttonPanel.add(cancelButton);

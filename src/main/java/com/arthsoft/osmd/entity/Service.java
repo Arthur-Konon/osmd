@@ -1,17 +1,13 @@
 package com.arthsoft.osmd.entity;
 
-import java.time.LocalDate;
-
-
 /**
  * Created by arthk on 08.09.2017.
  */
-public class Service extends Entity{      //table `services`
+public class Service extends Entity {      //table `services`
 
     private String name;        //  `Name` char(50) NOT NULL,
     private float price;        //  `Price` decimal(5,2) NOT NULL,
     private int dimensionId;    // `DimensionID` int(11) NOT NULL,REFERENCES `dimensions` (`ID`)
-
 
 
     @Override

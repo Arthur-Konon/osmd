@@ -8,13 +8,10 @@ import java.time.LocalDate;
 public abstract class Entity {
 
 
-
     private int id;     //  `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
     private boolean active; //  `Active` tinyint(1) NOT NULL,
     private String remark;      //  `Remark` longtext,
     private LocalDate lastUpdate;      // `LastUpdate` date NOT NULL
-
-
 
 
     public int getId() {
@@ -48,7 +45,6 @@ public abstract class Entity {
     public void setLastUpdate(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-
 
 
 }

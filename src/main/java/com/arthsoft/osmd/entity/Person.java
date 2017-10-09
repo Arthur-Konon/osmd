@@ -6,7 +6,7 @@ import java.time.LocalDate;
 /**
  * Created by arthk on 08.09.2017.
  */
-public class Person extends Entity{       //table 'people'
+public class Person extends Entity {       //table 'people'
 
 
     private String firstName;       //  `FirstName` varchar(50) DEFAULT NULL,
@@ -15,7 +15,7 @@ public class Person extends Entity{       //table 'people'
     private int residApartId;    //  `ResidApartID` int(11) DEFAULT NULL,REFERENCES `apartments` (`ID`)
     private int regApartId;         //  `RegApartID` int(11) DEFAULT NULL,REFERENCES `apartments` (`ID`)
     private LocalDate birthDate;   //`BirthDate` date DEFAULT NULL,
-    private String  phone;          //     `Phone` varchar(50) DEFAULT NULL,
+    private String phone;          //     `Phone` varchar(50) DEFAULT NULL,
     private String taxNum;          //  `TaxNum` char(10) DEFAULT NULL,
     private String passportSeries;       // `PassportSeries` char(10) DEFAULT NULL,
     private String passportNum;         //  `PassportNum` char(50) DEFAULT NULL,

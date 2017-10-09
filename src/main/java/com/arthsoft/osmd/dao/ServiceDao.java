@@ -2,14 +2,16 @@ package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.Service;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 20.09.2017.
  */
-public class ServiceDao extends AbstractDao<Service> {
+public class ServiceDao extends AbstractDao <Service> {
 
     @Override
     protected Service getEntity() {
@@ -36,7 +38,7 @@ public class ServiceDao extends AbstractDao<Service> {
                 " `DimensionID`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=" ;
+                "WHERE  `Id`=";
     }
 
     @Override
@@ -49,9 +51,9 @@ public class ServiceDao extends AbstractDao<Service> {
     @Override
     protected void fillPreparedStatementFromEntity(Service entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getName());
-        ps.setFloat(3,entity.getPrice());
-        ps.setInt(4,entity.getDimensionId());
-        ps.setString(5,entity.getRemark());
+        ps.setFloat(3, entity.getPrice());
+        ps.setInt(4, entity.getDimensionId());
+        ps.setString(5, entity.getRemark());
         ps.setDate(6, Date.valueOf(LocalDate.now()));
     }
 

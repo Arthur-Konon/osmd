@@ -2,14 +2,16 @@ package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.Benefit;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 19.09.2017.
  */
-public class BenefitDao extends AbstractDao<Benefit> {
+public class BenefitDao extends AbstractDao <Benefit> {
 
     @Override
     protected Benefit getEntity() {
@@ -23,7 +25,7 @@ public class BenefitDao extends AbstractDao<Benefit> {
 
     @Override
     protected String getInsertScript() {
-        return  "INSERT INTO `benefits` (`Active`,`TypeID`,`PeopleID`,`BenefitPercent`," +
+        return "INSERT INTO `benefits` (`Active`,`TypeID`,`PeopleID`,`BenefitPercent`," +
                 "`ServiceID`,`Name`,`Remark`,`LastUpdate`) VALUES (?,?,?,?,?,?,?,?)";
     }
 
@@ -38,7 +40,7 @@ public class BenefitDao extends AbstractDao<Benefit> {
                 " `Name`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=" ;
+                "WHERE  `Id`=";
     }
 
     @Override
@@ -54,11 +56,11 @@ public class BenefitDao extends AbstractDao<Benefit> {
     @Override
     protected void fillPreparedStatementFromEntity(Benefit entity, PreparedStatement ps) throws SQLException {
         ps.setInt(2, entity.getTypeId());
-        ps.setInt(3,entity.getPeopleId());
-        ps.setFloat(4,entity.getBenefitPercent());
-        ps.setInt(5,entity.getServiceId());
-        ps.setString(6,entity.getName());
-        ps.setString(7,entity.getRemark());
+        ps.setInt(3, entity.getPeopleId());
+        ps.setFloat(4, entity.getBenefitPercent());
+        ps.setInt(5, entity.getServiceId());
+        ps.setString(6, entity.getName());
+        ps.setString(7, entity.getRemark());
         ps.setDate(8, Date.valueOf(LocalDate.now()));
     }
 }

@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 26.09.2017.
  */
-public class DimensionDao extends AbstractDao<Dimension>{
+public class DimensionDao extends AbstractDao <Dimension> {
 
     @Override
     protected Dimension getEntity() {
@@ -38,7 +37,7 @@ public class DimensionDao extends AbstractDao<Dimension>{
                 " `Name`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=" ;
+                "WHERE  `Id`=";
     }
 
     @Override
@@ -49,7 +48,7 @@ public class DimensionDao extends AbstractDao<Dimension>{
     @Override
     protected void fillPreparedStatementFromEntity(Dimension entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getName());
-        ps.setString(3,entity.getRemark());
+        ps.setString(3, entity.getRemark());
         ps.setDate(4, Date.valueOf(LocalDate.now()));
     }
 

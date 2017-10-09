@@ -9,12 +9,12 @@ import java.time.LocalDate;
 /**
  * Created by arthk on 11.09.2017.
  */
-public class UserDao extends AbstractDao<User> {
+public class UserDao extends AbstractDao <User> {
 
 
-   // public void printEntityList(List <User> entityList) {
-       // for (User cell:entityList ) System.out.println(cell);
-   // }
+    // public void printEntityList(List <User> entityList) {
+    // for (User cell:entityList ) System.out.println(cell);
+    // }
 
 
     @Override
@@ -48,7 +48,7 @@ public class UserDao extends AbstractDao<User> {
                 " `AccessLevel`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=" ;
+                "WHERE  `Id`=";
     }
 
     @Override
@@ -64,19 +64,19 @@ public class UserDao extends AbstractDao<User> {
     protected void fillPreparedStatementFromEntity(User entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getLogin());
         ps.setString(3, entity.getPassword());
-        ps.setInt(4,entity.getPeopleId());
-        ps.setBoolean(5,entity.isAccessLevel());
-        ps.setString(6,entity.getRemark());
-        ps.setDate(7,Date.valueOf(LocalDate.now()));
+        ps.setInt(4, entity.getPeopleId());
+        ps.setBoolean(5, entity.isAccessLevel());
+        ps.setString(6, entity.getRemark());
+        ps.setDate(7, Date.valueOf(LocalDate.now()));
     }
 
-    public String getUserPassword(String userName){
-      String password = null;
-      String selectSQL = "SELECT * FROM users WHERE Login=?" ;
+    public String getUserPassword(String userName) {
+        String password = null;
+        String selectSQL = "SELECT * FROM users WHERE Login=?";
 
-      try (Connection dbConnection = DbUtils.getDBConnection();
-           PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )    {
-            ps.setString(1,userName);
+        try (Connection dbConnection = DbUtils.getDBConnection();
+             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)) {
+            ps.setString(1, userName);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

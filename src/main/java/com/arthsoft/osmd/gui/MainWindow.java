@@ -1,17 +1,13 @@
 package com.arthsoft.osmd.gui;
 
-import java.awt.*;
-
 import javax.swing.*;
-
-import static java.awt.Color.GRAY;
-import static java.awt.Color.RED;
+import java.awt.*;
 
 
 /**
  * Created by arthk on 06.10.2017.
  */
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame {
 
     private static String entityListWindowName = "";
 
@@ -31,7 +27,7 @@ public class MainWindow extends JFrame{
         initComponents();
         setVisible(true);
 
-            }
+    }
 
     //Create a new internal frame.
     private void createEntityListWindow() {
@@ -40,7 +36,8 @@ public class MainWindow extends JFrame{
         entityListWindowsPane.add(internalWindow);
         try {
             internalWindow.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {}
+        } catch (java.beans.PropertyVetoException e) {
+        }
         internalWindow.setTitle(entityListWindowName);
     }
 

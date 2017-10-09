@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 27.09.2017.
  */
-public class PositionDao extends AbstractDao<Position> {
+public class PositionDao extends AbstractDao <Position> {
 
     @Override
     protected Position getEntity() {
@@ -54,9 +53,9 @@ public class PositionDao extends AbstractDao<Position> {
     @Override
     protected void fillPreparedStatementFromEntity(Position entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getName());
-        ps.setBoolean(3,entity.isPaid());
-        ps.setBoolean(4,entity.isStated());
-        ps.setString(5,entity.getRemark());
+        ps.setBoolean(3, entity.isPaid());
+        ps.setBoolean(4, entity.isStated());
+        ps.setString(5, entity.getRemark());
         ps.setDate(6, Date.valueOf(LocalDate.now()));
     }
 }

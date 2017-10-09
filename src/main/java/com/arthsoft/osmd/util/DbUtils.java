@@ -5,7 +5,8 @@ import org.flywaydb.core.Flyway;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -14,35 +15,43 @@ import java.util.Properties;
 public class DbUtils {
 
 
-       private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-       private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/arth_osmd?characterEncoding=UTF-8";
-       private static final String DB_USER = "root";
-        private static final String DB_PASSWORD = "root";
+    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 
     private static final String URL = "url";
     private static final String USER = "user";
     private static final String PASSWORD = "password";
+    private static Properties dbProps;
 
-        public static void runFlyway() throws IOException {
-            Properties dbProps = new Properties();
-            try (InputStream stream = Main.class.getClassLoader()
-                    .getResourceAsStream("db.properties")){
-                dbProps.load(stream);
-            }
-
-            Flyway flyway = new Flyway();
-            flyway.setDataSource(dbProps.getProperty(URL),
-                    dbProps.getProperty(USER),
-                    dbProps.getProperty(PASSWORD));
-            flyway.migrate();
+    static {
+        dbProps = new Properties();
+        InputStream stream = Main.class.getClassLoader().getResourceAsStream("db.properties");
+        try {
+            dbProps.load(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+    }
 
-            public static java.sql.Connection getDBConnection() throws SQLException {
-            try { Class.forName(DB_DRIVER);}
-            catch (ClassNotFoundException e) {e.printStackTrace();}
+    public static void runFlyway() throws IOException {
 
-            return DriverManager.getConnection( DB_CONNECTION, DB_USER, DB_PASSWORD);
+
+        Flyway flyway = new Flyway();
+        flyway.setDataSource(dbProps.getProperty(URL),
+                dbProps.getProperty(USER),
+                dbProps.getProperty(PASSWORD));
+        flyway.migrate();
+    }
+
+
+    public static java.sql.Connection getDBConnection() throws SQLException {
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+
+        return DriverManager.getConnection(dbProps.getProperty(URL), dbProps.getProperty(USER), dbProps.getProperty(PASSWORD));
+    }
 
 }

@@ -1,10 +1,9 @@
 package com.arthsoft.osmd.entity;
-import java.util.Date;
 
 /**
  * Created by arthk on 08.09.2017.
  */
-public class Position extends Entity{    //    table `positions`
+public class Position extends Entity {    //    table `positions`
 
 
     private String name;        //  `Name` varchar(50)

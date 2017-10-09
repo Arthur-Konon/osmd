@@ -3,7 +3,7 @@ package com.arthsoft.osmd.entity;
 /**
  * Created by arthk on 31.08.2017.
  */
-public class Owner extends Entity{    // owners
+public class Owner extends Entity {    // owners
 
     private int peopleId;   //    `PeopleID` int(11) NOT NULL,
     private int ownApartId; //    `OwnApartID` int(11) NOT NULL,REFERENCES `apartments` (`ID`)
@@ -14,7 +14,7 @@ public class Owner extends Entity{    // owners
     @Override
     public String toString() {
         return "Owner{" +
-                "id=" + getId()+
+                "id=" + getId() +
                 ", active=" + isActive() +
                 ", peopleId=" + peopleId +
                 ", ownApartId=" + ownApartId +

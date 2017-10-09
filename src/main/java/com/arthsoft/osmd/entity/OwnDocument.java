@@ -1,12 +1,11 @@
 package com.arthsoft.osmd.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Created by arthk on 08.09.2017.
  */
-public class OwnDocument extends Entity{      //table `owndocuments`
+public class OwnDocument extends Entity {      //table `owndocuments`
 
 
     private String name;    //  `Name` char(100) NOT NULL,

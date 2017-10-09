@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 26.09.2017.
  */
-public class CompanyInfoDao extends AbstractDao<CompanyInfo> {
+public class CompanyInfoDao extends AbstractDao <CompanyInfo> {
 
     @Override
     protected CompanyInfo getEntity() {
@@ -69,16 +68,16 @@ public class CompanyInfoDao extends AbstractDao<CompanyInfo> {
     @Override
     protected void fillPreparedStatementFromEntity(CompanyInfo entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getName());
-        ps.setString(3,entity.getAddress());
-        ps.setString(4,entity.getPhone());
-        ps.setString(5,entity.getEmail());
-        ps.setInt(6,entity.getManagerId());
-        ps.setString(7,entity.getTaxIdNum());
-        ps.setString(8,entity.getTaxNum());
-        ps.setString(9,entity.getBankCode());
-        ps.setString(10,entity.getBankName());
-        ps.setString(11,entity.getAccountNum());
-        ps.setString(12,entity.getRemark());
+        ps.setString(3, entity.getAddress());
+        ps.setString(4, entity.getPhone());
+        ps.setString(5, entity.getEmail());
+        ps.setInt(6, entity.getManagerId());
+        ps.setString(7, entity.getTaxIdNum());
+        ps.setString(8, entity.getTaxNum());
+        ps.setString(9, entity.getBankCode());
+        ps.setString(10, entity.getBankName());
+        ps.setString(11, entity.getAccountNum());
+        ps.setString(12, entity.getRemark());
         ps.setDate(13, Date.valueOf(LocalDate.now()));
     }
 }

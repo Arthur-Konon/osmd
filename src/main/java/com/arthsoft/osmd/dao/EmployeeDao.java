@@ -2,18 +2,16 @@ package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.Employee;
 
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 26.09.2017.
  */
-public class EmployeeDao extends AbstractDao<Employee> {
+public class EmployeeDao extends AbstractDao <Employee> {
 
     @Override
     protected Employee getEntity() {
@@ -63,17 +61,17 @@ public class EmployeeDao extends AbstractDao<Employee> {
 
     @Override
     protected void fillPreparedStatementFromEntity(Employee entity, PreparedStatement ps) throws SQLException {
-        ps.setInt(2,entity.getPeopleId());
-        ps.setInt(3,entity.getPositionId());
+        ps.setInt(2, entity.getPeopleId());
+        ps.setInt(3, entity.getPositionId());
 
-        if(entity.getHireDate() == null) ps.setDate(4,null);
-        else ps.setDate(4,Date.valueOf(entity.getHireDate()));
+        if (entity.getHireDate() == null) ps.setDate(4, null);
+        else ps.setDate(4, Date.valueOf(entity.getHireDate()));
 
-        if(entity.getFireDate() == null) ps.setDate(5,null);
-        else ps.setDate(5,Date.valueOf(entity.getFireDate()));
+        if (entity.getFireDate() == null) ps.setDate(5, null);
+        else ps.setDate(5, Date.valueOf(entity.getFireDate()));
 
-        ps.setFloat(6,entity.getSalary());
-        ps.setString(7,entity.getRemark());
+        ps.setFloat(6, entity.getSalary());
+        ps.setString(7, entity.getRemark());
         ps.setDate(8, Date.valueOf(LocalDate.now()));
     }
 }

@@ -3,7 +3,10 @@ package com.arthsoft.osmd.dao;
 import com.arthsoft.osmd.entity.Entity;
 import com.arthsoft.osmd.util.DbUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,30 +16,35 @@ import java.util.List;
 public abstract class AbstractDao<T extends Entity> {
 
 
-    public  void printEntityList(List <T> entityList){
+    public void printEntityList(List <T> entityList) {
 
-        for (T cell: entityList) System.out.println(cell);
+        for (T cell : entityList) System.out.println(cell);
     }
 
     protected abstract T getEntity();
-    protected abstract  String getTableName ();
-    protected abstract  String getInsertScript ();
-    protected abstract  String getUpdateScript ();
-    protected abstract void fillEntitySpecificFromResultSet(T entity, ResultSet rs) throws SQLException;
-    protected abstract void fillPreparedStatementFromEntity(T entity,PreparedStatement ps) throws SQLException;
 
-    protected String getNameColumn(){
+    protected abstract String getTableName();
+
+    protected abstract String getInsertScript();
+
+    protected abstract String getUpdateScript();
+
+    protected abstract void fillEntitySpecificFromResultSet(T entity, ResultSet rs) throws SQLException;
+
+    protected abstract void fillPreparedStatementFromEntity(T entity, PreparedStatement ps) throws SQLException;
+
+    protected String getNameColumn() {
         return "";
     }
 
 
-    public  List<T> getAll(){
-        List <T> result = new ArrayList<>();
+    public List <T> getAll() {
+        List <T> result = new ArrayList <>();
         String selectSQL = "SELECT * FROM " + getTableName();
 
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
-             ResultSet rs = ps.executeQuery()){
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 T entity = getEntity();
@@ -49,7 +57,7 @@ public abstract class AbstractDao<T extends Entity> {
         return result;
     }
 
-    public  ResultSet getAllAsRusultSet() throws SQLException {
+    public ResultSet getAllAsRusultSet() throws SQLException {
 
         String selectSQL = "SELECT * FROM " + getTableName();
         Connection dbConnection = DbUtils.getDBConnection();
@@ -66,14 +74,13 @@ public abstract class AbstractDao<T extends Entity> {
     }
 
 
-
-    public  T getById(int id) {
+    public T getById(int id) {
         T entity = getEntity();
-        String selectSQL = "SELECT * FROM " + getTableName()+ " WHERE id=?" ;
+        String selectSQL = "SELECT * FROM " + getTableName() + " WHERE id=?";
 
         try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )        {
-            ps.setInt(1,id);
+             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)) {
+            ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
 
@@ -88,13 +95,13 @@ public abstract class AbstractDao<T extends Entity> {
         return entity;
     }
 
-    public  T getByName(String name) {
+    public T getByName(String name) {
         T entity = getEntity();
-        String selectSQL = "SELECT * FROM " + getTableName()+ " WHERE " + getNameColumn() + "=?" ;
+        String selectSQL = "SELECT * FROM " + getTableName() + " WHERE " + getNameColumn() + "=?";
 
         try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)  )        {
-            ps.setString(1,name);
+             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)) {
+            ps.setString(1, name);
 
             try (ResultSet rs = ps.executeQuery()) {
 
@@ -109,12 +116,11 @@ public abstract class AbstractDao<T extends Entity> {
         return entity;
     }
 
-    public  boolean save (T entity){
+    public boolean save(T entity) {
         boolean success = false;
 
         try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(getInsertScript()))
-        {
+             PreparedStatement ps = dbConnection.prepareStatement(getInsertScript())) {
             ps.setBoolean(1, true);
             fillPreparedStatementFromEntity(entity, ps);
             ps.execute();
@@ -128,32 +134,14 @@ public abstract class AbstractDao<T extends Entity> {
     }
 
 
-    public  boolean update (T entity){
+    public boolean update(T entity) {
         boolean success = false;
 
         try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(getUpdateScript() + entity.getId()))
-        {
-            ps.setBoolean(1,entity.isActive());
-            fillPreparedStatementFromEntity(entity,ps);
+             PreparedStatement ps = dbConnection.prepareStatement(getUpdateScript() + entity.getId())) {
+            ps.setBoolean(1, entity.isActive());
+            fillPreparedStatementFromEntity(entity, ps);
 
-            ps.execute();
-            success = true;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return  success;
-    }
-
-
-    public  boolean  deleteById (int id){
-        boolean success = false;
-        String deleteSQL = "DELETE FROM " + getTableName() + " WHERE id=?" ;
-        try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(deleteSQL))
-        {
-            ps.setInt(1,id);
             ps.execute();
             success = true;
 
@@ -164,13 +152,29 @@ public abstract class AbstractDao<T extends Entity> {
     }
 
 
-    public  List<String> getRussianColumnNames(){
-        List <String> result = new ArrayList<>();
+    public boolean deleteById(int id) {
+        boolean success = false;
+        String deleteSQL = "DELETE FROM " + getTableName() + " WHERE id=?";
+        try (Connection dbConnection = DbUtils.getDBConnection();
+             PreparedStatement ps = dbConnection.prepareStatement(deleteSQL)) {
+            ps.setInt(1, id);
+            ps.execute();
+            success = true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+
+    public List <String> getRussianColumnNames() {
+        List <String> result = new ArrayList <>();
         String selectSQL = "SELECT RUSSIAN FROM u_column_names ";
 
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
-             ResultSet rs = ps.executeQuery()){
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 String columnName = rs.getString("Russian");

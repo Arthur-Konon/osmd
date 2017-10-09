@@ -3,18 +3,16 @@ package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.House;
 
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 12.09.2017.
  */
-public class HouseDao extends AbstractDao<House> {
+public class HouseDao extends AbstractDao <House> {
 
     @Override
     protected House getEntity() {
@@ -45,7 +43,7 @@ public class HouseDao extends AbstractDao<House> {
                 " `AreaOfAllApart` = ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=" ;
+                "WHERE  `Id`=";
     }
 
     @Override
@@ -62,15 +60,14 @@ public class HouseDao extends AbstractDao<House> {
     @Override
     protected void fillPreparedStatementFromEntity(House entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getAddress());
-        ps.setInt(3,entity.getYear());
-        ps.setInt(4,entity.getQtyOfStoreys());
-        ps.setInt(5,entity.getQtyOfAllApart());
-        ps.setFloat(6,entity.getTotalArea());
-        ps.setFloat(7,entity.getAreaOfAllApart());
-        ps.setString(8,entity.getRemark());
+        ps.setInt(3, entity.getYear());
+        ps.setInt(4, entity.getQtyOfStoreys());
+        ps.setInt(5, entity.getQtyOfAllApart());
+        ps.setFloat(6, entity.getTotalArea());
+        ps.setFloat(7, entity.getAreaOfAllApart());
+        ps.setString(8, entity.getRemark());
         ps.setDate(9, Date.valueOf(LocalDate.now()));
     }
-
 
 
 }

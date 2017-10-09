@@ -2,14 +2,16 @@ package com.arthsoft.osmd.dao;
 
 import com.arthsoft.osmd.entity.BenefitsType;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 20.09.2017.
  */
-public class BenefitsTypeDao extends AbstractDao<BenefitsType>{
+public class BenefitsTypeDao extends AbstractDao <BenefitsType> {
 
     @Override
     protected BenefitsType getEntity() {
@@ -35,7 +37,7 @@ public class BenefitsTypeDao extends AbstractDao<BenefitsType>{
                 " `Name`= ? ,\n" +
                 " `Remark`= ? ,\n" +
                 " `LastUpdate` = ? \n" +
-                "WHERE  `Id`=" ;
+                "WHERE  `Id`=";
     }
 
     @Override
@@ -46,7 +48,7 @@ public class BenefitsTypeDao extends AbstractDao<BenefitsType>{
     @Override
     protected void fillPreparedStatementFromEntity(BenefitsType entity, PreparedStatement ps) throws SQLException {
         ps.setString(2, entity.getName());
-        ps.setString(3,entity.getRemark());
+        ps.setString(3, entity.getRemark());
         ps.setDate(4, Date.valueOf(LocalDate.now()));
     }
 

@@ -1,6 +1,4 @@
 package com.arthsoft.osmd.entity;
-import java.time.LocalDate;
-
 
 /**
  * Created by arthk on 07.09.2017.

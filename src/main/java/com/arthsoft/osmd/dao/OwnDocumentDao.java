@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 26.09.2017.
  */
-public class OwnDocumentDao extends AbstractDao<OwnDocument>{
+public class OwnDocumentDao extends AbstractDao <OwnDocument> {
 
     @Override
     protected OwnDocument getEntity() {
@@ -54,13 +53,13 @@ public class OwnDocumentDao extends AbstractDao<OwnDocument>{
 
     @Override
     protected void fillPreparedStatementFromEntity(OwnDocument entity, PreparedStatement ps) throws SQLException {
-        ps.setString(2,entity.getName());
-        ps.setString(3,entity.getNumber());
+        ps.setString(2, entity.getName());
+        ps.setString(3, entity.getNumber());
 
-        if(entity.getStartDate() == null) ps.setDate(4,null);
-        else ps.setDate(4,Date.valueOf(entity.getStartDate()));
+        if (entity.getStartDate() == null) ps.setDate(4, null);
+        else ps.setDate(4, Date.valueOf(entity.getStartDate()));
 
-        ps.setString(5,entity.getRemark());
+        ps.setString(5, entity.getRemark());
         ps.setDate(6, Date.valueOf(LocalDate.now()));
 
     }

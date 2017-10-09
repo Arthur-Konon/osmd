@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by arthk on 26.09.2017.
  */
-public class OwnerDao extends AbstractDao<Owner> {
+public class OwnerDao extends AbstractDao <Owner> {
 
     @Override
     protected Owner getEntity() {
@@ -60,8 +59,8 @@ public class OwnerDao extends AbstractDao<Owner> {
         ps.setInt(3, entity.getOwnApartId());
         ps.setInt(4, entity.getOwnPart());
         ps.setInt(5, entity.getOwnDocId());
-        ps.setBoolean(6,entity.isSenior());
-        ps.setString(7,entity.getRemark());
+        ps.setBoolean(6, entity.isSenior());
+        ps.setString(7, entity.getRemark());
         ps.setDate(8, Date.valueOf(LocalDate.now()));
     }
 }
