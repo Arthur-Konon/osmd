@@ -1,49 +1,22 @@
-package com.arthsoft.osmd.gui;
+package com.arthsoft.osmd.gui.internal_frames;
 
 import com.arthsoft.osmd.dao.PersonDao;
 import com.arthsoft.osmd.entity.Person;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-import java.awt.*;
-import java.beans.PropertyVetoException;
-
-import static javax.swing.SwingUtilities.invokeLater;
 
 /**
- * Created by arthk on 06.10.2017.
+ * Created by arthk on 10.10.2017.
  */
-public class EntitiesListWindow extends JInternalFrame {
+public class PeopleListWindow extends EntitiesListWindow {
 
-    public EntitiesListWindow() {
-        super("",
-                true,
-                true,
-                true,
-                true);
-
-        // What is this?
-        invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    setMaximum(true);
-                } catch (PropertyVetoException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        setBounds(100, 100, 800, 600);
-
-        createEntityTable();
-
+    public PeopleListWindow(String title, String iconPath) {
+        super(title, iconPath);
     }
 
 
-    private void createEntityTable() {
-
-
+    @Override
+    DefaultTableModel createModel() {
         String[] columnNames = new PersonDao().getRussianColumnNames().toArray(new String[0]);
 
 
@@ -97,22 +70,6 @@ public class EntitiesListWindow extends JInternalFrame {
             o[15] = cell.getLastUpdate();
             model.addRow(o);
         }
-        JTable table = new JTable(model);
-
-        table.setPreferredScrollableViewportSize(new Dimension(getWidth(), 70));
-        table.setFillsViewportHeight(true);
-
-
-        TableRowSorter <TableModel> sorter = new TableRowSorter <>(table.getModel());
-        table.setRowSorter(sorter);
-
-
-        //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        //Add the scroll pane to this panel.
-        add(scrollPane);
+        return model;
     }
-
 }
-

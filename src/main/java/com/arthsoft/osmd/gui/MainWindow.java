@@ -1,5 +1,7 @@
 package com.arthsoft.osmd.gui;
 
+import com.arthsoft.osmd.gui.internal_frames.PeopleListWindow;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +11,6 @@ import java.awt.*;
  */
 public class MainWindow extends JFrame {
 
-    private static String entityListWindowName = "";
 
     public static void main(String[] args) {
         new MainWindow();
@@ -29,17 +30,6 @@ public class MainWindow extends JFrame {
 
     }
 
-    //Create a new internal frame.
-    private void createEntityListWindow() {
-        EntitiesListWindow internalWindow = new EntitiesListWindow();
-        internalWindow.setVisible(true);
-        entityListWindowsPane.add(internalWindow);
-        try {
-            internalWindow.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {
-        }
-        internalWindow.setTitle(entityListWindowName);
-    }
 
     private void initComponents() {
 
@@ -54,26 +44,26 @@ public class MainWindow extends JFrame {
         setJMenuBar(menuBar);
 
 
-        JMenu masterData_menu = new JMenu("\tMaster Data\t");
-        JMenu documents_menu = new JMenu("\tDocuments\t");
-        JMenu payments_menu = new JMenu("\tPayments\t");
-        JMenu settings_menu = new JMenu("\tSettings\t");
+        JMenu masterData_menu = new JMenu("\tСправочники\t");
+        JMenu documents_menu = new JMenu("\tДокументы\t");
+        JMenu payments_menu = new JMenu("\tПлатежи\t");
+        JMenu settings_menu = new JMenu("\tНастройки\t");
 
         menuBar.add(masterData_menu);
         menuBar.add(documents_menu);
         menuBar.add(payments_menu);
         menuBar.add(settings_menu);
 
-        JMenuItem people_menu_item = new JMenuItem("People");
-        JMenuItem apartments_menu_item = new JMenuItem("Apartments");
-        JMenuItem benefits_menu_item = new JMenuItem("Benefits");
+        JMenuItem people_menu_item = new JMenuItem("Люди");
+        JMenuItem apartments_menu_item = new JMenuItem("Квартиры");
+        JMenuItem benefits_menu_item = new JMenuItem("Льготв");
 
-        JMenuItem sales_menu_item = new JMenuItem("Sales");
-        JMenuItem refunds_menu_item = new JMenuItem("Refunds");
-        JMenuItem purchases_menu_item = new JMenuItem("Purchases");
+        JMenuItem sales_menu_item = new JMenuItem("Начисления");
+        JMenuItem refunds_menu_item = new JMenuItem("Возвраты");
+        JMenuItem purchases_menu_item = new JMenuItem("Покупки");
 
-        JMenuItem incPayments_menu_item = new JMenuItem("Incoming Payments");
-        JMenuItem outPayments_menu_item = new JMenuItem("Outgoing Payments");
+        JMenuItem incPayments_menu_item = new JMenuItem("Исходящие платежи");
+        JMenuItem outPayments_menu_item = new JMenuItem("Входящие платежи");
 
 
         masterData_menu.add(people_menu_item);
@@ -88,8 +78,7 @@ public class MainWindow extends JFrame {
         payments_menu.add(outPayments_menu_item);
 
         people_menu_item.addActionListener(e -> {
-            entityListWindowName = "People";
-            createEntityListWindow();
+            entityListWindowsPane.add(new PeopleListWindow("Люди", "/img/grey-man-icon.png"));
         });
 
     }
