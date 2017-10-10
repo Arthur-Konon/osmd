@@ -57,13 +57,6 @@ public abstract class AbstractDao<T extends Entity> {
         return result;
     }
 
-    public ResultSet getAllAsRusultSet() throws SQLException {
-
-        String selectSQL = "SELECT * FROM " + getTableName();
-        Connection dbConnection = DbUtils.getDBConnection();
-        PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
-        return ps.executeQuery();
-    }
 
     private void fillEntity(ResultSet rs, T entity) throws SQLException {
         entity.setId(rs.getInt("Id"));
@@ -170,17 +163,20 @@ public abstract class AbstractDao<T extends Entity> {
 
     public List <String> getRussianColumnNames() {
         List <String> result = new ArrayList <>();
-        String selectSQL = "SELECT RUSSIAN FROM u_column_names ";
-
+        String selectSQL = "SELECT Russian FROM u_column_names WHERE TABLE_NAME=?";
         try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = dbConnection.prepareStatement(selectSQL)) {
+            ps.setString(1, getTableName());
 
-            while (rs.next()) {
-                String columnName = rs.getString("Russian");
-                result.add(columnName);
+            try (ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+                    String columnName = rs.getString("Russian");
+                    result.add(columnName);
+                }
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

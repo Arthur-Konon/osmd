@@ -43,9 +43,12 @@ public class EntitiesListWindow extends JInternalFrame {
 
     private void createEntityTable() {
 
+
         String[] columnNames = new PersonDao().getRussianColumnNames().toArray(new String[0]);
 
+
         DefaultTableModel model = new DefaultTableModel(new Object[0][0], columnNames) {
+
             @Override
             public Class getColumnClass(int column) {
                 switch (column) {
@@ -57,13 +60,20 @@ public class EntitiesListWindow extends JInternalFrame {
                         return Integer.class;
                     case 6:
                         return Integer.class;
+                    case 7:
+                        return getValueAt(1, column).getClass();
                     case 11:
                         return Integer.class;
+                    case 13:
+                        return getValueAt(1, column).getClass();
+                    case 15:
+                        return getValueAt(1, column).getClass();
 
                     default:
                         return String.class;
                 }
             }
+
         };
 
         java.util.List <Person> list = new PersonDao().getAll();
