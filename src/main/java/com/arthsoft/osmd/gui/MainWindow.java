@@ -23,7 +23,6 @@ public class MainWindow extends JFrame {
     public MainWindow() {
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/img/House.png")));
-        Toolkit.getDefaultToolkit();
         setTitle("OSMD");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

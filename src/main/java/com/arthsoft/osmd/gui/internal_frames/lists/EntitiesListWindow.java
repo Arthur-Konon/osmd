@@ -57,7 +57,6 @@ abstract class EntitiesListWindow extends JInternalFrame {
 
 
     private void createTable() {
-        createModel();
 
         JTable table = new JTable(createModel());
 

@@ -27,29 +27,9 @@ public class PeopleListWindow extends EntitiesListWindow {
 
             @Override
             public Class getColumnClass(int column) {
-                switch (column) {
-                    case 0:
-                        return Integer.class;
-                    case 1:
-                        return getValueAt(1, column).getClass();
-                    case 5:
-                        return Integer.class;
-                    case 6:
-                        return Integer.class;
-                    case 7:
-                        return getValueAt(1, column).getClass();
-                    case 11:
-                        return Integer.class;
-                    case 13:
-                        return getValueAt(1, column).getClass();
-                    case 15:
-                        return getValueAt(1, column).getClass();
 
-                    default:
-                        return String.class;
+                        return getValueAt(1, column).getClass();
                 }
-            }
-
         };
 
 
