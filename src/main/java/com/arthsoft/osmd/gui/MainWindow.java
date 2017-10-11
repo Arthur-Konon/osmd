@@ -1,5 +1,6 @@
 package com.arthsoft.osmd.gui;
 
+import com.arthsoft.osmd.gui.internal_frames.ApartmentsListWindow;
 import com.arthsoft.osmd.gui.internal_frames.PeopleListWindow;
 
 import javax.swing.*;
@@ -56,7 +57,7 @@ public class MainWindow extends JFrame {
 
         JMenuItem people_menu_item = new JMenuItem("Люди");
         JMenuItem apartments_menu_item = new JMenuItem("Квартиры");
-        JMenuItem benefits_menu_item = new JMenuItem("Льготв");
+        JMenuItem benefits_menu_item = new JMenuItem("Льготы");
 
         JMenuItem sales_menu_item = new JMenuItem("Начисления");
         JMenuItem refunds_menu_item = new JMenuItem("Возвраты");
@@ -79,6 +80,10 @@ public class MainWindow extends JFrame {
 
         people_menu_item.addActionListener(e -> {
             entityListWindowsPane.add(new PeopleListWindow("Люди", "/img/grey-man-icon.png"));
+
+        });
+        apartments_menu_item.addActionListener(e -> {
+            entityListWindowsPane.add(new ApartmentsListWindow("Квартиры", "/img/apartment_icon.png"));
         });
 
     }

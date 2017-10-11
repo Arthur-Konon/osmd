@@ -13,9 +13,9 @@ import static javax.swing.SwingUtilities.invokeLater;
  * Created by arthk on 10.10.2017.
  */
 
- abstract class EntitiesListWindow extends JInternalFrame {
+abstract class EntitiesListWindow extends JInternalFrame {
 
-     EntitiesListWindow(String title, String iconPath) {
+    EntitiesListWindow(String title, String iconPath) {
         super("",
                 true,
                 true,

@@ -96,4 +96,3 @@ public class PersonDao extends AbstractDao <Person> {
         ps.setDate(15, Date.valueOf(LocalDate.now()));
     }
 }
-

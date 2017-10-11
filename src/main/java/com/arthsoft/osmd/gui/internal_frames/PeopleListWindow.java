@@ -22,6 +22,7 @@ public class PeopleListWindow extends EntitiesListWindow {
 
         DefaultTableModel model = new DefaultTableModel(new Object[0][0], columnNames) {
 
+
             @Override
             public Class getColumnClass(int column) {
                 switch (column) {
@@ -48,6 +49,7 @@ public class PeopleListWindow extends EntitiesListWindow {
             }
 
         };
+
 
         java.util.List <Person> list = new PersonDao().getAll();
         for (Person cell : list) {
