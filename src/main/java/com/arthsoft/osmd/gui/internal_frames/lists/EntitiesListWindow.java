@@ -1,6 +1,10 @@
-package com.arthsoft.osmd.gui.internal_frames;
+package com.arthsoft.osmd.gui.internal_frames.lists;
+
+import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -15,7 +19,10 @@ import static javax.swing.SwingUtilities.invokeLater;
 
 abstract class EntitiesListWindow extends JInternalFrame {
 
+    private String iconPath;
+
     EntitiesListWindow(String title, String iconPath) {
+
         super("",
                 true,
                 true,
@@ -32,6 +39,7 @@ abstract class EntitiesListWindow extends JInternalFrame {
                 }
             }
         });
+        this.iconPath=iconPath;
         setTitle(title);
         setBounds(100, 100, 800, 600);
         setFrameIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(iconPath))));
@@ -64,8 +72,19 @@ abstract class EntitiesListWindow extends JInternalFrame {
 
         //Add the scroll pane to this panel.
         add(scrollPane);
+
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            public void valueChanged(ListSelectionEvent event) {
+            createEntityWindow(iconPath);
+
+                //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            }
+        });
     }
 
     abstract DefaultTableModel createModel();
+    abstract EntityWindow createEntityWindow(String iconPath);
+
+
 
 }

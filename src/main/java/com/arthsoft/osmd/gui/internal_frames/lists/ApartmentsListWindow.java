@@ -1,7 +1,9 @@
-package com.arthsoft.osmd.gui.internal_frames;
+package com.arthsoft.osmd.gui.internal_frames.lists;
 
 import com.arthsoft.osmd.dao.ApartmentDao;
 import com.arthsoft.osmd.entity.Apartment;
+import com.arthsoft.osmd.gui.internal_frames.entities.ApartmentWindow;
+import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -54,5 +56,11 @@ public class ApartmentsListWindow extends EntitiesListWindow {
             model.addRow(o);
         }
         return model;
+    }
+
+
+
+    EntityWindow createEntityWindow (String iconPath) {
+        return new ApartmentWindow("Квартира редактирование", iconPath );
     }
 }

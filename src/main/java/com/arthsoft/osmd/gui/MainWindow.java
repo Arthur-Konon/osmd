@@ -1,7 +1,8 @@
 package com.arthsoft.osmd.gui;
 
-import com.arthsoft.osmd.gui.internal_frames.ApartmentsListWindow;
-import com.arthsoft.osmd.gui.internal_frames.PeopleListWindow;
+import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
+import com.arthsoft.osmd.gui.internal_frames.lists.ApartmentsListWindow;
+import com.arthsoft.osmd.gui.internal_frames.lists.PeopleListWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -84,6 +85,10 @@ public class MainWindow extends JFrame {
         });
         apartments_menu_item.addActionListener(e -> {
             entityListWindowsPane.add(new ApartmentsListWindow("Квартиры", "/img/apartment_icon.png"));
+        });
+
+        benefits_menu_item.addActionListener(e -> {
+            entityListWindowsPane.add(new EntityWindow("Редактировать квартиру", "/img/apartment_icon.png"));
         });
 
     }
