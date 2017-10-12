@@ -17,25 +17,6 @@ public class Apartment extends Entity {         //table       `apartments`
     private byte actTenantsQty;     //    `ActTenantsQty` tinyint(3) unsigned DEFAULT NULL,
     private boolean residentialFund;   //  `ResidentialFund` tinyint(1) DEFAULT NULL,
 
-    private String guiAddress;
-    private String guiSupervisor;
-
-    public String getGuiAddress() {
-        return guiAddress;
-    }
-
-    public void setGuiAddress(String guiAddress) {
-        this.guiAddress = guiAddress;
-    }
-
-    public String getGuiSupervisor() {
-        return guiSupervisor;
-    }
-
-    public void setGuiSupervisor(String guiSupervisor) {
-        this.guiSupervisor = guiSupervisor;
-    }
-
     @Override
     public String toString() {
         return "Apartment{" +

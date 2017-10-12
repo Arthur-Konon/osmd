@@ -4,6 +4,7 @@ import com.arthsoft.osmd.dao.ApartmentDao;
 import com.arthsoft.osmd.dao.HouseDao;
 import com.arthsoft.osmd.dao.PersonDao;
 import com.arthsoft.osmd.entity.Apartment;
+import com.arthsoft.osmd.entity.Person;
 import com.arthsoft.osmd.gui.MainWindow;
 import com.arthsoft.osmd.gui.internal_frames.entities.ApartmentWindow;
 
@@ -59,9 +60,11 @@ public class ApartmentsListWindow extends EntitiesListWindow {
 
 
     private String getFirstNameWithInitials(Apartment ap) {
-        return new PersonDao().getById(ap.getSupervisorId()).getFirstName() + " " +
-                new PersonDao().getById(ap.getSupervisorId()).getLastName().substring(0, 1) + ". " +
-                new PersonDao().getById(ap.getSupervisorId()).getPatronymic().substring(0, 1) + ".";
+        Person supervisor = new PersonDao().getById(ap.getSupervisorId());
+        //TODO use stringBuilder instead of strings concatenation
+        return supervisor.getFirstName() + " " +
+                supervisor.getLastName().substring(0, 1) + ". " +
+                supervisor.getPatronymic().substring(0, 1) + ".";
 
     }
 
