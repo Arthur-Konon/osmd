@@ -43,52 +43,52 @@ public class MainWindow extends JFrame {
     }
 
     private JMenu generateSettingsMenu() {
-        JMenu settings_menu = new JMenu("\tНастройки\t");
-        return settings_menu;
+        JMenu settingsMenu = new JMenu("\tНастройки\t");
+        return settingsMenu;
     }
 
     private JMenu generatePaymentMenu() {
-        JMenuItem incPayments_menu_item = new JMenuItem("Исходящие платежи");
-        JMenuItem outPayments_menu_item = new JMenuItem("Входящие платежи");
+        JMenuItem incPaymentsMenuItem = new JMenuItem("Исходящие платежи");
+        JMenuItem outPaymentsMenuItem = new JMenuItem("Входящие платежи");
 
-        JMenu payments_menu = new JMenu("\tПлатежи\t");
-        payments_menu.add(incPayments_menu_item);
-        payments_menu.add(outPayments_menu_item);
-        return payments_menu;
+        JMenu paymentsMenu = new JMenu("\tПлатежи\t");
+        paymentsMenu.add(incPaymentsMenuItem);
+        paymentsMenu.add(outPaymentsMenuItem);
+        return paymentsMenu;
     }
 
     private JMenu generateDocMenu() {
-        JMenuItem sales_menu_item = new JMenuItem("Начисления");
-        JMenuItem refunds_menu_item = new JMenuItem("Возвраты");
-        JMenuItem purchases_menu_item = new JMenuItem("Покупки");
+        JMenuItem salesMenuItem = new JMenuItem("Начисления");
+        JMenuItem refundsMenuItem = new JMenuItem("Возвраты");
+        JMenuItem purchasesMenuItem = new JMenuItem("Покупки");
 
-        JMenu documents_menu = new JMenu("\tДокументы\t");
-        documents_menu.add(sales_menu_item);
-        documents_menu.add(refunds_menu_item);
-        documents_menu.add(purchases_menu_item);
-        return documents_menu;
+        JMenu documentsMenu = new JMenu("\tДокументы\t");
+        documentsMenu.add(salesMenuItem);
+        documentsMenu.add(refundsMenuItem);
+        documentsMenu.add(purchasesMenuItem);
+        return documentsMenu;
     }
 
     private JMenu generateMasterData() {
-        JMenuItem people_menu_item = new JMenuItem("Люди");
-        JMenuItem apartments_menu_item = new JMenuItem("Квартиры");
-        JMenuItem benefits_menu_item = new JMenuItem("Льготы");
-        people_menu_item.addActionListener(e -> {
+        JMenuItem peopleMenuItem = new JMenuItem("Люди");
+        JMenuItem apartmentsMenuItem = new JMenuItem("Квартиры");
+        JMenuItem benefitsMenuItem = new JMenuItem("Льготы");
+        peopleMenuItem.addActionListener(e -> {
             internalWindowsPane.add(new PeopleListWindow("Люди", "/img/grey-man-icon.png"));
 
         });
-        apartments_menu_item.addActionListener(e -> {
+        apartmentsMenuItem.addActionListener(e -> {
             internalWindowsPane.add(new ApartmentsListWindow("Квартиры", "/img/apartment_icon.png"));
         });
 /*
-        benefits_menu_item.addActionListener(e -> {
+        benefitsMenuItem.addActionListener(e -> {
             internalWindowsPane.add(new EntityWindow("Редактировать квартиру", "/img/apartment_icon.png"));
         });
 */
-        JMenu masterData_menu = new JMenu("\tСправочники\t");
-        masterData_menu.add(people_menu_item);
-        masterData_menu.add(apartments_menu_item);
-        masterData_menu.add(benefits_menu_item);
-        return masterData_menu;
+        JMenu masterDataMenu = new JMenu("\tСправочники\t");
+        masterDataMenu.add(peopleMenuItem);
+        masterDataMenu.add(apartmentsMenuItem);
+        masterDataMenu.add(benefitsMenuItem);
+        return masterDataMenu;
     }
 }
