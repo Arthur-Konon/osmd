@@ -1,7 +1,5 @@
 package com.arthsoft.osmd;
 
-import com.arthsoft.osmd.dao.PersonDao;
-
 import java.io.IOException;
 
 
@@ -16,9 +14,7 @@ public class Main {
         // DbUtils.runFlyway();
 
 
-        new PersonDao().save(new PersonDao().getById(2));
     }
-
 
 }
 

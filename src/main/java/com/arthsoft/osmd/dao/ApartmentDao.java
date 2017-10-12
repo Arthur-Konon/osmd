@@ -24,30 +24,30 @@ public class ApartmentDao extends AbstractDao <Apartment> {
         return "apartments";
     }
 
-
-    @Override
-    protected String getGuiAllScript() {
-        return "SELECT\n" +
-                "a.ID,\n" +
-                "a.Active,\n" +
-                "h.Address,\n" +
-                "a.ApartNum,\n" +
-                " concat (p.FirstName ,' ' , LEFT (p.LastName,1), '. ',LEFT (p.Patronymic,1), '.') as Supervisor,\n" +
-                "a.TotalArea,\n" +
-                "a.HeatedArea,\n" +
-                "a.UsefulArea,\n" +
-                "a.Privacy,\n" +
-                "a.CellPhone,\n" +
-                "a.RegTenantsQty,\n" +
-                "a.ActTenantsQty,\n" +
-                "a.ResidentialFund,\n" +
-                "a.Remark,\n" +
-                "a.LastUpdate\n" +
-                "FROM apartments  a\n" +
-                "join houses  h on a.HouseId = h.ID\n" +
-                "join people p on a.SupervisorId = p.ID";
-    }
-
+    /*
+        @Override
+        protected String getGuiAllScript() {
+            return "SELECT\n" +
+                    "a.ID,\n" +
+                    "a.Active,\n" +
+                    "h.Address,\n" +
+                    "a.ApartNum,\n" +
+                    " concat (p.FirstName ,' ' , LEFT (p.LastName,1), '. ',LEFT (p.Patronymic,1), '.') as Supervisor,\n" +
+                    "a.TotalArea,\n" +
+                    "a.HeatedArea,\n" +
+                    "a.UsefulArea,\n" +
+                    "a.Privacy,\n" +
+                    "a.CellPhone,\n" +
+                    "a.RegTenantsQty,\n" +
+                    "a.ActTenantsQty,\n" +
+                    "a.ResidentialFund,\n" +
+                    "a.Remark,\n" +
+                    "a.LastUpdate\n" +
+                    "FROM apartments  a\n" +
+                    "join houses  h on a.HouseId = h.ID\n" +
+                    "join people p on a.SupervisorId = p.ID";
+        }
+    */
     @Override
     protected String getInsertScript() {
         return "INSERT INTO `DomainDaoApartment` (`Active`,`HouseId`,`ApartNum`,`SupervisorId`,`TotalArea`,`HeatedArea`," +
@@ -90,21 +90,22 @@ public class ApartmentDao extends AbstractDao <Apartment> {
         entity.setResidentialFund(rs.getBoolean("ResidentialFund"));
     }
 
-    protected void fillGuiEntitySpecificFromResultSet(Apartment entity, ResultSet rs) throws SQLException {
-        entity.setGuiAddress(rs.getString("Address"));
-        entity.setApartNum(rs.getInt("ApartNum"));
-        entity.setGuiSupervisor(rs.getString("Supervisor"));
-        entity.setTotalArea(rs.getFloat("TotalArea"));
-        entity.setHeatedArea(rs.getFloat("HeatedArea"));
-        entity.setUsefulArea(rs.getFloat("UsefulArea"));
-        entity.setPrivacy(rs.getBoolean("Privacy"));
-        entity.setCellPhone(rs.getString("CellPhone"));
-        entity.setRegTenantQty(rs.getByte("RegTenantsQty"));
-        entity.setActTenantsQty(rs.getByte("ActTenantsQty"));
-        entity.setResidentialFund(rs.getBoolean("ResidentialFund"));
-    }
+    /*
+        protected void fillGuiEntitySpecificFromResultSet(Apartment entity, ResultSet rs) throws SQLException {
+            entity.setGuiAddress(rs.getString("Address"));
+            entity.setApartNum(rs.getInt("ApartNum"));
+            entity.setGuiSupervisor(rs.getString("Supervisor"));
+            entity.setTotalArea(rs.getFloat("TotalArea"));
+            entity.setHeatedArea(rs.getFloat("HeatedArea"));
+            entity.setUsefulArea(rs.getFloat("UsefulArea"));
+            entity.setPrivacy(rs.getBoolean("Privacy"));
+            entity.setCellPhone(rs.getString("CellPhone"));
+            entity.setRegTenantQty(rs.getByte("RegTenantsQty"));
+            entity.setActTenantsQty(rs.getByte("ActTenantsQty"));
+            entity.setResidentialFund(rs.getBoolean("ResidentialFund"));
+        }
 
-
+    */
     @Override
     protected void fillPreparedStatementFromEntity(Apartment entity, PreparedStatement ps) throws SQLException {
         ps.setInt(2, entity.getHouseId());

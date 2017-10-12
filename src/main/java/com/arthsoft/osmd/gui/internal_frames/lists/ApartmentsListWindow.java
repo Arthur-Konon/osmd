@@ -1,9 +1,11 @@
 package com.arthsoft.osmd.gui.internal_frames.lists;
 
 import com.arthsoft.osmd.dao.ApartmentDao;
+import com.arthsoft.osmd.dao.HouseDao;
+import com.arthsoft.osmd.dao.PersonDao;
 import com.arthsoft.osmd.entity.Apartment;
+import com.arthsoft.osmd.gui.MainWindow;
 import com.arthsoft.osmd.gui.internal_frames.entities.ApartmentWindow;
-import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -19,29 +21,26 @@ public class ApartmentsListWindow extends EntitiesListWindow {
     @Override
     DefaultTableModel createModel() {
         String[] columnNames = new ApartmentDao().getRussianColumnNames().toArray(new String[0]);
-
-
         DefaultTableModel model = new DefaultTableModel(new Object[0][0], columnNames)
 
         {
-
             @Override
             public Class getColumnClass(int column) {
-
                 return getValueAt(1, column).getClass();
-
             }
-
         };
 
-        java.util.List <Apartment> list = new ApartmentDao().getGuiAll();
+        java.util.List <Apartment> list = new ApartmentDao().getAll();
         for (Apartment cell : list) {
             Object[] o = new Object[15];
             o[0] = cell.getId();
             o[1] = cell.isActive();
-            o[2] = cell.getGuiAddress();
+            //o[2] = cell.getGuiAddress();
+            o[2] = new HouseDao().getById(cell.getId()).getAddress();
+
             o[3] = cell.getApartNum();
-            o[4] = cell.getGuiSupervisor();
+            o[4] = getFirstNameWithInitials(cell);
+            //o[4] = cell.getGuiSupervisor();
             o[5] = cell.getTotalArea();
             o[5] = cell.getTotalArea();
             o[6] = cell.getHeatedArea();
@@ -59,8 +58,14 @@ public class ApartmentsListWindow extends EntitiesListWindow {
     }
 
 
+    private String getFirstNameWithInitials(Apartment ap) {
+        return new PersonDao().getById(ap.getSupervisorId()).getFirstName() + " " +
+                new PersonDao().getById(ap.getSupervisorId()).getLastName().substring(0, 1) + ". " +
+                new PersonDao().getById(ap.getSupervisorId()).getPatronymic().substring(0, 1) + ".";
 
-    EntityWindow createEntityWindow (String iconPath) {
-        return new ApartmentWindow("Квартира редактирование", iconPath );
+    }
+
+    void createEntityWindow(String iconPath) {
+        MainWindow.getInternalWindowsPane().add(new ApartmentWindow("Квартира редактирование", iconPath));
     }
 }

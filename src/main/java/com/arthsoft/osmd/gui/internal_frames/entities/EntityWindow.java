@@ -9,7 +9,7 @@ import static javax.swing.SwingUtilities.invokeLater;
 /**
  * Created by arthk on 11.10.2017.
  */
-public class EntityWindow extends JInternalFrame{
+public class EntityWindow extends JInternalFrame {
 
     public EntityWindow(String title, String iconPath) {
 

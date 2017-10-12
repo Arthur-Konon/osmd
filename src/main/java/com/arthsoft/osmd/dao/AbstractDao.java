@@ -37,37 +37,46 @@ public abstract class AbstractDao<T extends Entity> {
         return "";
     }
 
+    /*  Methods with JOIN for GUY
     protected String getGuiAllScript() {
-        return "";
-    }
+         return "";
+     }
 
-    protected void fillGuiEntitySpecificFromResultSet(T entity, ResultSet rs) throws SQLException {
-    }
-
-
-    public List <T> getGuiAll() {
-        List <T> result = new ArrayList <>();
-        String selectSQL = getGuiAllScript();
-
-        try (Connection dbConnection = DbUtils.getDBConnection();
-             PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                T entity = getEntity();
-                fillGuiEntity(rs, entity);
-                result.add(entity);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
+     protected void fillGuiEntitySpecificFromResultSet(T entity, ResultSet rs) throws SQLException {
+     }
 
 
+     public List <T> getGuiAll() {
+         List <T> result = new ArrayList <>();
+         String selectSQL = getGuiAllScript();
+
+         try (Connection dbConnection = DbUtils.getDBConnection();
+              PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
+              ResultSet rs = ps.executeQuery()) {
+
+             while (rs.next()) {
+                 T entity = getEntity();
+                 fillGuiEntity(rs, entity);
+                 result.add(entity);
+             }
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+         return result;
+     }
+
+         private void fillGuiEntity(ResultSet rs, T entity) throws SQLException {
+         entity.setId(rs.getInt("Id"));
+         entity.setActive(rs.getBoolean("Active"));
+         entity.setRemark(rs.getString("Remark"));
+         entity.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
+         fillGuiEntitySpecificFromResultSet(entity, rs);
+     }
+
+ */
     public List <T> getAll() {
         List <T> result = new ArrayList <>();
-        String selectSQL = "SELECT * FROM " + getTableName();
+        String selectSQL = "SELECT * FROM " + getTableName() + " WHERE ID>0";
 
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL);
@@ -93,17 +102,12 @@ public abstract class AbstractDao<T extends Entity> {
         fillEntitySpecificFromResultSet(entity, rs);
     }
 
-    private void fillGuiEntity(ResultSet rs, T entity) throws SQLException {
-        entity.setId(rs.getInt("Id"));
-        entity.setActive(rs.getBoolean("Active"));
-        entity.setRemark(rs.getString("Remark"));
-        entity.setLastUpdate(rs.getDate("LastUpdate").toLocalDate());
-        fillGuiEntitySpecificFromResultSet(entity, rs);
-    }
 
     public T getById(int id) {
         T entity = getEntity();
         String selectSQL = "SELECT * FROM " + getTableName() + " WHERE id=?";
+
+        // System.out.println(getTableName());
 
         try (Connection dbConnection = DbUtils.getDBConnection();
              PreparedStatement ps = dbConnection.prepareStatement(selectSQL)) {

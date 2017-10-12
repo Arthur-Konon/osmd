@@ -12,7 +12,7 @@ CREATE TABLE `u_column_names` (
 
 
 
-INSERT INTO `u_column_names` (`ID`,`TABLE_NAME`,`English`,`Russian`,`Ukranian`) VALUES 
+
 INSERT INTO `u_column_names` (`ID`,`TABLE_NAME`,`English`,`Russian`,`Ukranian`) VALUES
  (1,'apartments','ID','ID',NULL),
  (2,'apartments','Active','Активно',NULL),

@@ -18,13 +18,18 @@ public class MainWindow extends JFrame {
         new MainWindow();
     }
 
-    private JDesktopPane entityListWindowsPane;
+    private static JDesktopPane internalWindowsPane;
+
+    public static JDesktopPane getInternalWindowsPane() {
+        return internalWindowsPane;
+    }
 
     public MainWindow() {
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/img/House.png")));
         setTitle("OSMD");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setBounds(100, 100, 800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         setVisible(true);
@@ -34,11 +39,11 @@ public class MainWindow extends JFrame {
 
     private void initComponents() {
 
-        entityListWindowsPane = new JDesktopPane(); //a specialized layered pane
+        internalWindowsPane = new JDesktopPane(); //a specialized layered pane
 
-        setContentPane(entityListWindowsPane);
+        setContentPane(internalWindowsPane);
 
-        entityListWindowsPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        internalWindowsPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
 
 
         JMenuBar menuBar = new JMenuBar();
@@ -79,16 +84,16 @@ public class MainWindow extends JFrame {
         payments_menu.add(outPayments_menu_item);
 
         people_menu_item.addActionListener(e -> {
-            entityListWindowsPane.add(new PeopleListWindow("Люди", "/img/grey-man-icon.png"));
+            internalWindowsPane.add(new PeopleListWindow("Люди", "/img/grey-man-icon.png"));
 
         });
         apartments_menu_item.addActionListener(e -> {
-            entityListWindowsPane.add(new ApartmentsListWindow("Квартиры", "/img/apartment_icon.png"));
+            internalWindowsPane.add(new ApartmentsListWindow("Квартиры", "/img/apartment_icon.png"));
         });
-
+/*
         benefits_menu_item.addActionListener(e -> {
-            entityListWindowsPane.add(new EntityWindow("Редактировать квартиру", "/img/apartment_icon.png"));
+            internalWindowsPane.add(new EntityWindow("Редактировать квартиру", "/img/apartment_icon.png"));
         });
-
+*/
     }
 }

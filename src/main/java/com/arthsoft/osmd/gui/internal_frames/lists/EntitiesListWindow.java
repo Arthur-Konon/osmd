@@ -1,14 +1,15 @@
 package com.arthsoft.osmd.gui.internal_frames.lists;
 
-import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
-
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 
 import static javax.swing.SwingUtilities.invokeLater;
@@ -39,7 +40,7 @@ abstract class EntitiesListWindow extends JInternalFrame {
                 }
             }
         });
-        this.iconPath=iconPath;
+        this.iconPath = iconPath;
         setTitle(title);
         setBounds(100, 100, 800, 600);
         setFrameIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(iconPath))));
@@ -72,18 +73,24 @@ abstract class EntitiesListWindow extends JInternalFrame {
         //Add the scroll pane to this panel.
         add(scrollPane);
 
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            public void valueChanged(ListSelectionEvent event) {
-            createEntityWindow(iconPath);
+        // invoke an entity window by double click
 
-                //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+        table.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                // JTable table =(JTable) me.getSource();
+                //Point p = me.getPoint();
+                //int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2 ) {
+                    createEntityWindow(iconPath);
+                }
             }
         });
+
     }
 
     abstract DefaultTableModel createModel();
-    abstract EntityWindow createEntityWindow(String iconPath);
 
+    abstract void createEntityWindow(String iconPath);
 
 
 }
