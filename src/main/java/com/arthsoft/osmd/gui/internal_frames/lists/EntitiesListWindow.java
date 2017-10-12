@@ -81,7 +81,7 @@ abstract class EntitiesListWindow extends JInternalFrame {
 
                     int column = 0;
                     int row = table.getSelectedRow();
-                    int id = (int) table.getModel().getValueAt(row, column);
+                    int id = (int) table.getModel().getValueAt(row, column); //todo try to change sort order before double click
                     createEntityWindow(iconPath, id);
                 }
             }
