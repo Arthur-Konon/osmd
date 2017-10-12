@@ -58,7 +58,7 @@ public class PeopleListWindow extends EntitiesListWindow {
     }
 
     @Override
-    void createEntityWindow(String iconPath) {
+    void createEntityWindow(String iconPath, int id) {
         MainWindow.getInternalWindowsPane().add(new PersonWindow("Гражданин редактирование", iconPath));
     }
 }

@@ -68,7 +68,8 @@ public class ApartmentsListWindow extends EntitiesListWindow {
 
     }
 
-    void createEntityWindow(String iconPath) {
+    void createEntityWindow(String iconPath, int id) {
         MainWindow.getInternalWindowsPane().add(new ApartmentWindow("Квартира редактирование", iconPath));
+        System.out.println(id);
     }
 }

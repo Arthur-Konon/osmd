@@ -1,13 +1,10 @@
 package com.arthsoft.osmd.gui.internal_frames.lists;
 
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
@@ -80,8 +77,12 @@ abstract class EntitiesListWindow extends JInternalFrame {
                 // JTable table =(JTable) me.getSource();
                 //Point p = me.getPoint();
                 //int row = table.rowAtPoint(p);
-                if (me.getClickCount() == 2 ) {
-                    createEntityWindow(iconPath);
+                if (me.getClickCount() == 2) {
+
+                    int column = 0;
+                    int row = table.getSelectedRow();
+                    int id = (int) table.getModel().getValueAt(row, column);
+                    createEntityWindow(iconPath, id);
                 }
             }
         });
@@ -90,7 +91,7 @@ abstract class EntitiesListWindow extends JInternalFrame {
 
     abstract DefaultTableModel createModel();
 
-    abstract void createEntityWindow(String iconPath);
+    abstract void createEntityWindow(String iconPath, int id);
 
 
 }
