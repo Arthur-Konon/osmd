@@ -1,14 +1,25 @@
 package com.arthsoft.osmd.gui.internal_frames.lists;
 
+import com.arthsoft.osmd.annotations.Calculation;
+import com.arthsoft.osmd.annotations.Name;
+import com.arthsoft.osmd.annotations.Names;
 import com.arthsoft.osmd.dao.ApartmentDao;
-import com.arthsoft.osmd.dao.HouseDao;
 import com.arthsoft.osmd.dao.PersonDao;
 import com.arthsoft.osmd.entity.Apartment;
+import com.arthsoft.osmd.entity.Entity;
 import com.arthsoft.osmd.entity.Person;
 import com.arthsoft.osmd.gui.MainWindow;
 import com.arthsoft.osmd.gui.internal_frames.entities.ApartmentWindow;
+import com.arthsoft.osmd.util.AppUtils;
+import com.arthsoft.osmd.util.GUIUtils;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by arthk on 11.10.2017.
@@ -20,52 +31,84 @@ public class ApartmentsListWindow extends EntitiesListWindow {
     }
 
     @Override
-    DefaultTableModel createModel() {
-        String[] columnNames = new ApartmentDao().getRussianColumnNames().toArray(new String[0]);
-        DefaultTableModel model = new DefaultTableModel(new Object[0][0], columnNames)
+    TableModel createModel() {
 
-        {
+        Class aClass = Apartment.class;
+        Field[] fields = fetchFields(aClass);
+
+        String[] columnNames = fetchNames(fields);
+
+        List<Apartment> apartments = new ApartmentDao().getAll();
+
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0){
             @Override
             public Class getColumnClass(int column) {
                 return getValueAt(1, column).getClass();
             }
         };
 
-        java.util.List <Apartment> list = new ApartmentDao().getAll();
-        for (Apartment cell : list) {
-            Object[] o = new Object[15];
-            o[0] = cell.getId();
-            o[1] = cell.isActive();
-            //o[2] = cell.getGuiAddress();
-            o[2] = new HouseDao().getById(cell.getId()).getAddress();
-
-            o[3] = cell.getApartNum();
-            o[4] = getFirstNameWithInitials(cell);
-            //o[4] = cell.getGuiSupervisor();
-            o[5] = cell.getTotalArea();
-            o[5] = cell.getTotalArea();
-            o[6] = cell.getHeatedArea();
-            o[7] = cell.getUsefulArea();
-            o[8] = cell.isPrivacy();
-            o[9] = cell.getCellPhone();
-            o[10] = cell.getRegTenantQty();
-            o[11] = cell.getActTenantsQty();
-            o[12] = cell.isResidentialFund();
-            o[13] = cell.getRemark();
-            o[14] = cell.getLastUpdate();
-            model.addRow(o);
+        for (Apartment apartment : apartments) {
+            Object[] row = translateEntityToTableRow(apartment, fields);
+            tableModel.addRow(row);
         }
-        return model;
+
+        return tableModel;
     }
 
+    private Object[] translateEntityToTableRow(Entity entity, Field[] fields) {
+        return Arrays.stream(fields)
+                .map(field -> getFieldValue(entity, field))
+                .toArray();
+    }
 
-    private String getFirstNameWithInitials(Apartment ap) {
-        Person supervisor = new PersonDao().getById(ap.getSupervisorId());
-        //TODO use stringBuilder instead of strings concatenation
-        return supervisor.getFirstName() + " " +
-                supervisor.getLastName().substring(0, 1) + ". " +
-                supervisor.getPatronymic().substring(0, 1) + ".";
+    private Object getFieldValue(Object object, Field field) {
+        try {
+            if (field.isAnnotationPresent(Calculation.class)) {
+                return calculateFieldValue(object, field);
+            }
+            return field.get(object);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
+    private Object calculateFieldValue(Object object, Field field) throws Exception {
+        String methodName = field.getAnnotation(Calculation.class).methodName();
+        Object arg = field.get(object);
+        return GUIUtils.class
+                .getMethod(methodName, arg.getClass())
+                .invoke(null, arg);
+    }
+
+    private Field[] fetchFields(Class<Entity> entityClass) {
+        Field[] declaredFields = entityClass.getDeclaredFields();
+        Field[] entityFields = Entity.class.getDeclaredFields();
+        return Stream.concat(Stream.of(entityFields), Stream.of(declaredFields))
+                .filter(this::isNamedField)
+                .peek(field -> field.setAccessible(true))
+                .toArray(Field[]::new);
+    }
+
+    private boolean isNamedField(Field field) {
+        return field.isAnnotationPresent(Names.class) || field.isAnnotationPresent(Name.class);
+    }
+
+    private String[] fetchNames(Field[] fields) {
+        List<String> names = new ArrayList<>();
+        for (Field field : fields) {
+            String name = fetchName(field);
+            names.add(name);
+        }
+        return names.stream().toArray(String[]::new);
+    }
+
+    private String fetchName(Field field) {
+        return Arrays.stream(field.getAnnotationsByType(Name.class))
+                .filter(name -> AppUtils.getLanguage() == name.language())
+                .map(Name::name)
+                .findFirst()
+                .orElse(field.getName());
     }
 
     void createEntityWindow(String iconPath, int id) {

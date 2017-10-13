@@ -89,7 +89,7 @@ abstract class EntitiesListWindow extends JInternalFrame {
 
     }
 
-    abstract DefaultTableModel createModel();
+    abstract TableModel createModel();
 
     abstract void createEntityWindow(String iconPath, int id);
 

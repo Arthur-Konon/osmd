@@ -6,6 +6,7 @@ import com.arthsoft.osmd.gui.MainWindow;
 import com.arthsoft.osmd.gui.internal_frames.entities.PersonWindow;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  * Created by arthk on 10.10.2017.
@@ -18,7 +19,7 @@ public class PeopleListWindow extends EntitiesListWindow {
 
 
     @Override
-    DefaultTableModel createModel() {
+    TableModel createModel() {
         String[] columnNames = new PersonDao().getRussianColumnNames().toArray(new String[0]);
 
 

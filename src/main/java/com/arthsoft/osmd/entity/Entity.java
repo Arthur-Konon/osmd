@@ -1,16 +1,28 @@
 package com.arthsoft.osmd.entity;
 
+import com.arthsoft.osmd.annotations.Name;
+
 import java.time.LocalDate;
+
+import static com.arthsoft.osmd.annotations.Language.EN;
+import static com.arthsoft.osmd.annotations.Language.RU;
 
 /**
  * Created by arthk on 20.09.2017.
  */
 public abstract class Entity {
 
-
+    @Name(language = EN, name = "id")
+    @Name(language = RU, name = "айдишник")
     private int id;     //  `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
+    @Name(language = EN, name = "active")
+    @Name(language = RU, name = "фывзиав")
     private boolean active; //  `Active` tinyint(1) NOT NULL,
+    @Name(language = EN, name = "remark")
+    @Name(language = RU, name = "ззымьщы")
     private String remark;      //  `Remark` longtext,
+    @Name(language = EN, name = "last uptd")
+    @Name(language = RU, name = "иывлтив")
     private LocalDate lastUpdate;      // `LastUpdate` date NOT NULL
 
 

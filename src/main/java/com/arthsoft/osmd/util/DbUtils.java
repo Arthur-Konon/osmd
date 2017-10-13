@@ -1,6 +1,5 @@
 package com.arthsoft.osmd.util;
 
-import com.arthsoft.osmd.Main;
 import org.flywaydb.core.Flyway;
 
 import java.io.IOException;
@@ -13,8 +12,6 @@ import java.util.Properties;
  * Created by arthk on 11.09.2017.
  */
 public class DbUtils {
-
-
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 
     private static final String URL = "url";
@@ -24,7 +21,7 @@ public class DbUtils {
 
     static {
         dbProps = new Properties();
-        InputStream stream = Main.class.getClassLoader().getResourceAsStream("db.properties");
+        InputStream stream = DbUtils.class.getClassLoader().getResourceAsStream("db.properties");
         try {
             dbProps.load(stream);
         } catch (IOException e) {
