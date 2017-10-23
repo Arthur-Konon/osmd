@@ -3,7 +3,7 @@ package com.arthsoft.osmd.gui.internal_frames.lists;
 import com.arthsoft.osmd.dao.PersonDao;
 import com.arthsoft.osmd.entity.Person;
 import com.arthsoft.osmd.gui.MainWindow;
-import com.arthsoft.osmd.gui.internal_frames.entities.PersonWindow;
+import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -28,8 +28,9 @@ public class PeopleListWindow extends EntitiesListWindow {
 
             @Override
             public Class getColumnClass(int column) {
-
-                return getValueAt(1, column).getClass();
+                if (getValueAt(1, column) != null)
+                    return getValueAt(1, column).getClass();
+                else return String.class;
             }
         };
 
@@ -60,6 +61,8 @@ public class PeopleListWindow extends EntitiesListWindow {
 
     @Override
     void createEntityWindow(String iconPath, int id) {
-        MainWindow.getInternalWindowsPane().add(new PersonWindow("Гражданин редактирование", iconPath));
+        Person apartment = new PersonDao().getById(id);
+        String[] peopleArray = {apartment.toString()};
+        MainWindow.getInternalWindowsPane().add(new EntityWindow("Гражданин редактирование", iconPath, columnNames, peopleArray));
     }
 }

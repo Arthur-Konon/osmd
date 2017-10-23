@@ -10,6 +10,7 @@ public class AppUtils {
     private static final String LANGUAGE = "language";
 
     private static Properties appProps;
+
     static {
         appProps = new Properties();
         InputStream stream = AppUtils.class.getClassLoader().getResourceAsStream("app.properties");

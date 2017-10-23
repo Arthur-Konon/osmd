@@ -1,7 +1,7 @@
 package com.arthsoft.osmd.gui;
 
-import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 import com.arthsoft.osmd.gui.internal_frames.lists.ApartmentsListWindow;
+import com.arthsoft.osmd.gui.internal_frames.lists.EmployeesListWindow;
 import com.arthsoft.osmd.gui.internal_frames.lists.PeopleListWindow;
 
 import javax.swing.*;
@@ -72,7 +72,7 @@ public class MainWindow extends JFrame {
     private JMenu generateMasterData() {
         JMenuItem peopleMenuItem = new JMenuItem("Люди");
         JMenuItem apartmentsMenuItem = new JMenuItem("Квартиры");
-        JMenuItem benefitsMenuItem = new JMenuItem("Льготы");
+        JMenuItem employeesMenuButton = new JMenuItem("Сотрудники");
         peopleMenuItem.addActionListener(e -> {
             internalWindowsPane.add(new PeopleListWindow("Люди", "/img/grey-man-icon.png"));
 
@@ -80,15 +80,15 @@ public class MainWindow extends JFrame {
         apartmentsMenuItem.addActionListener(e -> {
             internalWindowsPane.add(new ApartmentsListWindow("Квартиры", "/img/apartment_icon.png"));
         });
-/*
-        benefitsMenuItem.addActionListener(e -> {
-            internalWindowsPane.add(new EntityWindow("Редактировать квартиру", "/img/apartment_icon.png"));
+
+        employeesMenuButton.addActionListener(e -> {
+            internalWindowsPane.add(new EmployeesListWindow("Сотрудники", "/img/grey-man-icon.png"));
         });
-*/
+
         JMenu masterDataMenu = new JMenu("\tСправочники\t");
         masterDataMenu.add(peopleMenuItem);
         masterDataMenu.add(apartmentsMenuItem);
-        masterDataMenu.add(benefitsMenuItem);
+        masterDataMenu.add(employeesMenuButton);
         return masterDataMenu;
     }
 }

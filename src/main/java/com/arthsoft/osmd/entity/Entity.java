@@ -16,13 +16,13 @@ public abstract class Entity {
     @Name(language = RU, name = "айдишник")
     private int id;     //  `ID` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY
     @Name(language = EN, name = "active")
-    @Name(language = RU, name = "фывзиав")
+    @Name(language = RU, name = "Активно")
     private boolean active; //  `Active` tinyint(1) NOT NULL,
     @Name(language = EN, name = "remark")
-    @Name(language = RU, name = "ззымьщы")
+    @Name(language = RU, name = "Примечание")
     private String remark;      //  `Remark` longtext,
     @Name(language = EN, name = "last uptd")
-    @Name(language = RU, name = "иывлтив")
+    @Name(language = RU, name = "Дата изменения")
     private LocalDate lastUpdate;      // `LastUpdate` date NOT NULL
 
 

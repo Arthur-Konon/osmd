@@ -15,31 +15,12 @@ import java.awt.event.ActionListener;
 public class LogIn extends JDialog {
 
 
-    private boolean authenticate(String username, String password) {
-        String truePassword = new UserDao().getByName(username).getPassword();
-        return password.equals(truePassword);
-    }
-
-
-    public static void main(String[] args) {
-        try {
-            LogIn dialog = new LogIn();
-            dialog.setLocationRelativeTo(null);// align to centre
-            dialog.setVisible(true); // is visible
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     private LogIn() {
         super(null, ModalityType.TOOLKIT_MODAL); //put icon on windows toolbars
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // shut down app by closing window
 
         JPanel contentPanel = new JPanel();
-        // setIconImage(Toolkit.getDefaultToolkit().getImage("resources/img/rsz_password_icon.png"));
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/img/rsz_password_icon.png")));
 
 
@@ -141,6 +122,23 @@ public class LogIn extends JDialog {
         cancelButton.setActionCommand("Cancel");
         buttonPanel.add(cancelButton);
         cancelButton.addActionListener(e -> dispose());
+    }
+
+    public static void main(String[] args) {
+        try {
+            LogIn dialog = new LogIn();
+            dialog.setLocationRelativeTo(null);// align to centre
+            dialog.setVisible(true); // is visible
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean authenticate(String username, String password) {
+        String truePassword = new UserDao().getByName(username).getPassword();
+        return password.equals(truePassword);
     }
 
 }

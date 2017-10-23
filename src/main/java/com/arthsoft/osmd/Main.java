@@ -1,7 +1,6 @@
 package com.arthsoft.osmd;
 
 import com.arthsoft.osmd.gui.MainWindow;
-import com.arthsoft.osmd.util.DbUtils;
 
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        DbUtils.runFlyway();
+        //DbUtils.runFlyway();
 
         new MainWindow();
     }

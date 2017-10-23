@@ -2,7 +2,10 @@ package com.arthsoft.osmd.entity;
 
 import com.arthsoft.osmd.annotations.Calculation;
 import com.arthsoft.osmd.annotations.Name;
-import static com.arthsoft.osmd.annotations.Language.*;
+
+import static com.arthsoft.osmd.annotations.Language.EN;
+import static com.arthsoft.osmd.annotations.Language.RU;
+
 /**
  * Created by arthk on 04.09.2017.
  */
@@ -19,35 +22,35 @@ public class Apartment extends Entity {         //table       `apartments`
     @Calculation(methodName = "getFirstNameWithInitials")
     private int supervisorId;         //  int(11) DEFAULT NULL,REFERENCES `people` (`ID`)
     @Name(language = EN, name = "area")
-    @Name(language = RU, name = "зщбива")
+    @Name(language = RU, name = "площадь")
     private float totalArea;         //  TotalArea decimal(7, 2) NULL,
     @Name(language = EN, name = "h area")
-    @Name(language = RU, name = "иаб")
+    @Name(language = RU, name = "отпл площ")
     private float heatedArea;        // `HeatedArea` decimal(7,2) DEFAULT NULL,
     @Name(language = EN, name = "u area")
-    @Name(language = RU, name = "бжбва")
+    @Name(language = RU, name = "полезн площ")
     private float usefulArea;       //   `UsefulArea` decimal(7,2) DEFAULT NULL,
     @Name(language = EN, name = "privacy")
-    @Name(language = RU, name = "ыз зщыв")
+    @Name(language = RU, name = "приватизирована")
     private boolean privacy;       //  `Privacy` tinyint(1) DEFAULT NULL,
     @Name(language = EN, name = "c ph")
-    @Name(language = RU, name = "жщукп")
+    @Name(language = RU, name = "телефон")
     private String cellPhone;        // `CellPhone` char(10) DEFAULT NULL,
     @Name(language = EN, name = "rtq")
-    @Name(language = RU, name = "б щзук")
+    @Name(language = RU, name = "прописано")
     private byte regTenantQty;      //  `RegTenantsQty` tinyint(3) unsigned DEFAULT NULL,
     @Name(language = EN, name = "atq")
-    @Name(language = RU, name = "ивыщкь")
+    @Name(language = RU, name = "проживает")
     private byte actTenantsQty;     //    `ActTenantsQty` tinyint(3) unsigned DEFAULT NULL,
     @Name(language = EN, name = "r fund")
-    @Name(language = RU, name = "цуььхив")
+    @Name(language = RU, name = "жилой фонд")
     private boolean residentialFund;   //  `ResidentialFund` tinyint(1) DEFAULT NULL,
 
     @Override
     public String toString() {
         return "Apartment{" +
                 "id=" + getId() +
-                ", active=" + isActive() +
+                ", AAAActive=" + isActive() +
                 ", houseId=" + houseId +
                 ", apartNum=" + apartNum +
                 ", supervisorId=" + supervisorId +

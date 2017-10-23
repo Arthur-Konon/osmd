@@ -7,5 +7,6 @@ import java.lang.annotation.*;
 @Repeatable(Names.class)
 public @interface Name {
     String name();
+
     Language language();
 }
