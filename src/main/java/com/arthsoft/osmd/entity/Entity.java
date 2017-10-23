@@ -2,6 +2,7 @@ package com.arthsoft.osmd.entity;
 
 import com.arthsoft.osmd.annotations.Name;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 
 import static com.arthsoft.osmd.annotations.Language.EN;
@@ -57,6 +58,5 @@ public abstract class Entity {
     public void setLastUpdate(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-
 
 }

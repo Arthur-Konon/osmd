@@ -19,9 +19,7 @@ public class EmployeesListWindow extends EntitiesListWindow {
     }
 
     TableModel createModel() {
-        Class employeeClass = Employee.class;
-        Field[] fields = fetchFields(employeeClass);
-
+        Field[] fields = getFields();
         columnNames = fetchNames(fields);
 
         List <Employee> employees = new EmployeeDao().getAll();
@@ -46,8 +44,13 @@ public class EmployeesListWindow extends EntitiesListWindow {
     @Override
     void createEntityWindow(String iconPath, int id) {
         Employee employee = new EmployeeDao().getById(id);
-        String[] employeeArray = {employee.toString()};
-        MainWindow.getInternalWindowsPane().add(new EntityWindow("Сотрудник редактирование", iconPath, columnNames, employeeArray));
-        System.out.println(id);
+        Field[] fields = getFields();
+        Object[] row = translateEntityToTableRow(employee, fields);
+        MainWindow.getInternalWindowsPane().add(new EntityWindow("Сотрудник редактирование", iconPath, columnNames, row));
+    }
+
+    private Field[] getFields() {
+        Class eClass = Employee.class;
+        return fetchFields(eClass);
     }
 }

@@ -13,7 +13,7 @@ import static javax.swing.SwingUtilities.invokeLater;
  */
 public class EntityWindow extends JInternalFrame {
 
-    public EntityWindow(String title, String iconPath, String[] columnNames, String[] entityArray) {
+    public EntityWindow(String title, String iconPath, String[] columnNames, Object[] row) {
 
         super("",
                 true,
@@ -65,8 +65,9 @@ public class EntityWindow extends JInternalFrame {
         JComponent[] components = new JComponent[labels.length];
         for (int i = 0; i < components.length; i++) {
             JTextField textField = new JTextField(30);
-            textField.setText("Text");
-            //textField.setText(entityArray[i]);
+            //textField.setText("Text");
+            if(row[i] != null)
+            textField.setText(row[i].toString());
             components[i] = textField;
 
         }

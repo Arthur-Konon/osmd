@@ -99,7 +99,7 @@ abstract class EntitiesListWindow extends JInternalFrame {
     }
 
 
-    protected Object[] translateEntityToTableRow(Entity entity, Field[] fields) {
+    public Object[] translateEntityToTableRow(Entity entity, Field[] fields) {
         return Arrays.stream(fields)
                 .map(field -> getFieldValue(entity, field))
                 .toArray();

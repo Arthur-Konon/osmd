@@ -7,6 +7,7 @@ import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.lang.reflect.Field;
 
 /**
  * Created by arthk on 10.10.2017.
@@ -61,8 +62,10 @@ public class PeopleListWindow extends EntitiesListWindow {
 
     @Override
     void createEntityWindow(String iconPath, int id) {
-        Person apartment = new PersonDao().getById(id);
-        String[] peopleArray = {apartment.toString()};
-        MainWindow.getInternalWindowsPane().add(new EntityWindow("Гражданин редактирование", iconPath, columnNames, peopleArray));
+        Person person = new PersonDao().getById(id);
+        Class aClass = Person.class;
+        Field[] fields = fetchFields(aClass);
+        Object[] row = translateEntityToTableRow(person, fields);
+        MainWindow.getInternalWindowsPane().add(new EntityWindow("Гражданин редактирование", iconPath, columnNames, row));
     }
 }
