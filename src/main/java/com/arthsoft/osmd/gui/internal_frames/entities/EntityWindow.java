@@ -1,10 +1,18 @@
 package com.arthsoft.osmd.gui.internal_frames.entities;
 
+import com.arthsoft.osmd.annotations.Calculation;
+import com.arthsoft.osmd.entity.Apartment;
+import com.arthsoft.osmd.entity.Entity;
+import com.arthsoft.osmd.util.GUIUtils;
+
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.lang.reflect.Field;
+import java.util.Arrays;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
@@ -12,6 +20,9 @@ import static javax.swing.SwingUtilities.invokeLater;
  * Created by arthk on 11.10.2017.
  */
 public class EntityWindow extends JInternalFrame {
+
+
+    private static JComponent labelsAndFields;
 
     public EntityWindow(String title, String iconPath, String[] columnNames, Object[] row) {
 
@@ -44,73 +55,83 @@ public class EntityWindow extends JInternalFrame {
             e.printStackTrace();
         }
 
-        // top
+                 // top
 
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
         topPanel.setBackground(Color.RED);
-        JButton sButton = new JButton("Сохранить");
-        JButton dButton = new JButton("Delete");
+        //JButton sButton = new JButton("Сохранить");
+        //JButton dButton = new JButton("Delete");
 
-        topPanel.add(sButton);
-        topPanel.add(dButton);
+        // topPanel.add(sButton);
+        // topPanel.add(dButton);
         add(topPanel, BorderLayout.NORTH);
 
-        // centre
-
-        String[] labels = columnNames;
+               // centre
 
 
-        JComponent[] components = new JComponent[labels.length];
+        JComponent[] components = new JComponent[columnNames.length];
         for (int i = 0; i < components.length; i++) {
             JTextField textField = new JTextField(30);
             //textField.setText("Text");
-            if(row[i] != null)
-            textField.setText(row[i].toString());
+            if (row[i] != null)
+                textField.setText(row[i].toString());
             components[i] = textField;
 
         }
 
 
-        JComponent labelsAndFields = TwoColumnLayout.getTwoColumnLayout(labels, components);
-
-
+        labelsAndFields = GUIUtils.getTwoColumnLayout(columnNames, components);
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
         contentPanel.add(labelsAndFields);
         add(contentPanel);
 
 
-        //footer with buttons
+                     //footer with buttons
+
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
-        {
-            JButton saveButton = new JButton("Сохранить");
-            saveButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent arg0) {
-                    System.out.println("Сохранить");
 
-                }
-            });
-            //saveButton.setActionCommand("OK");
-            buttonPane.add(saveButton);
-            //getRootPane().setDefaultButton(saveButton);
+        JButton saveButton = new JButton("Сохранить");
+        saveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                submit();
 
-        }
-        {
-            JButton cancelButton = new JButton("Отменить");
-            cancelButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            });
-            //cancelButton.setActionCommand("Отменить");
-            buttonPane.add(cancelButton);
-        }
+            }
+        });
+        //saveButton.setActionCommand("OK");
+        buttonPane.add(saveButton);
+        //getRootPane().setDefaultButton(saveButton);
+
+
+        JButton cancelButton = new JButton("Отменить");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        //cancelButton.setActionCommand("Отменить");
+        buttonPane.add(cancelButton);
 
     }
 
+    private static void submit() {
+
+            Component[] components = labelsAndFields.getComponents();
+            Apartment apartment = new Apartment();
+            for (Component comp : components) {
+                // Cast comp to JComboBox / JTextField to get the values
+                if (comp instanceof JTextField) {
+                    JTextField textField = (JTextField) comp;
+                    System.out.println(textField.getText());
+
+                }
+
+            }
+
+    }
 
 }

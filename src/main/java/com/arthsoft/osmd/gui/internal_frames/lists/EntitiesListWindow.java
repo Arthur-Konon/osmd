@@ -3,6 +3,7 @@ package com.arthsoft.osmd.gui.internal_frames.lists;
 import com.arthsoft.osmd.annotations.Calculation;
 import com.arthsoft.osmd.annotations.Name;
 import com.arthsoft.osmd.annotations.Names;
+import com.arthsoft.osmd.annotations.NotEditable;
 import com.arthsoft.osmd.entity.Entity;
 import com.arthsoft.osmd.util.AppUtils;
 import com.arthsoft.osmd.util.GUIUtils;
@@ -90,8 +91,9 @@ abstract class EntitiesListWindow extends JInternalFrame {
                 if (me.getClickCount() == 2) {
 
                     int column = 0;
-                    int row = table.getSelectedRow();
-                    int id = (int) table.getModel().getValueAt(row, column); //todo try to change sort order before double click
+                    int rowInOrder = table.getSelectedRow();
+                    int trueRow = table.convertRowIndexToModel(rowInOrder);
+                    int id = (int) table.getModel().getValueAt(trueRow, column);
                     createEntityWindow(iconPath, id);
                 }
             }
@@ -159,4 +161,17 @@ abstract class EntitiesListWindow extends JInternalFrame {
     abstract void createEntityWindow(String iconPath, int id);
 
 
+    public Object[] translateEntityToRow(Entity entity, Field[] fields) {
+        return Arrays.stream(fields)
+                .map(field -> getFieldValueAsItIs(entity, field))
+                .toArray();
+    }
+
+    protected Object getFieldValueAsItIs(Object object, Field field) {
+        try {    return field.get(object);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

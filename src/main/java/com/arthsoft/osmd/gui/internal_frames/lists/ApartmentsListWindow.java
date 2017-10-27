@@ -8,7 +8,6 @@ import com.arthsoft.osmd.gui.internal_frames.entities.EntityWindow;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.lang.reflect.Field;
-import java.text.FieldPosition;
 import java.util.List;
 
 /**
@@ -24,15 +23,15 @@ public class ApartmentsListWindow extends EntitiesListWindow {
     void createEntityWindow(String iconPath, int id) {
         Apartment apartment = new ApartmentDao().getById(id);
 
-        Field[] fields = getFields();
-        Object[] row = translateEntityToTableRow(apartment, fields);
+        Field[] fields = getEntityFields();
+        Object[] row = translateEntityToRow(apartment, fields);
 
         MainWindow.getInternalWindowsPane().add(new EntityWindow("Квартира редактирование", iconPath, columnNames, row));
 
     }
 
     TableModel createModel() {
-        Field[] fields = getFields();
+        Field[] fields = getEntityFields();
 
         columnNames = fetchNames(fields);
 
@@ -55,7 +54,7 @@ public class ApartmentsListWindow extends EntitiesListWindow {
         return tableModel;
     }
 
-    private Field[] getFields() {
+    private Field[] getEntityFields() {
         Class aClass = Apartment.class;
         return fetchFields(aClass);
     }
