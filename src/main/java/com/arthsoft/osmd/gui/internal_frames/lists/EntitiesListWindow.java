@@ -3,7 +3,6 @@ package com.arthsoft.osmd.gui.internal_frames.lists;
 import com.arthsoft.osmd.annotations.Calculation;
 import com.arthsoft.osmd.annotations.Name;
 import com.arthsoft.osmd.annotations.Names;
-import com.arthsoft.osmd.annotations.NotEditable;
 import com.arthsoft.osmd.entity.Entity;
 import com.arthsoft.osmd.util.AppUtils;
 import com.arthsoft.osmd.util.GUIUtils;
@@ -168,7 +167,8 @@ abstract class EntitiesListWindow extends JInternalFrame {
     }
 
     protected Object getFieldValueAsItIs(Object object, Field field) {
-        try {    return field.get(object);
+        try {
+            return field.get(object);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

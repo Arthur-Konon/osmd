@@ -1,18 +1,13 @@
 package com.arthsoft.osmd.gui.internal_frames.entities;
 
-import com.arthsoft.osmd.annotations.Calculation;
 import com.arthsoft.osmd.entity.Apartment;
-import com.arthsoft.osmd.entity.Entity;
 import com.arthsoft.osmd.util.GUIUtils;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
-import java.lang.reflect.Field;
-import java.util.Arrays;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
@@ -55,7 +50,7 @@ public class EntityWindow extends JInternalFrame {
             e.printStackTrace();
         }
 
-                 // top
+        // top
 
 
         JPanel topPanel = new JPanel();
@@ -68,7 +63,7 @@ public class EntityWindow extends JInternalFrame {
         // topPanel.add(dButton);
         add(topPanel, BorderLayout.NORTH);
 
-               // centre
+        // centre
 
 
         JComponent[] components = new JComponent[columnNames.length];
@@ -89,7 +84,7 @@ public class EntityWindow extends JInternalFrame {
         add(contentPanel);
 
 
-                     //footer with buttons
+        //footer with buttons
 
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -120,17 +115,17 @@ public class EntityWindow extends JInternalFrame {
 
     private static void submit() {
 
-            Component[] components = labelsAndFields.getComponents();
-            Apartment apartment = new Apartment();
-            for (Component comp : components) {
-                // Cast comp to JComboBox / JTextField to get the values
-                if (comp instanceof JTextField) {
-                    JTextField textField = (JTextField) comp;
-                    System.out.println(textField.getText());
-
-                }
+        Component[] components = labelsAndFields.getComponents();
+        Apartment apartment = new Apartment();
+        for (Component comp : components) {
+            // Cast comp to JComboBox / JTextField to get the values
+            if (comp instanceof JTextField) {
+                JTextField textField = (JTextField) comp;
+                System.out.println(textField.getText());
 
             }
+
+        }
 
     }
 

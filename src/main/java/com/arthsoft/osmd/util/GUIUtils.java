@@ -66,7 +66,7 @@ public class GUIUtils {
     public final static void addMnemonics(
             JLabel[] labels,
             JComponent[] fields) {
-        Map<Character, Object> m = new HashMap<Character, Object>();
+        Map <Character, Object> m = new HashMap <Character, Object>();
         for (int ii = 0; ii < labels.length; ii++) {
             labels[ii].setLabelFor(fields[ii]);
             String lwr = labels[ii].getText().toLowerCase();
@@ -80,7 +80,6 @@ public class GUIUtils {
             }
         }
     }
-
 
 
     public static JComponent getTwoColumnLayout(String[] labelStrings, JComponent[] fields) {
